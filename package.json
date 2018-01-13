@@ -1,0 +1,30 @@
+{
+  "name": "ply",
+  "version": "1.0.0",
+  "description": "Connects people who need a place to work on their car, bike, or motorcycle, or to ply a craft like woodworking with people or business that have some space to rent. ",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattgif/ply.git"
+  },
+  "keywords": [
+    "node.js",
+    "express",
+    "sharing",
+    "rent",
+    "AirBnB"
+  ],
+  "author": "Matthew Gifford",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattgif/ply/issues"
+  },
+  "homepage": "https://github.com/mattgif/ply#readme"
+}
