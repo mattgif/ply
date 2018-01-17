@@ -3,10 +3,101 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="description" content="Find a workspace to rent, or make money by sharing your unused garage/basement/shed.">
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width">		
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Nunito" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/dark.css"> -->	
+	<script
+	  src="https://code.jquery.com/jquery-3.2.1.min.js"
+	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous"></script>
 	<title>ply</title>
 </head>
 <body>
-	<p>Hello world</p>
+	<div class="js-modal-wrapper">
+		<div class="modal__overlay"></div>
+		<div class="modal__wrapper">
+			<div class="modal__dialog js-modal-dialog modal__login" role="dialog" aria-labelledby="signup__legend" tabindex="-1">
+				<div class="modal__close">
+					<button class="js-modal-close" aria-label="close dialog">X</button>
+				</div>
+				<form action="#" method="POST">					
+					<div class="input__group">	
+						<input type="email" name="email" id="login-email" required>
+						<label for="email">Email</label>									
+					</div>
+					<div class="input__group">	
+						<input type="password" id="login-password" name="login-password" required>
+						<label for="signup-password">Password</label>						
+					</div>
+					<button type="submit">Log In</button>
+				</form>
+				<div class="modal__change">
+					<h4>Not a ply member? <a href="#" class="join">Join ply</a></h4>					
+				</div>
+			</div>
+
+			<div class="modal__dialog js-modal-dialog modal__join" role="dialog" aria-labelledby="signup__legend" tabindex="-1">
+				<div class="modal__close">
+					<button class="js-modal-close" aria-label="close dialog">X</button>
+				</div>
+				<form action="#" method="POST">
+					<legend id="signup__legend">Join ply to share or book a space</legend>
+					<div class="input__group">
+						<input type="email" name="email" id="signup-email" required>	
+						<label for="email">Email address</label>										
+					</div>
+					<div class="input__group">
+						<input type="text" id="signup-first-name" name="firstname" required>
+						<label for="signup-first-name">First name</label>											
+					</div>
+					<div class="input__group">
+						<input type="text" id="signup-last-name" name="lastname" required>
+						<label for="signup-last-name">Last name</label>											
+					</div>
+					<div class="input__group">
+						<input type="password" id="signup-password" name="signup-password" required>
+						<label for="signup-password">Create a password</label>						
+					</div>
+					<button type="submit">Join ply</button>
+				</form>
+				<div class="modal__change">
+					<h4>Already a ply member? <a href="#" class="login">Log in</a></h4>
+				</div>
+			</div>		
+		</div>	
+	</div>
+	
+
+	<div class="container__splash">
+		<nav role="navigation">
+			<!-- hamburger icon goes here -->
+			<ul class="nav__list">
+				<li class="nav__item"><a href="share" class="nav__link share">Share a space</a></li>
+				<li class="nav__item"><a href="#" class="nav__link join">Join</a></li>
+				<li class="nav__item"><a href="#" class="nav__link login">Log in</a></li>
+			</ul>		
+		</nav>
+	
+	
+		<div class="container">
+			<header role="banner">		
+				<h1 class="logo logo__big">ply</h1>
+				<div class="tag__wrapper">
+					<h2 class="tag">Find a space. Get working.</h2>			
+				</div>			
+			</header>
+
+			<section class="search__wrapper">
+				<form action="search" class="search__form" method="GET">
+					<input type="search" name="address" class="search__bar" placeholder='Try "Washington DC"'>
+					<button type="submit" class="search__button">search</button>
+				</form>		
+			</section>		
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/mock.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

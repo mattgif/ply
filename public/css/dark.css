@@ -1,0 +1,22 @@
+html {
+	color: white;
+}
+
+.nav__link {
+	color: white;
+}
+
+.tag {
+	color: white;
+}
+.container__splash {
+	background-image: 
+		linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+		url("../img/drill_press_splash.jpg");	
+	background-size: cover;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+}
