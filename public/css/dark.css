@@ -9,6 +9,11 @@ html {
 .tag {
 	color: white;
 }
+
+.logo {
+	color: white;
+}
+
 .container__splash {
 	background-image: 
 		linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
@@ -19,4 +24,8 @@ html {
 	height: 100%;
 	top: 0px;
 	left: 0px;
+}
+
+.modal__dialog {
+	color: #333;
 }

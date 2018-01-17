@@ -1,14 +1,14 @@
 // modals 
 function modalJoinClick() {
 	// displays join modal on click
-	$('body').on('click', '.join', e => {
+	$('.join').click(e => {
 		e.preventDefault();
 		modalOpen('.modal__join','#signup-email');
 	})
 }
 
 function modalLoginClick() {
-	$('html').on('click', '.login', e => {
+	$('.login').click(e => {
 		e.preventDefault();
 		modalOpen('.modal__login', '#login-email');
 	})
