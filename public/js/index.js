@@ -33,6 +33,8 @@ function modalClose() {
 	setTimeout(function() {
 		$('.js-modal-wrapper').css('top', '-100%')
 	},200);
+	// clear modal fields
+	$('.modal__dialog input').val('');
 	// turn off listeners used to keep focus in modal
 	$('.join, .login').off("keydown");
 	$('.js-modal-wrapper, .js-modal-dialog').off("click");
