@@ -4,9 +4,11 @@
 	<meta charset="utf-8">
 	<meta name="description" content="Find a workspace to rent, or make money by sharing your unused garage/basement/shed.">
 	<meta name="viewport" content="width=device-width">		
-	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Nunito" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
-	<link rel="stylesheet" type="text/css" href="css/dark.css">	
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Nunito|Material+Icons" 
+	  rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">	
 	<script
 	  src="https://code.jquery.com/jquery-3.2.1.min.js"
 	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -72,11 +74,30 @@
 
 	<div class="container__splash">
 		<nav role="navigation">
-			<!-- hamburger icon goes here -->
-			<ul class="nav__list">
+			<button class="logo">ply</button>
+			<div class="bt-menu-trigger">
+			  <span></span>
+			</div>
+			<div class="mobile__menu">				
+				<section>
+					<h2>Account</h2>
+					<ul class="mobile__nav__list mobile__user__menu">
+						<li class="nav__item"><button class="nav__link join">Join</button></li>						
+						<li class="nav__item"><button class="nav__link login">Log in</button></li>						
+					</ul>	
+				</section>				
+				<section>
+					<h2>Spaces</h2>
+					<ul class="mobile__nav__list mobile__spaces__menu">
+						<li class="nav__item"><button class="nav__link share">Share a space</button></li>
+						<li class="nav__item"><button class="nav__link manage_space">Manage spaces</button></li>
+					</ul>						
+				</section>				
+			</div>			
+			<ul class="nav__list full__menu">
 				<li class="nav__item"><button class="nav__link share">Share a space</button></li>
-				<li class="nav__item"><button class="nav__link join">Join</button></li>
-				<li class="nav__item"><button class="nav__link login">Log in</button></li>
+				<li class="nav__item"><button class="nav__link join myaccount">Join</button></li>
+				<li class="nav__item"><button class="nav__link login logout">Log in</button></li>
 			</ul>		
 		</nav>
 	
@@ -85,19 +106,20 @@
 			<header role="banner">		
 				<h1 class="logo logo__big">ply</h1>
 				<div class="tag__wrapper">
-					<h2 class="tag">Find a space. Get working.</h2>			
+					<h2 class="tag">Find space. <br> Get working.</h2>			
 				</div>			
 			</header>
 
 			<section class="search__wrapper">
 				<form action="search" class="search__form" method="GET">
-					<input type="search" name="address" class="search__bar" placeholder='Try "Washington DC"'>
+					<input type="search" name="address" class="search__bar" id="pac-input" placeholder='Try "Washington DC"'>
 					<button type="submit" class="search__button">SEARCH</button>
 				</form>		
 			</section>		
 		</div>
 	</div>
 
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD37bTXyBCJV9iMHnfYZVKZK3-9oKq_vXM&libraries=places&callback=initAutocomplete" async defer></script>
 	<script type="text/javascript" src="js/mock.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 </body>

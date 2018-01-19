@@ -1,3 +1,34 @@
+// nav
+function menuTriggerListener() {
+	$('.bt-menu-trigger').click(() => {
+		$('.bt-menu-trigger').toggleClass('bt-menu-open');
+		$('.mobile__menu').toggleClass('open');
+		if ($('button.logo').is(':visible')) {
+			$('button.logo').fadeOut()
+		} else {
+			$('button.logo').fadeIn(1200);
+		}
+	})	
+}
+
+
+function navButtonListeners() {
+	menuTriggerListener();
+}
+
+// maps autocomplete
+let autocomplete;
+function initAutocomplete() {
+	// sets search bar as maps autocomplete element; callback from script on pageload
+	const input = document.getElementById('pac-input');
+	autocomplete = new google.maps.places.Autocomplete(input, {types: ['geocode']});	
+}
+
+function getAddressFromAutoComplete() {
+	// returns the google place object selected by the user
+	return autocomplete.getPlace();
+}
+
 // modals 
 function modalJoinClick() {
 	// displays join modal on click
@@ -90,7 +121,8 @@ function modalOpenListeners() {
 
 // core
 function pageHandler() {	
-	modalOpenListeners();	
+	modalOpenListeners();
+	navButtonListeners();
 }
 
 $(pageHandler);
