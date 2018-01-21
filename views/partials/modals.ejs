@@ -1,0 +1,55 @@
+<!-- views/partials/modals.ejs -->
+<div class="js-modal-wrapper">
+	<div class="modal__overlay"></div>
+	<div class="modal__wrapper">
+		<div class="modal__dialog js-modal-dialog modal__login" role="dialog" aria-labelledby="login__legend" tabindex="-1">				
+			<div class="modal__close">
+				<button class="js-modal-close" aria-label="close dialog">X</button>
+			</div>
+			<legend id="login__legend">Log in to your ply account</legend>
+			<form action="#" method="POST">					
+				<div class="input__group">	
+					<input type="email" name="email" id="login-email" required>
+					<label for="email">Email</label>									
+				</div>
+				<div class="input__group">	
+					<input type="password" id="login-password" name="login-password" required>
+					<label for="signup-password">Password</label>						
+				</div>
+				<button type="submit">Log In</button>
+			</form>
+			<div class="modal__change">
+				<h4>Not a ply member? <a href="#" class="join">Join ply</a></h4>					
+			</div>
+		</div>
+
+		<div class="modal__dialog js-modal-dialog modal__join" role="dialog" aria-labelledby="signup__legend" tabindex="-1">
+			<div class="modal__close">
+				<button class="js-modal-close" aria-label="close dialog">X</button>
+			</div>
+			<form action="#" method="POST">
+				<legend id="signup__legend">Join ply to share or book a space</legend>
+				<div class="input__group">
+					<input type="email" name="email" id="signup-email" required>	
+					<label for="email">Email address</label>										
+				</div>
+				<div class="input__group">
+					<input type="text" id="signup-first-name" name="firstname" required>
+					<label for="signup-first-name">First name</label>											
+				</div>
+				<div class="input__group">
+					<input type="text" id="signup-last-name" name="lastname" required>
+					<label for="signup-last-name">Last name</label>											
+				</div>
+				<div class="input__group">
+					<input type="password" id="signup-password" name="signup-password" required>
+					<label for="signup-password">Create a password</label>						
+				</div>
+				<button type="submit">Join ply</button>
+			</form>
+			<div class="modal__change">
+				<h4>Already a ply member? <a href="#" class="login">Log in</a></h4>
+			</div>
+		</div>		
+	</div>	
+</div>

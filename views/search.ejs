@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<%- include('partials/head') %>	
+	<title>ply</title>
+</head>
+<body>
+
+	<%- include('partials/modals') %>
+
+	<section class="topmatter">
+		<%- include('partials/nav') %>
+	</section>
+	
+	<div class="container">
+		<section class="search__wrapper">
+			<form action="s" class="search__form" method="GET">
+				<input type="search" name="address" class="search__bar" id="pac-input" placeholder='Try "Washington DC"'>
+				<input type="hidden" name="lat" id="lat-input" value="">
+				<input type="hidden" name="lng" id="lng-input" value="">
+				<button type="submit" class="search__button">SEARCH</button>
+			</form>		
+		</section>	
+	</div>
+	
+	<section class="results__wrapper">
+		<div class="results"></div>
+	</section>
+
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/getresults.js"></script>
+</body>
+</html>

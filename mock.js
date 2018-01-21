@@ -1,234 +1,335 @@
-{
-	"id": "357223",
-	"spaceID": "w35722320002",
-	"title": "Corporis beatae aperiam distinctio.",
-	"type": "Shed",
-	"owner": "porpoisehat",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-77.06974249501943, 38.96433931880528]",
+const locations = [
+	{
+		"id": "111111",
+		"spaceID":"g11111120002",
+		"title": "Dirt Church DC",
+		"type": "Partial Garage",
+		"owner": "dirtchurch",
+		"location": {			  
+			"type": "Point",
+			"coordinates": [
+				-76.98308860883117,
+				38.892101707724315
+			]			  
+		},
+		"coverImage" : "dirtchurch1.jpg",
+		"availability": {								
+			2018: {
+				1: {
+					29: [17,18,19,20,21,22,23],
+					30: [9, 10, 11, 14, 15, 16],
+				},
+				2: {
+					1: [9, 10, 11, 12, 13, 14, 15, 16],
+					2: [9, 10, 11, 12, 13, 14, 15, 16],
+					3: [9, 10, 11, 12, 13, 14, 15, 16],
+				}
+			}
+		},
+		"description": "Expedita alias blanditiis pariatur inventore ab qui consequatur. Deserunt dolorum tempora aliquam adipisci sapiente. Laborum deserunt doloribus eveniet. Maiores hic aspernatur similique esse et minima. Laboriosam veniam natus voluptates veritatis et aliquam. Vitae aliquid ab neque sit. Ipsa hic perferendis deserunt a repellat quaerat. Labore occaecati aliquid qui natus magni ullam similique tempore. Velit nisi provident nisi. Vitae possimus tenetur quibusdam aliquam."			
+	},		
+	{
+		"id": "222222",
+		"spaceID":"s22222220002",
+		"title": "Dunn Lewis MC",
+		"type": "Workspace",
+		"owner": "dunnlewis",
+		"location": {
+			"type": "Point",
+			"coordinates": [
+				-76.98477645171806,
+				38.914990067304565
+			]
+		},
+		"coverImage" : "dunnlewis.jpg",
+		"availability": {
+			2018: {
+				1: {
+					29: [14, 15, 16, 17, 18],
+					30: [9, 10, 11, 14, 15, 16],
+				},
+				2: {
+					1: [9, 10, 11, 12, 13, 14, 15, 16],
+					2: [9, 10, 11, 12, 13, 14, 15, 16],
+					3: [9, 10, 11, 12, 13, 14, 15, 16],
+				}
+			}
+		},
+		"description": "Expedita alias blanditiis pariatur inventore ab qui consequatur. Deserunt dolorum tempora aliquam adipisci sapiente. Laborum deserunt doloribus eveniet. Maiores hic aspernatur similique esse et minima. Laboriosam veniam natus voluptates veritatis et aliquam. Vitae aliquid ab neque sit. Ipsa hic perferendis deserunt a repellat quaerat. Labore occaecati aliquid qui natus magni ullam similique tempore. Velit nisi provident nisi. Vitae possimus tenetur quibusdam aliquam."	
 	},
-	"coverImage": "test1.jpg",
-	"availability": {}
-},
-{
-	"id": "163717",
-	"spaceID": "p16371720002",
-	"title": "Id ipsam reprehenderit eligendi atque.",
-	"type": "Storage Facility",
-	"owner": "porpoisehat",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-77.01874447101464, 38.9288074098219]",
+	{
+		"id": "333333",
+		"spaceID":"g33333320002",
+		"title": "Half of underground garage",
+		"type": "Partial Garage",
+		"owner": "testuser123",
+		"location": {
+			"type": "Point",
+			"coordinates": [
+				-77.01188396662474,
+				38.90963574367117
+			]
+		},
+		"coverImage": "testgarage.jpg",
+		"availability": {
+			2018: {
+				1: [1]
+			},
+		"description": "Expedita alias blanditiis pariatur inventore ab qui consequatur. Deserunt dolorum tempora aliquam adipisci sapiente. Laborum deserunt doloribus eveniet. Maiores hic aspernatur similique esse et minima. Laboriosam veniam natus voluptates veritatis et aliquam. Vitae aliquid ab neque sit. Ipsa hic perferendis deserunt a repellat quaerat. Labore occaecati aliquid qui natus magni ullam similique tempore. Velit nisi provident nisi. Vitae possimus tenetur quibusdam aliquam."
+		}
 	},
-	"coverImage": "test2.jpg",
-	"availability": {}
-},
-{
-	"id": "502795",
-	"spaceID": "f50279520002",
-	"title": "Inventore quo voluptatibus atque officiis illo iste esse.",
-	"type": "Partial Garage",
-	"owner": "tylerthompson",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-77.08323965310505, 38.94610382604133]",
+	{
+		"id": "857136",
+		"spaceID": "f85713620002",
+		"title": "Consectetur vel eum saepe dicta aliquam quae.",
+		"type": "Whole Garage",
+		"owner": "purposefulporpoise",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-76.9708165635274, 38.87541139534471]",
+		},
+		"coverImage": "test1.jpg",
+		"availability": {},
+		"description": "Expedita alias blanditiis pariatur inventore ab qui consequatur. Deserunt dolorum tempora aliquam adipisci sapiente. Laborum deserunt doloribus eveniet. Maiores hic aspernatur similique esse et minima. Laboriosam veniam natus voluptates veritatis et aliquam. Vitae aliquid ab neque sit. Ipsa hic perferendis deserunt a repellat quaerat. Labore occaecati aliquid qui natus magni ullam similique tempore. Velit nisi provident nisi. Vitae possimus tenetur quibusdam aliquam."
 	},
-	"coverImage": "test3.jpg",
-	"availability": {}
-},
-{
-	"id": "477519",
-	"spaceID": "f47751920002",
-	"title": "Fugiat laboriosam consequatur eaque magnam.",
-	"type": "Workspace",
-	"owner": "wrighttina",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-77.00240664714067, 38.832873993415646]",
+	{
+		"id": "194143",
+		"spaceID": "w19414320002",
+		"title": "Ducimus deleniti accusamus repellat aliquam doloremque.",
+		"type": "Shed",
+		"owner": "purposefulporpoise",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-76.99913374368103, 38.84131204017989]",
+		},
+		"coverImage": "test2.jpg",
+		"availability": {},
+		"description": "Saepe assumenda qui temporibus recusandae voluptates reprehenderit. Laboriosam consequatur nihil fuga natus. Quo illo nihil rerum eum praesentium perferendis excepturi. Recusandae doloremque assumenda consequuntur culpa. Autem quibusdam dicta perferendis cumque enim vitae. Occaecati blanditiis delectus aliquid dolores veniam quaerat officia. Architecto delectus consequatur perspiciatis veniam consequuntur rem est. Natus ad voluptas est rem repellat. Voluptatum ad nesciunt consequuntur nulla dolorem reprehenderit doloribus. Quis rem optio tempore dolorem mollitia voluptate veniam. Commodi ipsam incidunt et quod aspernatur. Harum soluta corporis unde voluptatum."
 	},
-	"coverImage": "test4.jpg",
-	"availability": {}
-},
-{
-	"id": "183341",
-	"spaceID": "w18334120002",
-	"title": "Aperiam iste nobis dicta nam.",
-	"type": "Workspace",
-	"owner": "oadams",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-77.00127714673889, 38.89274185598619]",
+	{
+		"id": "145011",
+		"spaceID": "w14501120002",
+		"title": "Ducimus in perspiciatis architecto ab at laudantium.",
+		"type": "Partial Garage",
+		"owner": "valdezeric",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-77.0036903967702, 38.87797035922955]",
+		},
+		"coverImage": "test3.jpg",
+		"availability": {},
+		"description": "Sint sed neque assumenda. Dignissimos cum dolorem laborum eos sint omnis nisi. Odit hic numquam voluptatum commodi similique. Sunt natus atque rerum dolore. Atque laboriosam ex earum nobis soluta harum. Consectetur odio laudantium quas quibusdam quod nihil dolorum id. Perferendis reiciendis consequuntur odio vel quidem omnis. Ad quos error qui. Aliquid ipsum beatae alias maxime. Eaque inventore quas blanditiis officiis ratione harum quibusdam architecto."
 	},
-	"coverImage": "test5.jpg",
-	"availability": {}
-},
-{
-	"id": "610987",
-	"spaceID": "f61098720002",
-	"title": "Blanditiis non distinctio ex rerum amet.",
-	"type": "Shed",
-	"owner": "kmiller",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-76.99764671520994, 38.85045629048532]",
+	{
+		"id": "620675",
+		"spaceID": "p62067520002",
+		"title": "Corporis veniam iure inventore.",
+		"type": "Whole Garage",
+		"owner": "twalker",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-77.01936273575943, 38.89657980910811]",
+		},
+		"coverImage": "test4.jpg",
+		"availability": {},
+		"description": "Architecto id perspiciatis eius eum. Ab eaque expedita explicabo. Neque hic aliquam id soluta eos iure. Inventore quibusdam voluptatem molestiae maiores. Optio quasi nostrum ducimus non quasi ex voluptatibus. Veniam rerum atque dolor tempore impedit ducimus tempore. Nisi consectetur tempora occaecati. Quasi error recusandae nostrum nesciunt quisquam quae porro dolores. Voluptatum dolore ad temporibus corporis. Eum veniam fugiat quisquam iure perspiciatis. In deserunt corrupti quia earum."
 	},
-	"coverImage": "test6.jpg",
-	"availability": {}
-},
-{
-	"id": "156367",
-	"spaceID": "w15636720002",
-	"title": "Quibusdam placeat rem nihil labore.",
-	"type": "Whole Garage",
-	"owner": "carlos41",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-77.02413668420034, 38.991175537936414]",
+	{
+		"id": "398542",
+		"spaceID": "f39854220002",
+		"title": "Illum ducimus facere sunt eos vitae.",
+		"type": "Workspace",
+		"owner": "vbonilla",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-77.03805754885165, 38.88619443903731]",
+		},
+		"coverImage": "test5.jpg",
+		"availability": {},
+		"description": "Autem sed pariatur officiis porro ratione perferendis magnam. Odio cupiditate itaque sint sed repellat dolore tempora et. Rem nulla non impedit odio consequuntur accusamus. Porro suscipit fugit quas at itaque. Eius voluptatum quidem itaque magnam quam. Quas sapiente vero vero optio alias architecto. Laudantium laudantium non sit molestiae ea. Consectetur quaerat quas non id aut doloribus. Doloribus ipsa tenetur nulla mollitia voluptate dignissimos distinctio. Tempore error voluptas sint odit. Necessitatibus maxime repellat facilis vero voluptatem debitis."
 	},
-	"coverImage": "test7.jpg",
-	"availability": {}
-},
-{
-	"id": "395479",
-	"spaceID": "g39547920002",
-	"title": "Suscipit fuga voluptatum porro praesentium distinctio fuga.",
-	"type": "Shop",
-	"owner": "grossangela",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-77.06800639488955, 38.844720751787705]",
+	{
+		"id": "875057",
+		"spaceID": "f87505720002",
+		"title": "Tenetur voluptatum voluptas accusantium aliquam dicta ex dolores.",
+		"type": "Shop",
+		"owner": "daniel46",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-77.02487144646679, 38.868487648750616]",
+		},
+		"coverImage": "test6.jpg",
+		"availability": {},
+		"description": "Nemo suscipit harum suscipit repellat iusto asperiores distinctio. Fugit eum quis beatae et. Ipsa blanditiis sit rem facere consequuntur. Veritatis excepturi qui officia aperiam architecto. Accusamus facere sunt nulla animi necessitatibus ratione voluptate reprehenderit. Accusamus blanditiis esse corporis. Itaque tempore quibusdam adipisci. Eos sed quam optio ab et. Laborum voluptatum voluptate fuga nulla. Iusto molestias fuga non vero odit. Provident harum harum voluptatum voluptatem asperiores. Ea assumenda quas itaque. Commodi unde minima aut suscipit velit molestias."
 	},
-	"coverImage": "test8.jpg",
-	"availability": {}
-},
-{
-	"id": "149556",
-	"spaceID": "d14955620002",
-	"title": "Vel repellendus quo non error sequi consectetur optio numquam.",
-	"type": "Shop",
-	"owner": "rachelmeyer",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-77.07312517383083, 38.8477155139401]",
+	{
+		"id": "905564",
+		"spaceID": "w90556420002",
+		"title": "Quibusdam ratione fugit amet adipisci esse.",
+		"type": "Workspace",
+		"owner": "jacobcampbell",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-76.9946131878774, 38.984630318118285]",
+		},
+		"coverImage": "test7.jpg",
+		"availability": {},
+		"description": "Perspiciatis esse asperiores distinctio pariatur nulla eius. Eius itaque odio velit ipsum quasi. Eaque nulla cumque corporis corporis natus ullam laboriosam. Placeat adipisci praesentium suscipit minima iusto. Soluta perferendis accusantium suscipit necessitatibus. Repellat minus sequi odit non. Harum accusantium iusto quibusdam culpa incidunt eius. Animi blanditiis labore tenetur magnam quisquam. At itaque maxime quod veritatis a harum. Laboriosam necessitatibus totam cumque maiores quia. Consequatur ad quas exercitationem harum alias. Cupiditate suscipit repellendus velit non officia minima deserunt."
 	},
-	"coverImage": "test9.jpg",
-	"availability": {}
-},
-{
-	"id": "282107",
-	"spaceID": "d28210720002",
-	"title": "Est nobis laboriosam eaque occaecati ipsum.",
-	"type": "Whole Garage",
-	"owner": "bobdickson",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-76.96172737018063, 38.90664965185846]",
+	{
+		"id": "780626",
+		"spaceID": "f78062620002",
+		"title": "Laudantium repudiandae ex explicabo dolorum occaecati quasi maiores sunt.",
+		"type": "Shed",
+		"owner": "renee92",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-77.02211350446534, 38.866920235767154]",
+		},
+		"coverImage": "test8.jpg",
+		"availability": {},
+		"description": "Nulla eveniet enim molestias maiores debitis amet. Ipsum possimus laborum quasi aspernatur illum. Maiores asperiores numquam asperiores illo nulla ab commodi. Amet dolorem officia quasi doloribus pariatur. Animi doloribus veniam consequatur rem a nam. Modi pariatur repudiandae nostrum mollitia enim ea. Veniam at sequi laborum distinctio. Deleniti incidunt eos sed possimus veritatis. Aperiam enim blanditiis culpa repudiandae eos. Excepturi magni magnam hic mollitia quia. Dolorem eveniet id expedita reprehenderit error beatae cum ipsa."
 	},
-	"coverImage": "test10.jpg",
-	"availability": {}
-},
-{
-	"id": "336512",
-	"spaceID": "d33651220002",
-	"title": "At nobis reiciendis placeat nisi.",
-	"type": "Whole Garage",
-	"owner": "cassandra70",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-76.98888401884913, 38.91575685442303]",
+	{
+		"id": "266373",
+		"spaceID": "p26637320002",
+		"title": "Iste impedit doloribus saepe quae.",
+		"type": "Shop",
+		"owner": "joel11",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-77.11359605848388, 38.89205875064489]",
+		},
+		"coverImage": "test9.jpg",
+		"availability": {},
+		"description": "Recusandae dolorum suscipit quasi cupiditate. Quidem amet dolorem tempora est illum aut. Laborum exercitationem excepturi mollitia voluptatum aut. Hic corporis consequuntur dolore corporis exercitationem. Quia incidunt molestiae odit corporis nihil. Maxime voluptates iste consequatur error accusantium numquam totam. Accusantium earum consectetur dolores veritatis minima tempore ratione. Recusandae blanditiis illo perspiciatis voluptatibus porro voluptatibus vitae."
 	},
-	"coverImage": "test11.jpg",
-	"availability": {}
-},
-{
-	"id": "706573",
-	"spaceID": "d70657320002",
-	"title": "Dolor odit ducimus distinctio numquam nesciunt sit labore.",
-	"type": "Shop",
-	"owner": "drivers",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-77.10385788589858, 38.92821611571357]",
+	{
+		"id": "560376",
+		"spaceID": "p56037620002",
+		"title": "Tenetur accusamus eveniet occaecati quae.",
+		"type": "Storage Facility",
+		"owner": "fernando32",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-76.96684607384766, 38.891620380614214]",
+		},
+		"coverImage": "test10.jpg",
+		"availability": {},
+		"description": "Saepe natus ipsa id quaerat itaque ut corrupti asperiores. Perspiciatis natus tempora veniam tempora occaecati. Illum porro quod nam libero. Doloribus eveniet quae odio laboriosam quibusdam nisi. Voluptate hic exercitationem cumque dicta exercitationem molestias sit possimus. Eaque voluptas asperiores porro ratione libero quos cupiditate. Perferendis sequi minima similique possimus adipisci explicabo. Quas numquam animi et deleniti. Rerum repudiandae aut eius."
 	},
-	"coverImage": "test12.jpg",
-	"availability": {}
-},
-{
-	"id": "461211",
-	"spaceID": "g46121120002",
-	"title": "Magnam dolore quasi rerum excepturi aliquid vel.",
-	"type": "Partial Garage",
-	"owner": "christophersingh",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-76.99020081199743, 38.83081769358231]",
+	{
+		"id": "829987",
+		"spaceID": "w82998720002",
+		"title": "Doloremque dolorem mollitia quos provident molestiae laudantium.",
+		"type": "Shed",
+		"owner": "ylee",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-77.03204977048433, 38.83448941258191]",
+		},
+		"coverImage": "test11.jpg",
+		"availability": {},
+		"description": "Ea deserunt neque expedita consequatur. Autem deleniti inventore adipisci porro quia. Aperiam est ullam non ratione neque. Veniam alias culpa aperiam modi doloribus dolorem minus. Assumenda porro nisi dolor cum. Veritatis iusto ab veritatis velit ratione expedita corporis. Suscipit et laborum reiciendis error minus. Dolorem recusandae deleniti reiciendis alias. Nemo laudantium est occaecati ducimus beatae eius sint cum. Repellendus dolor error similique occaecati. Veniam ipsa occaecati laudantium vel cum esse. Aut non veritatis deleniti sint nisi incidunt."
 	},
-	"coverImage": "test13.jpg",
-	"availability": {}
-},
-{
-	"id": "343239",
-	"spaceID": "g34323920002",
-	"title": "Modi officiis ratione autem perferendis velit nihil nulla ad.",
-	"type": "Workspace",
-	"owner": "emilyreyes",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-76.95542143848908, 38.921660343460175]",
+	{
+		"id": "539643",
+		"spaceID": "g53964320002",
+		"title": "Nam numquam illo nam veritatis.",
+		"type": "Partial Garage",
+		"owner": "mclaughlindebra",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-77.0697689716177, 38.971881384016704]",
+		},
+		"coverImage": "test12.jpg",
+		"availability": {},
+		"description": "Ullam pariatur neque non enim voluptatibus repellat inventore. Quaerat reprehenderit ad eveniet necessitatibus optio earum. Eos magni quaerat quibusdam accusamus. Fugiat eos sit sint inventore. Autem accusantium quam nemo perferendis totam quia similique. Error eligendi nobis error at. Exercitationem dolore sint distinctio ab tempore quis quod. Molestias a id facilis necessitatibus enim. Expedita quo vel natus neque ipsum perspiciatis."
 	},
-	"coverImage": "test14.jpg",
-	"availability": {}
-},
-{
-	"id": "775536",
-	"spaceID": "w77553620002",
-	"title": "Repudiandae corporis non accusamus.",
-	"type": "Partial Garage",
-	"owner": "howardkevin",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-77.02106313181972, 38.82537138426705]",
+	{
+		"id": "965478",
+		"spaceID": "w96547820002",
+		"title": "Cumque distinctio ad nemo ratione nihil dolorem magni.",
+		"type": "Whole Garage",
+		"owner": "michael73",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-77.0581383087631, 38.863266482735085]",
+		},
+		"coverImage": "test13.jpg",
+		"availability": {},
+		"description": "Exercitationem at impedit debitis totam nihil. Reprehenderit numquam non deserunt deleniti ipsam. At voluptate praesentium temporibus possimus nobis. Occaecati quis ab deleniti sit officia. Itaque non beatae iusto sed aliquam. Voluptatem optio facere vitae neque officia earum facere. Vero dolorum molestias nostrum delectus eos doloremque. Quidem explicabo voluptatibus ex ex. Atque ullam aspernatur ullam vitae deleniti odio non. Aliquid ipsam vitae architecto nobis aliquid. Nesciunt quos autem ut vitae ab ipsam. Temporibus optio rerum sequi dolorum ea adipisci."
 	},
-	"coverImage": "test15.jpg",
-	"availability": {}
-},
-{
-	"id": "730160",
-	"spaceID": "g73016020002",
-	"title": "Blanditiis eligendi quia beatae laborum veniam possimus sit laborum.",
-	"type": "Shop",
-	"owner": "mhodge",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-77.06785961066421, 38.89969843213124]",
+	{
+		"id": "645154",
+		"spaceID": "p64515420002",
+		"title": "Provident ratione at perferendis doloribus suscipit omnis.",
+		"type": "Storage Facility",
+		"owner": "linda86",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-76.99561503828374, 38.87215073619291]",
+		},
+		"coverImage": "test14.jpg",
+		"availability": {},
+		"description": "Enim qui aliquam magni dolorum minus. Itaque porro eaque alias at quia. Corporis laboriosam officia hic rerum eum. Quisquam eaque pariatur nemo necessitatibus amet tempora. Animi odio animi necessitatibus tempora dicta. Repellendus excepturi assumenda id. Autem quidem doloribus inventore. Labore consequuntur sunt tempora ipsam autem laudantium unde. Numquam fuga laborum tempora error. Temporibus eveniet totam iure aliquid minus maiores. Dolor perspiciatis nam sed. Rem ea placeat error natus sed nihil tenetur."
 	},
-	"coverImage": "test16.jpg",
-	"availability": {}
-},
-{
-	"id": "465523",
-	"spaceID": "d46552320002",
-	"title": "Eos repudiandae sunt unde eius in.",
-	"type": "Storage Facility",
-	"owner": "keith85",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-77.06666621413838, 38.96101604940564]",
+	{
+		"id": "720256",
+		"spaceID": "p72025620002",
+		"title": "Quas sunt odio maiores debitis eligendi impedit amet.",
+		"type": "Partial Garage",
+		"owner": "tammy56",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-77.08548291091914, 38.956460757982924]",
+		},
+		"coverImage": "test15.jpg",
+		"availability": {},
+		"description": "Voluptates beatae veniam laudantium reprehenderit dignissimos reprehenderit. Aliquam voluptate quis mollitia perspiciatis laudantium vero. Officia rerum accusantium vitae eligendi sapiente. In nemo recusandae cupiditate ratione fugiat quis. Ab est aliquam ut praesentium ex. Id molestiae officiis adipisci quas. Eius veniam illum voluptates. Minus nihil dolores libero incidunt veniam. Sapiente esse blanditiis fugit sed illum facilis adipisci. Reprehenderit impedit veritatis quaerat ipsam. Sit magnam ut nihil minima nam eaque perspiciatis."
 	},
-	"coverImage": "test17.jpg",
-	"availability": {}
-},
-{
-	"id": "555188",
-	"spaceID": "f55518820002",
-	"title": "Reprehenderit distinctio eius itaque praesentium deserunt aliquam rem.",
-	"type": "Storage Facility",
-	"owner": "jcameron",
-	"location": {
-		"type": "Point",
-		"coordinates": "[-77.05075181814867, 38.84071208761671]",
+	{
+		"id": "431291",
+		"spaceID": "w43129120002",
+		"title": "Esse omnis fugiat nobis perspiciatis numquam odio.",
+		"type": "Storage Facility",
+		"owner": "fblack",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-77.0298798890221, 38.96256429414103]",
+		},
+		"coverImage": "test16.jpg",
+		"availability": {},
+		"description": "Dolorum voluptate soluta quam sapiente sed. Est corrupti explicabo consequuntur esse distinctio. Architecto consequuntur iste nobis repellendus vitae dolorum. Ipsum ut alias voluptate eveniet corrupti excepturi molestias. Aperiam necessitatibus ratione libero voluptatem quaerat itaque quis. Nostrum quae harum fugiat eveniet quae accusantium. Et nobis animi qui corporis rerum provident. Quas occaecati totam perspiciatis enim. Culpa impedit deserunt nostrum fuga odit accusamus tenetur. Modi fuga animi sunt quos dolor cupiditate. Dolore error error voluptas laudantium facilis. Doloremque at consequatur in perspiciatis quia."
 	},
-	"coverImage": "test18.jpg",
-	"availability": {}
-},
+	{
+		"id": "783517",
+		"spaceID": "d78351720002",
+		"title": "Perferendis debitis nostrum iste hic recusandae.",
+		"type": "Workspace",
+		"owner": "leslie99",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-77.07709908780724, 38.96822464679988]",
+		},
+		"coverImage": "test17.jpg",
+		"availability": {},
+		"description": "Repellendus quae maxime praesentium delectus earum ad voluptates. Voluptate ducimus eaque voluptates cupiditate. Modi tempora suscipit repellat nemo corrupti maiores iure. Quibusdam at facere accusantium. Quisquam qui a porro animi ad. Nam modi quis iste corrupti velit blanditiis. Nihil beatae distinctio distinctio unde. Corporis ducimus velit dolorem placeat accusantium autem ullam. Deleniti quae officia nesciunt maxime culpa possimus."
+	},
+	{
+		"id": "351291",
+		"spaceID": "f35129120002",
+		"title": "Odit temporibus atque a rerum ipsa nostrum provident.",
+		"type": "Storage Facility",
+		"owner": "brenda91",
+		"location": {
+			"type": "Point",
+			"coordinates": "[-77.0717592378244, 38.90415322143882]",
+		},
+		"coverImage": "test18.jpg",
+		"availability": {},
+		"description": "Ipsum aliquid iure nobis fuga expedita porro. Est eveniet quisquam iusto ad. Libero eligendi eum deleniti minima architecto aut. Laudantium quas fugit at ipsa est sequi non. Voluptate minus totam rem perferendis aspernatur deserunt. Omnis iusto quam nam expedita a ex et. Ratione eveniet eligendi iusto fugit maxime aliquid esse. Eaque vitae totam doloremque officia suscipit nobis illo. Pariatur error eum molestias culpa. Autem quisquam sit sapiente expedita impedit quis. Quaerat quis totam doloremque nisi voluptatum."
+	},
+]
+
+module.exports = {locations}

@@ -21,6 +21,7 @@
 	display: flex;
 	justify-content: space-between;	
 	margin-left: -24px;
+	cursor: pointer;
 }
 
 @media screen and (min-width: 705px) {
