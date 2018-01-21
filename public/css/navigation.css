@@ -13,7 +13,10 @@ button.logo {
 	position: absolute;
 	top: -3px;
 	left: 15px;
-	height: 44px;
+	height: 44px;	
+}
+
+button.logo.splash {
 	display: none;
 }
 
@@ -23,12 +26,12 @@ button.logo {
 
 .bt-menu-trigger {
 	font-size: 30px;
-	position: relative;
+	position: absolute;
 	display: inline-block;
 	width: 44px;
 	height: 2em;
 	cursor: pointer;
-	margin-right: 8%;	
+	right: 40px;	
 }
 
 .bt-menu-trigger span {
@@ -78,7 +81,7 @@ button.logo {
 
 .mobile__menu {	
 	background: white;
-	position: absolute;
+	position: fixed;
 	right: -100%;
 	top: 60px;
 	width: 100%;	
@@ -163,4 +166,21 @@ button.logo {
 
 .nav__list {
 	margin: 0;
+}
+
+.topmatter {
+	background-color: #333;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	align-content: top;
+	height: 60px;
+}
+
+@media screen and (min-width: 600px) {
+	.topmatter {
+		padding-top: 10px;
+	}
 }

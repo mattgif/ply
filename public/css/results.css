@@ -1,0 +1,75 @@
+/*results*/
+.results__wrapper {
+	margin-top: 30px;
+	position: absolute;
+	max-width: 1280px;
+}
+
+.results {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.result__card {
+	background: #fff;
+	color: #333;	
+	width: 110%;
+	border-bottom: 1px solid #ccc;
+	padding: 15px 0px;
+	border-bottom: 1px solid #ddd;		
+	display: flex;
+	justify-content: space-between;	
+	margin-left: -24px;
+}
+
+@media screen and (min-width: 705px) {
+	.result__card {
+		margin: 10px 10px;
+		border-radius: 2px;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+		transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+		width: 300px;
+		padding: 0;
+		border: none;
+		display: block;
+		margin-left: 0;
+	}
+
+	.results__wrapper {
+		position: static;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.result__card h3, .result__card h4 {
+	margin: 0;
+}
+
+.result__card:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.result__card__top {
+	width: 200px;
+	height: 125px;
+	background-size: cover;
+	order: 1;
+}
+
+@media screen and (min-width: 600px) {
+	.result__card__top {
+		width: 300px;
+		height: 200px;
+	}	
+}
+
+.result__card__bot {
+	padding: 0 15px 5px 15px;
+	max-width: 300px;
+}
+
+.result__card h3, .result__card h4 {
+	margin: 5px;
+}

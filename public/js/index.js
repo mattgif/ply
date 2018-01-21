@@ -3,17 +3,25 @@ function menuTriggerListener() {
 	$('.bt-menu-trigger').click(() => {
 		$('.bt-menu-trigger').toggleClass('bt-menu-open');
 		$('.mobile__menu').toggleClass('open');
-		if ($('button.logo').is(':visible')) {
-			$('button.logo').fadeOut()
-		} else {
-			$('button.logo').fadeIn(1200);
+		if ($('button.logo.splash').length) {
+			if ($('.mobile__menu').hasClass('open')) {
+				$('button.logo.splash').fadeIn(1200);			
+			} else {
+				$('button.logo.splash').fadeOut()
+			}
 		}
 	})	
 }
 
-
 function navButtonListeners() {
 	menuTriggerListener();
+	logoClickListener();
+}
+
+function logoClickListener() {
+	$('button.logo').click(() => {
+		window.location.href = '/';
+	})
 }
 
 // maps autocomplete
@@ -27,6 +35,21 @@ function initAutocomplete() {
 function getAddressFromAutoComplete() {
 	// returns the google place object selected by the user
 	return autocomplete.getPlace();
+}
+
+function searchListener() {
+	$('.search__button').click(e => {
+		e.preventDefault();
+		let place = getAddressFromAutoComplete();		
+		if (place && place.geometry) {
+			// check for valid location, then populate and submit
+			$('#lat-input').val(place.geometry.location.lat());
+			$('#lng-input').val(place.geometry.location.lng());
+			$('.search__form').submit();
+		} else {
+			// need warning 
+		}
+	})
 }
 
 // modals 
@@ -123,6 +146,7 @@ function modalOpenListeners() {
 function pageHandler() {	
 	modalOpenListeners();
 	navButtonListeners();
+	searchListener();
 }
 
 $(pageHandler);

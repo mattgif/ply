@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="Find a workspace to rent, or make money by sharing your unused garage/basement/shed.">
+	<meta name="viewport" content="width=device-width">		
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Nunito|Material+Icons" 
+	  rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">	
+	<script
+	  src="https://code.jquery.com/jquery-3.2.1.min.js"
+	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous"></script>
+	<title>ply</title>
+</head>
+<body>
+
+	<div class="js-modal-wrapper">
+		<div class="modal__overlay"></div>
+		<div class="modal__wrapper">
+			<div class="modal__dialog js-modal-dialog modal__login" role="dialog" aria-labelledby="login__legend" tabindex="-1">				
+				<div class="modal__close">
+					<button class="js-modal-close" aria-label="close dialog">X</button>
+				</div>
+				<legend id="login__legend">Log in to your ply account</legend>
+				<form action="#" method="POST">					
+					<div class="input__group">	
+						<input type="email" name="email" id="login-email" required>
+						<label for="email">Email</label>									
+					</div>
+					<div class="input__group">	
+						<input type="password" id="login-password" name="login-password" required>
+						<label for="signup-password">Password</label>						
+					</div>
+					<button type="submit">Log In</button>
+				</form>
+				<div class="modal__change">
+					<h4>Not a ply member? <a href="#" class="join">Join ply</a></h4>					
+				</div>
+			</div>
+
+			<div class="modal__dialog js-modal-dialog modal__join" role="dialog" aria-labelledby="signup__legend" tabindex="-1">
+				<div class="modal__close">
+					<button class="js-modal-close" aria-label="close dialog">X</button>
+				</div>
+				<form action="#" method="POST">
+					<legend id="signup__legend">Join ply to share or book a space</legend>
+					<div class="input__group">
+						<input type="email" name="email" id="signup-email" required>	
+						<label for="email">Email address</label>										
+					</div>
+					<div class="input__group">
+						<input type="text" id="signup-first-name" name="firstname" required>
+						<label for="signup-first-name">First name</label>											
+					</div>
+					<div class="input__group">
+						<input type="text" id="signup-last-name" name="lastname" required>
+						<label for="signup-last-name">Last name</label>											
+					</div>
+					<div class="input__group">
+						<input type="password" id="signup-password" name="signup-password" required>
+						<label for="signup-password">Create a password</label>						
+					</div>
+					<button type="submit">Join ply</button>
+				</form>
+				<div class="modal__change">
+					<h4>Already a ply member? <a href="#" class="login">Log in</a></h4>
+				</div>
+			</div>		
+		</div>	
+	</div>
+
+	<section class="topmatter">
+		<nav role="navigation">
+			<button class="logo">ply</button>
+			<div class="bt-menu-trigger">
+			  <span></span>
+			</div>
+			<div class="mobile__menu">				
+				<section>
+					<h2>Account</h2>
+					<ul class="mobile__nav__list mobile__user__menu">
+						<li class="nav__item"><button class="nav__link join">Join</button></li>						
+						<li class="nav__item"><button class="nav__link login">Log in</button></li>						
+					</ul>	
+				</section>				
+				<section>
+					<h2>Spaces</h2>
+					<ul class="mobile__nav__list mobile__spaces__menu">
+						<li class="nav__item"><button class="nav__link share">Share a space</button></li>
+						<li class="nav__item"><button class="nav__link manage_space">Manage spaces</button></li>
+					</ul>						
+				</section>				
+			</div>			
+			<ul class="nav__list full__menu">
+				<li class="nav__item"><button class="nav__link share">Share a space</button></li>
+				<li class="nav__item"><button class="nav__link join myaccount">Join</button></li>
+				<li class="nav__item"><button class="nav__link login logout">Log in</button></li>
+			</ul>		
+		</nav>
+	</section>
+	
+	<div class="container">
+		<section class="search__wrapper">
+			<form action="s" class="search__form" method="GET">
+				<input type="search" name="address" class="search__bar" id="pac-input" placeholder='Try "Washington DC"'>
+				<input type="hidden" name="lat" id="lat-input" value="">
+				<input type="hidden" name="lng" id="lng-input" value="">
+				<button type="submit" class="search__button">SEARCH</button>
+			</form>		
+		</section>	
+	</div>
+	
+	<section class="results__wrapper">
+		<div class="results"></div>
+	</section>
+
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/getresults.js"></script>
+</body>
+</html>
