@@ -12,13 +12,44 @@
 		<%- include('partials/nav') %>
 	</section>
 
-	<div class="details__wrapper">
-		<div class="details">
-			<section class="cover-image"></section>
-			<header class="details__title" role="banner"></header>
+	<section class="cover-image" style="background-image: url('<%= image %>')"></section>
+	<div class="details__wrapper">		
+		<div class="details">			
+			<header class="details__topmatter" role="banner">
+				<h1 class="details__title"><%= title %></h1>
+				<ul class="details__type">
+					<li><i class="material-icons">location_city</i> <%= type %> in </li>
+					<li><%= city %></li>
+				</ul>
+				<div class="details__owner">
+					<a href="#">
+						<i class="material-icons owner__image">account_circle</i> 
+						<p class="owner__name"><%= owner %></p>
+					</a>					
+				</div>
+			</header>
+			<section class="description">
+				<%- description %>
+			</section>
+			<section class="amentities">
+				<h3>Amenities</h3>
+			</section>
 		</div>
+		<section class="rent">
+			<% if (rates) { %>
+			<ul class="rates">
+				<% for (var i = 0; i < rates.length; i++) { -%>
+					<li><span class="amt">$<%=rates[i][0]%></span> per <%=rates[i][1]%></li>
+				<% } -%>
+			</ul>
+			<% } else { %>			
+				<p class="rates">Contact owner for rates<p>
+			<% } %>
+			<button class="rent">Rent Space</button>
+		</section>
 	</div>
-	<h1>Howdy, I'm the details view!</h1>
+
+
 
 	<script type="text/javascript" src="/js/index.js"></script>
 </body>

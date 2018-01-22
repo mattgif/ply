@@ -26,6 +26,7 @@ const locations = [
 				}
 			}
 		},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Expedita alias blanditiis pariatur inventore ab qui consequatur. Deserunt dolorum tempora aliquam adipisci sapiente. Laborum deserunt doloribus eveniet. Maiores hic aspernatur similique esse et minima. Laboriosam veniam natus voluptates veritatis et aliquam. Vitae aliquid ab neque sit. Ipsa hic perferendis deserunt a repellat quaerat. Labore occaecati aliquid qui natus magni ullam similique tempore. Velit nisi provident nisi. Vitae possimus tenetur quibusdam aliquam."			
 	},		
 	{
@@ -55,6 +56,7 @@ const locations = [
 				}
 			}
 		},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Expedita alias blanditiis pariatur inventore ab qui consequatur. Deserunt dolorum tempora aliquam adipisci sapiente. Laborum deserunt doloribus eveniet. Maiores hic aspernatur similique esse et minima. Laboriosam veniam natus voluptates veritatis et aliquam. Vitae aliquid ab neque sit. Ipsa hic perferendis deserunt a repellat quaerat. Labore occaecati aliquid qui natus magni ullam similique tempore. Velit nisi provident nisi. Vitae possimus tenetur quibusdam aliquam."	
 	},
 	{
@@ -74,7 +76,8 @@ const locations = [
 		"availability": {
 			2018: {
 				1: [1]
-			},
+		},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Expedita alias blanditiis pariatur inventore ab qui consequatur. Deserunt dolorum tempora aliquam adipisci sapiente. Laborum deserunt doloribus eveniet. Maiores hic aspernatur similique esse et minima. Laboriosam veniam natus voluptates veritatis et aliquam. Vitae aliquid ab neque sit. Ipsa hic perferendis deserunt a repellat quaerat. Labore occaecati aliquid qui natus magni ullam similique tempore. Velit nisi provident nisi. Vitae possimus tenetur quibusdam aliquam."
 		}
 	},
@@ -89,7 +92,8 @@ const locations = [
 			"coordinates": "[-76.9708165635274, 38.87541139534471]",
 		},
 		"coverImage": "test1.jpg",
-		"availability": {},
+		"availability": {},		
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Expedita alias blanditiis pariatur inventore ab qui consequatur. Deserunt dolorum tempora aliquam adipisci sapiente. Laborum deserunt doloribus eveniet. Maiores hic aspernatur similique esse et minima. Laboriosam veniam natus voluptates veritatis et aliquam. Vitae aliquid ab neque sit. Ipsa hic perferendis deserunt a repellat quaerat. Labore occaecati aliquid qui natus magni ullam similique tempore. Velit nisi provident nisi. Vitae possimus tenetur quibusdam aliquam."
 	},
 	{
@@ -104,6 +108,7 @@ const locations = [
 		},
 		"coverImage": "test2.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Saepe assumenda qui temporibus recusandae voluptates reprehenderit. Laboriosam consequatur nihil fuga natus. Quo illo nihil rerum eum praesentium perferendis excepturi. Recusandae doloremque assumenda consequuntur culpa. Autem quibusdam dicta perferendis cumque enim vitae. Occaecati blanditiis delectus aliquid dolores veniam quaerat officia. Architecto delectus consequatur perspiciatis veniam consequuntur rem est. Natus ad voluptas est rem repellat. Voluptatum ad nesciunt consequuntur nulla dolorem reprehenderit doloribus. Quis rem optio tempore dolorem mollitia voluptate veniam. Commodi ipsam incidunt et quod aspernatur. Harum soluta corporis unde voluptatum."
 	},
 	{
@@ -118,6 +123,8 @@ const locations = [
 		},
 		"coverImage": "test3.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Sint sed neque assumenda. Dignissimos cum dolorem laborum eos sint omnis nisi. Odit hic numquam voluptatum commodi similique. Sunt natus atque rerum dolore. Atque laboriosam ex earum nobis soluta harum. Consectetur odio laudantium quas quibusdam quod nihil dolorum id. Perferendis reiciendis consequuntur odio vel quidem omnis. Ad quos error qui. Aliquid ipsum beatae alias maxime. Eaque inventore quas blanditiis officiis ratione harum quibusdam architecto."
 	},
 	{
@@ -132,6 +139,7 @@ const locations = [
 		},
 		"coverImage": "test4.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Architecto id perspiciatis eius eum. Ab eaque expedita explicabo. Neque hic aliquam id soluta eos iure. Inventore quibusdam voluptatem molestiae maiores. Optio quasi nostrum ducimus non quasi ex voluptatibus. Veniam rerum atque dolor tempore impedit ducimus tempore. Nisi consectetur tempora occaecati. Quasi error recusandae nostrum nesciunt quisquam quae porro dolores. Voluptatum dolore ad temporibus corporis. Eum veniam fugiat quisquam iure perspiciatis. In deserunt corrupti quia earum."
 	},
 	{
@@ -146,6 +154,7 @@ const locations = [
 		},
 		"coverImage": "test5.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Autem sed pariatur officiis porro ratione perferendis magnam. Odio cupiditate itaque sint sed repellat dolore tempora et. Rem nulla non impedit odio consequuntur accusamus. Porro suscipit fugit quas at itaque. Eius voluptatum quidem itaque magnam quam. Quas sapiente vero vero optio alias architecto. Laudantium laudantium non sit molestiae ea. Consectetur quaerat quas non id aut doloribus. Doloribus ipsa tenetur nulla mollitia voluptate dignissimos distinctio. Tempore error voluptas sint odit. Necessitatibus maxime repellat facilis vero voluptatem debitis."
 	},
 	{
@@ -159,7 +168,8 @@ const locations = [
 			"coordinates": "[-77.02487144646679, 38.868487648750616]",
 		},
 		"coverImage": "test6.jpg",
-		"availability": {},
+		"availability": {},		
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Nemo suscipit harum suscipit repellat iusto asperiores distinctio. Fugit eum quis beatae et. Ipsa blanditiis sit rem facere consequuntur. Veritatis excepturi qui officia aperiam architecto. Accusamus facere sunt nulla animi necessitatibus ratione voluptate reprehenderit. Accusamus blanditiis esse corporis. Itaque tempore quibusdam adipisci. Eos sed quam optio ab et. Laborum voluptatum voluptate fuga nulla. Iusto molestias fuga non vero odit. Provident harum harum voluptatum voluptatem asperiores. Ea assumenda quas itaque. Commodi unde minima aut suscipit velit molestias."
 	},
 	{
@@ -174,6 +184,7 @@ const locations = [
 		},
 		"coverImage": "test7.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Perspiciatis esse asperiores distinctio pariatur nulla eius. Eius itaque odio velit ipsum quasi. Eaque nulla cumque corporis corporis natus ullam laboriosam. Placeat adipisci praesentium suscipit minima iusto. Soluta perferendis accusantium suscipit necessitatibus. Repellat minus sequi odit non. Harum accusantium iusto quibusdam culpa incidunt eius. Animi blanditiis labore tenetur magnam quisquam. At itaque maxime quod veritatis a harum. Laboriosam necessitatibus totam cumque maiores quia. Consequatur ad quas exercitationem harum alias. Cupiditate suscipit repellendus velit non officia minima deserunt."
 	},
 	{
@@ -188,6 +199,7 @@ const locations = [
 		},
 		"coverImage": "test8.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Nulla eveniet enim molestias maiores debitis amet. Ipsum possimus laborum quasi aspernatur illum. Maiores asperiores numquam asperiores illo nulla ab commodi. Amet dolorem officia quasi doloribus pariatur. Animi doloribus veniam consequatur rem a nam. Modi pariatur repudiandae nostrum mollitia enim ea. Veniam at sequi laborum distinctio. Deleniti incidunt eos sed possimus veritatis. Aperiam enim blanditiis culpa repudiandae eos. Excepturi magni magnam hic mollitia quia. Dolorem eveniet id expedita reprehenderit error beatae cum ipsa."
 	},
 	{
@@ -202,6 +214,7 @@ const locations = [
 		},
 		"coverImage": "test9.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Recusandae dolorum suscipit quasi cupiditate. Quidem amet dolorem tempora est illum aut. Laborum exercitationem excepturi mollitia voluptatum aut. Hic corporis consequuntur dolore corporis exercitationem. Quia incidunt molestiae odit corporis nihil. Maxime voluptates iste consequatur error accusantium numquam totam. Accusantium earum consectetur dolores veritatis minima tempore ratione. Recusandae blanditiis illo perspiciatis voluptatibus porro voluptatibus vitae."
 	},
 	{
@@ -216,6 +229,7 @@ const locations = [
 		},
 		"coverImage": "test10.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Saepe natus ipsa id quaerat itaque ut corrupti asperiores. Perspiciatis natus tempora veniam tempora occaecati. Illum porro quod nam libero. Doloribus eveniet quae odio laboriosam quibusdam nisi. Voluptate hic exercitationem cumque dicta exercitationem molestias sit possimus. Eaque voluptas asperiores porro ratione libero quos cupiditate. Perferendis sequi minima similique possimus adipisci explicabo. Quas numquam animi et deleniti. Rerum repudiandae aut eius."
 	},
 	{
@@ -230,6 +244,7 @@ const locations = [
 		},
 		"coverImage": "test11.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Ea deserunt neque expedita consequatur. Autem deleniti inventore adipisci porro quia. Aperiam est ullam non ratione neque. Veniam alias culpa aperiam modi doloribus dolorem minus. Assumenda porro nisi dolor cum. Veritatis iusto ab veritatis velit ratione expedita corporis. Suscipit et laborum reiciendis error minus. Dolorem recusandae deleniti reiciendis alias. Nemo laudantium est occaecati ducimus beatae eius sint cum. Repellendus dolor error similique occaecati. Veniam ipsa occaecati laudantium vel cum esse. Aut non veritatis deleniti sint nisi incidunt."
 	},
 	{
@@ -244,6 +259,7 @@ const locations = [
 		},
 		"coverImage": "test12.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Ullam pariatur neque non enim voluptatibus repellat inventore. Quaerat reprehenderit ad eveniet necessitatibus optio earum. Eos magni quaerat quibusdam accusamus. Fugiat eos sit sint inventore. Autem accusantium quam nemo perferendis totam quia similique. Error eligendi nobis error at. Exercitationem dolore sint distinctio ab tempore quis quod. Molestias a id facilis necessitatibus enim. Expedita quo vel natus neque ipsum perspiciatis."
 	},
 	{
@@ -258,6 +274,7 @@ const locations = [
 		},
 		"coverImage": "test13.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Exercitationem at impedit debitis totam nihil. Reprehenderit numquam non deserunt deleniti ipsam. At voluptate praesentium temporibus possimus nobis. Occaecati quis ab deleniti sit officia. Itaque non beatae iusto sed aliquam. Voluptatem optio facere vitae neque officia earum facere. Vero dolorum molestias nostrum delectus eos doloremque. Quidem explicabo voluptatibus ex ex. Atque ullam aspernatur ullam vitae deleniti odio non. Aliquid ipsam vitae architecto nobis aliquid. Nesciunt quos autem ut vitae ab ipsam. Temporibus optio rerum sequi dolorum ea adipisci."
 	},
 	{
@@ -272,6 +289,7 @@ const locations = [
 		},
 		"coverImage": "test14.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Enim qui aliquam magni dolorum minus. Itaque porro eaque alias at quia. Corporis laboriosam officia hic rerum eum. Quisquam eaque pariatur nemo necessitatibus amet tempora. Animi odio animi necessitatibus tempora dicta. Repellendus excepturi assumenda id. Autem quidem doloribus inventore. Labore consequuntur sunt tempora ipsam autem laudantium unde. Numquam fuga laborum tempora error. Temporibus eveniet totam iure aliquid minus maiores. Dolor perspiciatis nam sed. Rem ea placeat error natus sed nihil tenetur."
 	},
 	{
@@ -286,6 +304,7 @@ const locations = [
 		},
 		"coverImage": "test15.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Voluptates beatae veniam laudantium reprehenderit dignissimos reprehenderit. Aliquam voluptate quis mollitia perspiciatis laudantium vero. Officia rerum accusantium vitae eligendi sapiente. In nemo recusandae cupiditate ratione fugiat quis. Ab est aliquam ut praesentium ex. Id molestiae officiis adipisci quas. Eius veniam illum voluptates. Minus nihil dolores libero incidunt veniam. Sapiente esse blanditiis fugit sed illum facilis adipisci. Reprehenderit impedit veritatis quaerat ipsam. Sit magnam ut nihil minima nam eaque perspiciatis."
 	},
 	{
@@ -300,6 +319,7 @@ const locations = [
 		},
 		"coverImage": "test16.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Dolorum voluptate soluta quam sapiente sed. Est corrupti explicabo consequuntur esse distinctio. Architecto consequuntur iste nobis repellendus vitae dolorum. Ipsum ut alias voluptate eveniet corrupti excepturi molestias. Aperiam necessitatibus ratione libero voluptatem quaerat itaque quis. Nostrum quae harum fugiat eveniet quae accusantium. Et nobis animi qui corporis rerum provident. Quas occaecati totam perspiciatis enim. Culpa impedit deserunt nostrum fuga odit accusamus tenetur. Modi fuga animi sunt quos dolor cupiditate. Dolore error error voluptas laudantium facilis. Doloremque at consequatur in perspiciatis quia."
 	},
 	{
@@ -314,6 +334,7 @@ const locations = [
 		},
 		"coverImage": "test17.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Repellendus quae maxime praesentium delectus earum ad voluptates. Voluptate ducimus eaque voluptates cupiditate. Modi tempora suscipit repellat nemo corrupti maiores iure. Quibusdam at facere accusantium. Quisquam qui a porro animi ad. Nam modi quis iste corrupti velit blanditiis. Nihil beatae distinctio distinctio unde. Corporis ducimus velit dolorem placeat accusantium autem ullam. Deleniti quae officia nesciunt maxime culpa possimus."
 	},
 	{
@@ -328,6 +349,7 @@ const locations = [
 		},
 		"coverImage": "test18.jpg",
 		"availability": {},
+		"rates": [[10,'hour'],[50,'day']],
 		"description": "Ipsum aliquid iure nobis fuga expedita porro. Est eveniet quisquam iusto ad. Libero eligendi eum deleniti minima architecto aut. Laudantium quas fugit at ipsa est sequi non. Voluptate minus totam rem perferendis aspernatur deserunt. Omnis iusto quam nam expedita a ex et. Ratione eveniet eligendi iusto fugit maxime aliquid esse. Eaque vitae totam doloremque officia suscipit nobis illo. Pariatur error eum molestias culpa. Autem quisquam sit sapiente expedita impedit quis. Quaerat quis totam doloremque nisi voluptatum."
 	},
 ]
