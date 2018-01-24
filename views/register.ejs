@@ -1,0 +1,41 @@
+<!-- views/register.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<%- include('partials/head') %>	
+	<title>login | ply</title>
+</head>
+<body>
+	<div class="topmatter">
+		<nav role="navigation">
+			<button class="logo" style="display: block;">ply</button>
+		</nav>
+	</div>
+	<div class="static modal__dialog js-modal-dialog modal__join">
+		<form action="#" method="POST">
+			<legend id="signup__legend">Join ply to share or book a space</legend>
+			<div class="input__group">
+				<input type="email" name="email" id="signup-email" required>	
+				<label for="email">Email address</label>										
+			</div>
+			<div class="input__group">
+				<input type="text" id="signup-first-name" name="firstname" required>
+				<label for="signup-first-name">First name</label>											
+			</div>
+			<div class="input__group">
+				<input type="text" id="signup-last-name" name="lastname" required>
+				<label for="signup-last-name">Last name</label>											
+			</div>
+			<div class="input__group">
+				<input type="password" id="signup-password" name="signup-password" required>
+				<label for="signup-password">Create a password</label>						
+			</div>
+			<button type="submit">Join ply</button>
+		</form>
+		<div class="modal__change">
+			<h4>Already a ply member? <a href="/user/login">Log in</a></h4>
+		</div>
+	</div>				
+<script type="text/javascript" src="/js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!-- views/login.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<%- include('partials/head') %>	
+	<title>login | ply</title>
+</head>
+<body>
+	<div class="topmatter">
+		<nav role="navigation">
+			<button class="logo" style="display: block;">ply</button>
+		</nav>
+	</div>
+	<div class="static modal__dialog js-modal-dialog modal__login">						
+		<form action="#" method="POST">					
+			<legend id="login__legend">Log in to your ply account</legend>
+			<div class="input__group">	
+				<input type="email" name="email" id="login-email" required>
+				<label for="email">Email</label>									
+			</div>
+			<div class="input__group">	
+				<input type="password" id="login-password" name="login-password" required>
+				<label for="signup-password">Password</label>						
+			</div>
+			<button type="submit">Log In</button>
+		</form>
+		<div class="modal__change">
+			<h4>Not a ply member? <a href="/user/register">Join ply</a></h4>					
+		</div>
+	</div>
+<script type="text/javascript" src="/js/index.js"></script>
+</body>
+</html>
