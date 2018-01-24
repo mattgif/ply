@@ -1,0 +1,131 @@
+/*share*/
+.share.background {
+	background-image: 
+		linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1), rgba(244, 244, 244, 1)),
+		url('../img/garage_door_background-min.jpeg');
+	background-size: cover;
+	position: absolute;
+	left: 0;
+	top: 60px;
+	width: 100%;
+	height: 800px;
+	z-index: -1;
+}
+
+section.share.top {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+div.subheader, div.tag {
+	margin: 10px;
+}
+
+div.subheader *, div.tag *{	
+	margin: 10px;
+}
+
+.share .tag {
+	font-size: 1.5em;	
+}
+
+header.share {
+	margin-top: 100px;
+}
+
+header.share * {
+	max-width: 500px;
+}
+
+.blurbs {
+	margin-top: 50px;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;	
+	color: #333;
+	width: 100%;
+}
+
+.blurbs .tile {
+	background-image: 
+		linear-gradient(rgba(244, 244, 244, 0.9), rgba(244, 244, 244, 0.6));
+	width: 100%;	
+	margin: 10px;
+	padding: 20px;	
+	border-radius: 2px;
+}
+
+section.share.instructions {
+	background: rgb(244, 244, 244);
+	color: #333;		
+}
+
+.share.instructions .tile {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 30px;
+}
+
+.share.instructions .tile .headnum {
+	font-size: 60px;
+	line-height: 60px;
+	margin-right: 25px;
+}
+
+.share.instructions .content {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+@media screen and (min-width: 640px) {
+	.share.instructions h2 {
+		text-align: center;
+	}
+
+	.share.instructions .tile {
+		width: 90%;
+		max-width: 640px;
+		margin-left: auto;
+		margin-right: auto;
+		flex-wrap: nowrap;
+		align-items: center;
+	}
+
+	.share.tile.img {
+		height: 200px;
+		width: 300px;
+		margin-left: 15px;
+	}
+
+	.share.tile.img.reverse {
+		order: -1;
+		margin-right: 15px;
+		margin-left: 0px;
+	}
+}
+
+@media screen and (min-width: 700px) {	
+	header.share {
+	  margin-top: 200px;
+  }
+	.blurbs {
+		flex-wrap: nowrap;
+	}
+
+	.blurbs .tile {	
+		max-width: 400px;
+	}
+
+	section.share.instructions {
+		padding: 30px;
+		background: rgb(244, 244, 244);
+		color: #333;		
+		top: 800px;
+		width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 50px;
+	}
+}
+
