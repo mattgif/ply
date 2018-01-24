@@ -3,7 +3,7 @@
 	background-image: 
 		linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
 		url("../img/drill_press_splash.jpg");				
-	position: absolute;
+	position: fixed;
 	background-size: cover;
 	width: 100%;
 	height: 100%;
@@ -21,8 +21,15 @@ header.splash {
 	margin-top: 10%;
 }
 
+@media screen and (max-width: 649px) {
+	header.splash {
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
+}
+
 @media screen and (min-width: 650px) {
-	header {
+	header.splash {
 		justify-content: center;
 		flex-wrap: nowrap;
 	}
@@ -53,7 +60,7 @@ header.splash {
 		padding-left: 40px;
 	}
 
-	.tag {
+	.splash .tag {
 		padding-left: 40px;
 	}
 }

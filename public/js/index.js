@@ -1,4 +1,10 @@
 // nav
+function logoClickListener() {
+	$('button.logo').click(() => {
+		window.location.href = '/';
+	})
+}
+
 function menuTriggerListener() {
 	$('.bt-menu-trigger').click(() => {
 		$('.bt-menu-trigger').toggleClass('bt-menu-open');
@@ -13,15 +19,16 @@ function menuTriggerListener() {
 	})	
 }
 
+function shareListener() {
+	$('button.share').click(() => {		
+		window.location.href = '/share';
+	})
+}
+
 function navButtonListeners() {
 	menuTriggerListener();
 	logoClickListener();
-}
-
-function logoClickListener() {
-	$('button.logo').click(() => {
-		window.location.href = '/';
-	})
+	shareListener();
 }
 
 // maps autocomplete

@@ -15,6 +15,10 @@ app.get('/', (req, res) => {
 	res.render('index');
 })
 
+app.get('/share', (req, res) => {
+	res.render('share');
+})
+
 app.get('/s', (req, res) => {		
 	res.render('search');
 })

@@ -34,3 +34,18 @@ describe('front end endpoints tests', () => {
 		})	
 	})	
 })
+
+describe('api endpoints tests', () => {
+	// Get request to endpoint
+	// Verify response is JSON
+	// Verify resopnse JSON has the correct structure
+	describe('search results', () => {
+		it('should return a json object', () => {
+			return chai.request(app)
+				.get('/api/find_spaces')
+				.then(res => {
+					expect(res).to.be.json
+				})
+		})
+	})
+})
