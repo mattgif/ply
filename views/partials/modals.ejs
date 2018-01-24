@@ -5,9 +5,9 @@
 		<div class="modal__dialog js-modal-dialog modal__login" role="dialog" aria-labelledby="login__legend" tabindex="-1">				
 			<div class="modal__close">
 				<button class="js-modal-close" aria-label="close dialog">X</button>
-			</div>
-			<legend id="login__legend">Log in to your ply account</legend>
+			</div>			
 			<form action="#" method="POST">					
+				<legend id="login__legend">Log in to your ply account</legend>
 				<div class="input__group">	
 					<input type="email" name="email" id="login-email" required>
 					<label for="email">Email</label>									
@@ -19,7 +19,7 @@
 				<button type="submit">Log In</button>
 			</form>
 			<div class="modal__change">
-				<h4>Not a ply member? <a href="#" class="join">Join ply</a></h4>					
+				<h4>Not a ply member? <a href="/user/register" class="join">Join ply</a></h4>					
 			</div>
 		</div>
 
@@ -48,7 +48,7 @@
 				<button type="submit">Join ply</button>
 			</form>
 			<div class="modal__change">
-				<h4>Already a ply member? <a href="#" class="login">Log in</a></h4>
+				<h4>Already a ply member? <a href="/user/login" class="login">Log in</a></h4>
 			</div>
 		</div>		
 	</div>	

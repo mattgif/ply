@@ -16,6 +16,10 @@ button.logo {
 	height: 44px;	
 }
 
+button.logo:hover {
+	color: tomato;
+}
+
 button.logo.splash {
 	display: none;
 }

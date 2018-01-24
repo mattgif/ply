@@ -2,13 +2,13 @@
 function cardClickListener() {
 	$('.results').on('click','.result__card', e => {
 		let target = e.target.closest('.result__card');
-		window.location.href = `/spaces/${target.id}`
-	})
+		window.location.href = `/spaces/id/${target.id}`
+	});
 }
 
 function displayResults(JSONdata) {	
 	const results = JSONdata.map(loc => renderResults(loc));
-	$('.results').html(results)
+	$('.results').html(results);
 }
 
 function getAddressFromWindow() {

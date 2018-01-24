@@ -9,6 +9,13 @@ function menuTriggerListener() {
 	$('.bt-menu-trigger').click(() => {
 		$('.bt-menu-trigger').toggleClass('bt-menu-open');
 		$('.mobile__menu').toggleClass('open');
+		if ($('.topmatter').length) {
+			if ($('.mobile__menu').hasClass('open')) {
+				$('.topmatter').css('position','fixed')
+			} else {
+				$('.topmatter').css('position','absolute')
+			}
+		}		
 		if ($('button.logo.splash').length) {
 			if ($('.mobile__menu').hasClass('open')) {
 				$('button.logo.splash').fadeIn(1200);			
@@ -21,7 +28,7 @@ function menuTriggerListener() {
 
 function shareListener() {
 	$('button.share').click(() => {		
-		window.location.href = '/share';
+		window.location.href = '/spaces/share';
 	})
 }
 
@@ -84,6 +91,9 @@ function modalOpen(modalDialog,focusTarget) {
 		$('.modal__overlay').fadeIn(400);		
 		$(modalDialog).slideDown(100);	
 	}
+	$('.bt-menu-trigger').removeClass('bt-menu-open');
+	$('.mobile__menu').removeClass('open');
+	// close mobile menu
 	$(focusTarget).focus();
 	modalCloseListeners();		
 	modalKeepTabFocus();
