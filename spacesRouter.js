@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const ejs = require('ejs');
+const {locations} = require('./mock')
+
+router.get('/create', (req, res) => {
+	res.render('space_create')
+})
 
 router.get('/share', (req, res) => {
 	res.render('share');

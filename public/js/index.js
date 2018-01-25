@@ -1,7 +1,7 @@
 // nav
 function logoClickListener() {
-	$('button.logo').click(() => {
-		window.location.href = '/';
+	$('button.logo').click(() => {		
+		window.location.href = '/';		
 	})
 }
 

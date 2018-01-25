@@ -83,6 +83,10 @@ section.share.instructions {
 		text-align: center;
 	}
 
+	.share.instructions .content {
+		width: 350px;
+	}
+
 	.share.instructions .tile {
 		width: 90%;
 		max-width: 640px;
@@ -92,15 +96,20 @@ section.share.instructions {
 		align-items: center;
 	}
 
-	.share.tile.img {
+	.share.img {
 		height: 200px;
 		width: 300px;
-		margin-left: 15px;
+		margin-left: 25px;
 	}
 
-	.share.tile.img.reverse {
+	.share.img img {
+		width: 100%;
+		object-fit: contain;
+	}
+
+	.share.img.reverse {
 		order: -1;
-		margin-right: 15px;
+		margin-right: 25px;
 		margin-left: 0px;
 	}
 }

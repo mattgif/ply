@@ -20,6 +20,10 @@ button.logo:hover {
 	color: tomato;
 }
 
+button.logo:focus {
+	outline: none;
+}
+
 button.logo.splash {
 	display: none;
 }

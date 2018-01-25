@@ -108,7 +108,7 @@
 	outline: none;	
 }
 
-.modal__dialog form label {
+.animated__label + label {
 	position: absolute;
 	left: 32px;
 	top: 12px;
@@ -120,13 +120,13 @@
 	  -webkit-transition:0.2s ease all;
 }
 
-.modal__dialog input:focus ~ label, .modal__dialog input:valid ~ label {
+.animated__label:focus ~ label, .animated__label:valid ~ label {
 	top: -20px;
 	font-size: .8em;
 	color: rgb(66, 134, 244);
 }
 
-.modal__dialog input:invalid {
+..animated__label:invalid {
 	outline: none;
 }
 
@@ -141,17 +141,98 @@
 	font-family: Nunito,Calibre,sans-serif;
 }
 
-.modal__dialog form label {
-	position: absolute;
-	right: 10px;
-}
-
 .modal__change {
 	text-align: center;
 	border-top: 1px solid #ccc;
 	width: 70%;
 	margin-right: auto;
 	margin-left: auto;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.modal__dialog.space.create {
+	width: 100%;
+	max-width: 800px;
+}
+
+.modal__dialog.space.create fieldset {
+	margin-bottom: 30px;
+}
+
+.modal__dialog.space.create fieldset[name="availability"] div, .modal__dialog.space.create fieldset[name="amenities"] div {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.modal__dialog.space.create input[type="checkbox"] {
+	height: 30px;
+	width: 30px;
+	margin-left: 30px;
+	margin-right: 5px;
+	margin-bottom: 15px;
+	display: inline-block;
+}
+
+.modal__dialog.space.create input[type="checkbox"]:focus {
+	outline:none; 
+    border:1px solid #4D90FE;
+    -webkit-box-shadow: 0px 0px 7px  #4D90FE;
+    box-shadow: 0px 0px 7px  #4D90FE;
+}
+
+.modal__dialog form label.checkbox__label {
+	margin-right: 30px;
+	margin-left: 10px;
+}
+
+.modal__dialog form label.checkbox__label, .modal__dialog form label.filelabel {
+	position: static;
+	display: inline-block;
+}
+
+.modal__dialog form label.checkbox__label i {
+	display: inline-block;
+}
+
+section.space.create h1 {
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.inputfile + label {
+	position: static;
+    font-size: 1.25em;
+    font-weight: 700;
+    color: #333;    
+    display: inline-block; 
+	text-align: center;
+}
+
+.inputfile + label i {
+	font-size: 40px;
+	margin-bottom: 10px;
+}
+
+form fieldset .fileupload__wrapper {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 35px;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    color: tomato;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 744px) {

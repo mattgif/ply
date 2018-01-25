@@ -1,0 +1,76 @@
+<!-- views/share.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<%- include('partials/head') %>	
+	<title>ply</title>
+</head>
+<body>	
+	<section class="topmatter">	
+		<nav role="navigation">
+			<button class="logo" style="display: block;">ply</button>
+		</nav>	
+	</section>
+	<section class="static modal__dialog create space">
+		<form action="/api/space_create" method=POST>
+			<h1>Share a new space</h1>
+			<fieldset name="address-info">
+				<legend>Where is it?</legend>
+				<div class="input__group">
+					<input type="text" name="street" id="street" class="animated__label" required/>
+					<label for="street">Street address</label>
+				</div>
+				<div class="input__group">
+					<input type="text" name="zip" pattern="(\d{5}([\-]\d{4})?)" class="animated__label" required/>
+					<label for="zip">Zip Code</label>
+				</div>
+			</fieldset>
+			<fieldset name="availability">
+				<legend>When is the space available?</legend>
+				<div>
+					<input type="checkbox" name="hourly" id="hourlyAvail" value="hourly" checked/>
+					<label for="hourlyAvail" class="checkbox__label"><i class="material-icons" aria-hidden="true">access_time</i> Hourly</label>
+				</div>
+				<div>
+					<input type="checkbox" name="daily" id="dailyAvail" value="hourly" checked/>
+					<label for="hourlyAvail"  class="checkbox__label"><i class="material-icons">date_range</i> Daily</label>
+				</div>
+				<div>
+					<input type="checkbox" name="longTerm" id="longTerm" value="longTerm"/>
+					<label for="longTerm" class="checkbox__label"><i class="material-icons" aria-hidden="true">update</i> Available for long-term storage?</label>
+				</div>
+			</fieldset>
+			<fieldset name="amenities">
+				<legend>Any amenities?</legend>
+				<div>
+					<input type="checkbox" name="electricity" id="electricity" value="electricity"/>
+					<label for="electricity" class="checkbox__label"><i class="material-icons" aria-hidden="true">power</i> Electricity</label>
+				</div>
+				<div>
+					<input type="checkbox" name="heat" id="heat" value="heat"/>
+					<label for="heat" class="checkbox__label"><i class="material-icons" aria-hidden="true">whatshot</i> Heat</label>
+				</div>
+				<div>
+					<input type="checkbox" name="water" id="water" value="water"/>
+					<label for="water" class="checkbox__label"><i class="material-icons" aria-hidden="true">format_color_fill</i> Water</label>
+				</div>
+				<div>
+					<input type="checkbox" name="bathroom" id="bathroom" value="bathroom"/>
+					<label for="bathroom" class="checkbox__label"><i class="material-icons" aria-hidden="true">room_service</i> Bathroom</label>
+				</div>
+			</fieldset>
+			<fieldset name="photos">
+				<legend>Got a photo?</legend>
+				<div class="fileupload__wrapper">
+					<input type="file" name="photos" id="photos" class="inputfile" />
+					<label for="photos" class="filelabel"><i class="material-icons" aria-hidden="true">add_a_photo</i> Add a photo</label>	
+				</div>				
+			</fieldset>
+
+			<button type="submit">Add new space</button>
+		</form>
+	</section>
+
+	<script type="text/javascript" src="/js/index.js"></script>
+</body>
+</html>
