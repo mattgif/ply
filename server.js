@@ -10,8 +10,6 @@ const apiRouter = require('./apiRouter');
 // authentication packages
 const session = require('express-session');
 
-const {locations} = require('./mock')
-
 app.use(morgan('common'));
 app.use(express.static('public'));
 

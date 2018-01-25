@@ -26,7 +26,7 @@ describe('front end endpoints tests', () => {
 	describe('search results', () => {
 		it('should return a status of 200 and be html', () => {
 			return chai.request(app)
-				.get('/s')
+				.get('/spaces/s')
 				.then(res => {
 					expect(res).to.have.status(200);
 					expect(res).to.be.html;
