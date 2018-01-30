@@ -5,11 +5,11 @@
 	height: 100%;
 }
 
-.modal__dialog {
+.modal__dialog {	
 	display: none;
 	color: #333;
 	background-color: #fff;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -18,20 +18,20 @@
 	z-index: 2;
 }
 
-.static.modal__dialog {
+.static.form__wrapper {
+	color: #333;
+	background-color: #fff;
 	margin-top: 100px;
 	display: block;
-	max-width: 350px;
-	height: auto;
-	position: static;
+	max-width: 350px;	
 	margin-left: auto;
 	margin-right: auto;
 	border: 1px solid #ccc;
-	padding-top: 30px;
+	padding: 30px 15px;
 }
 
 @media screen and (max-width: 300px) {
-	.static.modal__dialog {
+	.static.form__wrapper {
 		margin-top: 60px;
 		display: block;
 		width: 100%;
@@ -72,7 +72,7 @@
 	margin-bottom: 30px;
 }
 
-.modal__dialog form * {
+.modal__dialog form *, .form__wrapper form * {
 	display: block;
 	margin-right: auto;
 	margin-left: auto;
@@ -89,7 +89,7 @@
 	margin-bottom: 45px;	
 }
 
-.modal__dialog input {
+.modal__dialog input, .form__wrapper input {
 	width: 90%;
 	height: 44px;
 	border: none;
@@ -99,18 +99,22 @@
 	font-family: Nunito,Calibre,sans-serif;		
 }
 
-.modal__dialog input:hover {
+.modal__dialog input:disabled, .form__wrapper input:disabled {
+	border-bottom: 2px dotted #ccc;
+}
+
+.modal__dialog input:hover, .form__wrapper input:hover {
 	border-bottom: 1px solid #333;
 }
 
-.modal__dialog input:focus {
+.modal__dialog input:focus, .form__wrapper input:focus {
 	border-bottom: 2px solid rgb(66, 134, 244);
 	outline: none;	
 }
 
 .animated__label + label {
 	position: absolute;
-	left: 32px;
+	left: 34px;
 	top: 12px;
 	color: #aaa;
 	font-size: 1em;
@@ -126,11 +130,11 @@
 	color: rgb(66, 134, 244);
 }
 
-..animated__label:invalid {
+.animated__label:invalid {
 	outline: none;
 }
 
-.modal__dialog form button {
+.modal__dialog form button, .form__wrapper form button {
 	width: 90%;
 	height: 45px;
 	background-color: rgb(66, 134, 244);
@@ -158,81 +162,101 @@
 	z-index: -1;
 }
 
-.modal__dialog.space.create {
-	width: 100%;
-	max-width: 800px;
-}
-
-.modal__dialog.space.create fieldset {
-	margin-bottom: 30px;
-}
-
-.modal__dialog.space.create fieldset[name="availability"] div, .modal__dialog.space.create fieldset[name="amenities"] div {
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-}
-
-.modal__dialog.space.create input[type="checkbox"] {
-	height: 30px;
-	width: 30px;
-	margin-left: 30px;
-	margin-right: 5px;
-	margin-bottom: 15px;
-	display: inline-block;
-}
-
-.modal__dialog.space.create input[type="checkbox"]:focus {
-	outline:none; 
-    border:1px solid #4D90FE;
-    -webkit-box-shadow: 0px 0px 7px  #4D90FE;
-    box-shadow: 0px 0px 7px  #4D90FE;
-}
-
-.modal__dialog form label.checkbox__label {
-	margin-right: 30px;
-	margin-left: 10px;
-}
-
-.modal__dialog form label.checkbox__label, .modal__dialog form label.filelabel {
-	position: static;
-	display: inline-block;
-}
-
-.modal__dialog form label.checkbox__label i {
-	display: inline-block;
-}
-
-section.space.create h1 {
+.login__error {
+	display: none;
 	text-align: center;
-	margin-bottom: 25px;
-}
-
-.inputfile + label {
-	position: static;
-    font-size: 1.25em;
-    font-weight: 700;
-    color: #333;    
-    display: inline-block; 
-	text-align: center;
-}
-
-.inputfile + label i {
-	font-size: 40px;
+	color: red;
 	margin-bottom: 10px;
 }
 
-form fieldset .fileupload__wrapper {
+/*cancel dialog*/
+.cancel__modal__overlay {
+	display: none;
+	position: fixed;
 	width: 100%;
-	display: flex;
-	justify-content: center;
-	margin-bottom: 35px;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, .7);
+	z-index: 1;
 }
 
-.inputfile:focus + label,
-.inputfile + label:hover {
-    color: tomato;
-    cursor: pointer;
+.modal__dialog.modal__cancel {
+	position: fixed;
+	height: 80px;
+	width: 300px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	text-align: right;
+}
+
+.modal__dialog.modal__cancel h4 {
+	font-weight: normal;
+	font-size: 1.2em;
+	margin-top: 0;
+	text-align: left;
+}
+
+button.cancel__action, button.confirm__action {
+	border: none;
+	background: none;
+	font-size: 1em;
+	color: #03A9F4;	
+}
+
+button.cancel__action {
+	margin-right: 20px;		
+}
+
+button.cancel__action:hover, button.confirm__action:hover, button.cancel__action:focus, button.confirm__action:focus {
+	color: #0288D1;
+}
+
+/*select fields*/
+/* ==========  Select Field ========== */
+
+/* Style Select Field */
+select {	
+  font-family: inherit;
+  background-color: transparent;  
+  padding: $select-padding 0;
+  font-size: 1em;
+  color: #333;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Remove focus */
+select:focus {
+  outline: none}
+
+select:disabled {
+	background: rgb(235, 235, 228);
+	border-bottom: 2px dotted #ccc;
+}
+
+/* Hide label */
+.mdl-selectfield label {display: none;}
+/* Use custom arrow */
+.mdl-selectfield select {appearance: none}
+.mdl-selectfield {  
+  position: relative;
+    &:after {
+        position: absolute;
+        top: 0.75em;
+        right: 0.5em;
+        /* Styling the down arrow */
+        width: 0;
+        height: 0;
+        padding: 0;
+        content: '';
+        border-left: .25em solid transparent;
+        border-right: .25em solid transparent;
+        border-top: .375em solid $select-border-color;
+        pointer-events: none;
+    }
 }
 
 @media screen and (min-width: 744px) {

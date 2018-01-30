@@ -11,21 +11,22 @@
 			<button class="logo" style="display: block;">ply</button>
 		</nav>
 	</div>
-	<div class="static modal__dialog js-modal-dialog modal__login">						
-		<form action="#" method="POST">					
-			<legend id="login__legend">Log in to your ply account</legend>
+	<div class="static form__wrapper js-modal-dialog modal__login">	
+		<h1>Log in to your ply account</h1>
+		<div class="login__error"></div>			
+		<form action="/api/login" class="login__form" method="POST">								
 			<div class="input__group">	
-				<input type="email" name="email" id="login-email" required>
+				<input type="email" name="email" id="login-email" class="animated__label" required>
 				<label for="email">Email</label>									
 			</div>
 			<div class="input__group">	
-				<input type="password" id="login-password" name="login-password" required>
+				<input type="password" id="login-password" name="login-password" class="animated__label" required>
 				<label for="signup-password">Password</label>						
 			</div>
 			<button type="submit">Log In</button>
 		</form>
 		<div class="modal__change">
-			<h4>Not a ply member? <a href="/user/register">Join ply</a></h4>					
+			<h4>Not a ply member? <a href="/register">Join ply</a></h4>					
 		</div>
 	</div>
 	

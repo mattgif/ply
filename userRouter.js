@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const ejs = require('ejs');
+const {locations} = require('./mock');
 
-router.get('/login', (req, res) => {
-	res.render('login')
-});
-
-router.get('/register', (req, res) => {
-	res.render('register')
+router.get('/:id', (req, res) => {
+	res.render('user_spaces', {
+		username: req.params.id,
+	})
 });
 
 module.exports = router;

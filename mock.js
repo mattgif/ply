@@ -354,4 +354,13 @@ const locations = [
 	},
 ]
 
-module.exports = {locations}
+const userStatus = {
+	username: '',
+	loggedIn: false
+}
+
+const demoUser = {
+	'demo@example.com': 'password'
+}
+
+module.exports = {locations, userStatus, demoUser}

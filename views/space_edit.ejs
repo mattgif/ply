@@ -1,9 +1,9 @@
-<!-- views/space_create.ejs -->
+<!-- views/space_edit.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<%- include('partials/head') %>	
-	<title>ply</title>
+	<title>Edit <%= spaceID %>| ply</title>
 </head>
 <body>		
 	<section class="topmatter">	
@@ -15,36 +15,43 @@
 		<div class="cancel__modal__overlay"></div>
 		<div class="modal__wrapper">
 			<div class="modal__dialog js-modal-dialog modal__cancel" role="dialog" aria-labelledby="login__legend" tabindex="-1">
-				<h4>Discard space?</h4>
+				<h4>Discard edits?</h4>
 				<button class="cancel__action">Cancel</button>
 				<button class="confirm__action">Discard</button>
 			</div>
 		</div>	
-	</div>	
+		<div class="modal__wrapper">
+			<div class="modal__dialog js-modal-dialog modal__delete" role="dialog" aria-labelledby="login__legend" tabindex="-1">
+				<h4>Delete space?</h4>
+				<button class="cancel__action">Cancel</button>
+				<button class="confirm__action">Delete</button>
+			</div>
+		</div>	
+	</div>
 
 	<section class="static form__wrapper create space">
 		<form action="/api/space_create" method=POST>
-			<h1>Share a new space</h1>
+			<h1>Edit <%= spaceID %></h1>
 			<fieldset name="title">
-				<legend>Give it a title</legend>
+				<legend>Title</legend>
 				<div class="input__group">									
-					<input type="text" name="title" id="title" class="animated__label" required />
-					<label for="title">Title</label>		
+					<input type="text" name="title" id="title" class="animated__label" value="<%= title %>" required />
+					<label for="title" hidden>Title</label>		
 					<p class="hint">e.g. "Heated garage space" or "Sunlit artist studio"</p>					
 				</div>
 			</fieldset>
 			<fieldset name="address-info" class="js-create-address">
-				<legend>Where is it?</legend>
+				<legend>Address</legend>
 				<div class="input__group">					
 					<input type="text" name="place" id="pac-input">					
 					<p class="hint">Enter your address here, and we'll fill out the rest!</p>
 				</div>
 				<div class="input__group">
-					<input type="text" name="street" id="street" class="animated__label" required disabled/>
+					<input type="text" name="street" id="street" class="animated__label" value="<%= street %>" required/>
 					<label for="street">Street address</label>
 				</div>
 				<div class="input__group">
-					<input type="text" name="city" id="city" class="animated__label" required disabled/>
+					<input type="text" name="city" id="city" class="animated__label" value="<%= city %>" required/>
 					<label for="city">City</label>
 				</div>
 				<div class="input__group mdl-selectfield">					
@@ -105,71 +112,76 @@
 					<label for="state">State</label>
 				</div>
 				<div class="input__group">
-					<input type="text" name="zip" id="zip" pattern="(\d{5}([\-]\d{4})?)" class="animated__label" required disabled/>
+					<input type="text" name="zip" id="zip" pattern="(\d{5}([\-]\d{4})?)" class="animated__label" value="<%= zip %>" required/>
 					<label for="zip">Zip Code</label>
 				</div>
-				<input type="hidden" name="lat" id="lat-input" value="">
-				<input type="hidden" name="lng" id="lng-input" value="">
+				<input type="hidden" name="lat" id="lat-input" value="<%= lat %>">
+				<input type="hidden" name="lng" id="lng-input" value="<%= lng %>">
 			</fieldset>
 			<fieldset name="availability">
-				<legend>When is the space available?</legend>
+				<legend>Availability</legend>
 				<div>
-					<input type="checkbox" name="hourly" id="hourlyAvail" value="hourly" checked/>
+					<input type="checkbox" name="hourly" id="hourlyAvail" value="hourly" <% hourlyAvail ? "checked" : "" %>/>
 					<label for="hourlyAvail" class="checkbox__label"><i class="material-icons" aria-hidden="true">access_time</i> Hourly</label>
 				</div>
 				<div>
-					<input type="checkbox" name="daily" id="dailyAvail" value="daily" checked/>
+					<input type="checkbox" name="daily" id="dailyAvail" value="daily" <% dailyAvail ? "checked" : "" %>/>
 					<label for="hourlyAvail"  class="checkbox__label"><i class="material-icons">date_range</i> Daily</label>
 				</div>
 				<div>
-					<input type="checkbox" name="monthly" id="monthlyAvail" value="monthly" checked/>
+					<input type="checkbox" name="monthly" id="monthlyAvail" value="monthly" <% monthlyAvail ? "checked" : "" %>/>
 					<label for="monthlyAvail"  class="checkbox__label"><i class="material-icons">date_range</i> Monthly</label>
 				</div>
 				<div>
-					<input type="checkbox" name="longTerm" id="longTerm" value="longTerm"/>
+					<input type="checkbox" name="longTerm" id="longTerm" value="longTerm" <% longTerm ? "checked" : "" %>/>
 					<label for="longTerm" class="checkbox__label"><i class="material-icons" aria-hidden="true">update</i> Available for long-term storage?</label>
 				</div>
 			</fieldset>
 			<fieldset name="amenities">
 				<legend>Any amenities?</legend>
 				<div>
-					<input type="checkbox" name="electricity" id="electricity" value="electricity"/>
+					<input type="checkbox" name="electricity" id="electricity" value="electricity" <% electricity ? "checked" : "" %>/>
 					<label for="electricity" class="checkbox__label"><i class="material-icons" aria-hidden="true">power</i> Electricity</label>
 				</div>
 				<div>
-					<input type="checkbox" name="heat" id="heat" value="heat"/>
+					<input type="checkbox" name="heat" id="heat" value="heat" <% heat ? "checked" : "" %>/>
 					<label for="heat" class="checkbox__label"><i class="material-icons" aria-hidden="true">whatshot</i> Heat</label>
 				</div>
 				<div>
-					<input type="checkbox" name="water" id="water" value="water"/>
+					<input type="checkbox" name="water" id="water" value="water" <% water ? "checked" : "" %>/>
 					<label for="water" class="checkbox__label"><i class="material-icons" aria-hidden="true">format_color_fill</i> Water</label>
 				</div>
 				<div>
-					<input type="checkbox" name="bathroom" id="bathroom" value="bathroom"/>
+					<input type="checkbox" name="bathroom" id="bathroom" value="bathroom" <% bathroom ? "checked" : "" %>/>
 					<label for="bathroom" class="checkbox__label"><i class="material-icons" aria-hidden="true">room_service</i> Bathroom</label>
 				</div>
 			</fieldset>
 			<fieldset name="description">
 					<legend>Description</legend>
 					<label class="label__regular" for="description">Let people know what makes your space unique!</label>			
-					<textarea id="description" class="space__description" maxlength="275" cols="50" rows="10" placeholder="Here's where you can share information that doesn't fit into the rest of the form. (Limit 255 characters)"></textarea>	
+					<textarea id="description" class="space__description" maxlength="275" cols="50" rows="10" placeholder="Here's where you can share information that doesn't fit into the rest of the form. (Limit 255 characters)" value="<%= description %>"></textarea>	
 			</fieldset>
 			<fieldset name="photos">
-				<legend>Got a photo?</legend>
+				<legend>Photo</legend>
 				<div class="fileupload__wrapper">
 					<div class="img__wrapper">
-						<img id="img-uploaded" src="http://placehold.it/350x350" alt="your image" />	
+						<img id="img-uploaded" src="<%= imgurl %>" alt="your image" />	
 					</div>	
 					<input type="file" name="photos" id="photos" class="inputfile" />
 					<label for="photos" class="filelabel"><i class="material-icons" aria-hidden="true">add_a_photo</i> Add a photo</label>	
 				</div>				
 			</fieldset>
 
-			<button class="create js-create" type="submit">Add new space</button>
-
-			<button class="cancel js-cancel">Cancel</button>
+			<div class="edit__buttons">
+				<button class="delete js-delete-space">Delete space?</button>						
+				<button class="cancel js-cancel">Cancel changes</button>
+				<button class="update js-update" type="submit">Confirm &amp; update</button>
+			</div>
 		</form>
 	</section>
+
+
+	
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD37bTXyBCJV9iMHnfYZVKZK3-9oKq_vXM&libraries=places&callback=initAutocomplete" async defer></script>	
 	<script type="text/javascript" src="/js/index.js"></script>

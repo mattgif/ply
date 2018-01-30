@@ -11,19 +11,34 @@ function displayResults(JSONdata) {
 	$('.results').html(results);
 }
 
-function getAddressFromWindow() {
+function requestURLParams() {
 	const url = new URL(window.location.href);
-	$('.search__bar').val(url.searchParams.get("address"))
-	return {
-		"location": { 
-			"type": "Point",
-			"coordinates" : [url.searchParams.get("lng"), url.searchParams.get("lat")]
+	let query;
+	if (url.searchParams.get("address")) {
+		$('.search__bar').val(url.searchParams.get("address"))
+		query = {
+			"location": { 
+				"type": "Point",
+				"coordinates" : [url.searchParams.get("lng"), url.searchParams.get("lat")]
+			}
 		}
-	}	
+	} else {
+		const path = url.pathname.split('/')
+		query = {
+			"username": path[path.length -1]
+		}
+	}
+	getSpacesFromApi(query,displayResults)
 }
 
-function getSpacesFromApi(address, callback) {	
-	$.getJSON('/api/find_spaces', address, callback);	
+function getSpacesFromApi(query, callback) {	
+	// takes in the criteria by which to filter (address or user)	
+	$.ajax({
+		type: 'POST',
+		url: '/api/find_spaces',
+		data: query,
+		success: callback 
+	})
 }
 
 function renderResults(loc) {
@@ -40,18 +55,12 @@ function renderResults(loc) {
 	`
 }
 
-function requestNearbyResults() {
-	console.log('requestNearbyResults called')
-	let center = getAddressFromWindow()
-	getSpacesFromApi(center,displayResults)
-}
-
 function eventListeners() {
 	cardClickListener();
 }
 
 function pageHandler() {	
-	requestNearbyResults();
+	requestURLParams();
 	eventListeners();
 }
 
