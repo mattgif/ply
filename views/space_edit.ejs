@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<%- include('partials/head') %>	
-	<title>Edit <%= spaceID %>| ply</title>
+	<title>Edit <%= title %>| ply</title>
 </head>
 <body>		
 	<section class="topmatter">	
@@ -12,26 +12,35 @@
 		</nav>	
 	</section>
 	<div class="js-modal-wrapper">
-		<div class="cancel__modal__overlay"></div>
+		<div class="confirm__dialog__overlay"></div>
 		<div class="modal__wrapper">
-			<div class="modal__dialog js-modal-dialog modal__cancel" role="dialog" aria-labelledby="login__legend" tabindex="-1">
-				<h4>Discard edits?</h4>
+			<div class="modal__dialog confirm__dialog js-modal-dialog modal__cancel" role="dialog" tabindex="-1">
+				<h4>Discard changes?</h4>
 				<button class="cancel__action">Cancel</button>
-				<button class="confirm__action">Discard</button>
+				<button class="confirm__action discard edit space">Discard</button>
 			</div>
 		</div>	
 		<div class="modal__wrapper">
-			<div class="modal__dialog js-modal-dialog modal__delete" role="dialog" aria-labelledby="login__legend" tabindex="-1">
+			<div class="modal__dialog confirm__dialog js-modal-dialog modal__delete" role="dialog" tabindex="-1">
 				<h4>Delete space?</h4>
 				<button class="cancel__action">Cancel</button>
-				<button class="confirm__action">Delete</button>
+				<button class="confirm__action delete edit space">Delete</button>
 			</div>
-		</div>	
+		</div>
+		<div class="modal__wrapper">
+			<div class="modal__dialog confirm__dialog js-modal-dialog modal__update" role="dialog" tabindex="-1">
+				<h4>Update space?</h4>
+				<button class="cancel__action">Cancel</button>
+				<button class="confirm__action update edit space">Update</button>
+			</div>
+		</div>
 	</div>
 
 	<section class="static form__wrapper create space">
-		<form action="/api/space_create" method=POST>
-			<h1>Edit <%= spaceID %></h1>
+		<form id="update__form" action="/api/spaces/<%= spaceID %>" method="PUT">
+			<h1>Edit <%= title %></h1>
+			<input type="hidden" name="spaceID" value="<%= spaceID %>">
+			<input type="hidden" name="owner" value="<%= owner %>">
 			<fieldset name="title">
 				<legend>Title</legend>
 				<div class="input__group">									
@@ -165,25 +174,26 @@
 				<legend>Photo</legend>
 				<div class="fileupload__wrapper">
 					<div class="img__wrapper">
-						<img id="img-uploaded" src="<%= imgurl %>" alt="your image" />	
+						<img id="img-uploaded" src="<%= image %>" alt="your image" />	
 					</div>	
 					<input type="file" name="photos" id="photos" class="inputfile" />
 					<label for="photos" class="filelabel"><i class="material-icons" aria-hidden="true">add_a_photo</i> Add a photo</label>	
 				</div>				
 			</fieldset>
-
-			<div class="edit__buttons">
-				<button class="delete js-delete-space">Delete space?</button>						
-				<button class="cancel js-cancel">Cancel changes</button>
-				<button class="update js-update" type="submit">Confirm &amp; update</button>
-			</div>
 		</form>
 	</section>
+
+	<div class="edit__buttons">
+		<button class="delete js-delete">Delete</button>						
+		<button class="cancel js-cancel">Cancel</button>
+		<button class="update js-update" type="submit">Update</button>
+	</div>
 
 
 	
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD37bTXyBCJV9iMHnfYZVKZK3-9oKq_vXM&libraries=places&callback=initAutocomplete" async defer></script>	
 	<script type="text/javascript" src="/js/index.js"></script>
+	<script type="text/javascript">spaceUpdateListeners()</script>
 </body>
 </html>

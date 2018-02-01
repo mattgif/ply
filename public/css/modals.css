@@ -169,8 +169,8 @@
 	margin-bottom: 10px;
 }
 
-/*cancel dialog*/
-.cancel__modal__overlay {
+/*confirm dialogs*/
+.confirm__dialog__overlay {
 	display: none;
 	position: fixed;
 	width: 100%;
@@ -181,7 +181,7 @@
 	z-index: 1;
 }
 
-.modal__dialog.modal__cancel {
+.modal__dialog.confirm__dialog {
 	position: fixed;
 	height: 80px;
 	width: 300px;
@@ -192,7 +192,7 @@
 	text-align: right;
 }
 
-.modal__dialog.modal__cancel h4 {
+.modal__dialog.confirm__dialog h4 {
 	font-weight: normal;
 	font-size: 1.2em;
 	margin-top: 0;

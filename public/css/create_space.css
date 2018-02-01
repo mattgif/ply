@@ -1,6 +1,7 @@
 .form__wrapper.space.create {
 	width: 100%;
 	max-width: 800px;
+	margin-bottom: 100px;
 }
 
 .form__wrapper.space.create fieldset {
@@ -106,9 +107,12 @@ form fieldset .fileupload__wrapper {
 	margin-top: 30px;
 	margin-bottom: 30px;
 	width: 200px;
+}
+
+.form__wrapper.space.create button.cancel, .edit__buttons button.cancel {
 	color: rgb(66, 134, 244);
 	border: 2px solid rgba(66, 134, 244, 0.6);
-	background-color: transparent;
+	background-color: transparent;	
 }
 
 .form__wrapper.space.create button.delete {
@@ -120,4 +124,41 @@ form fieldset .fileupload__wrapper {
 
 .form__wrapper.space.create select {
 	margin-left: 32px;
+}
+
+.edit__buttons {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: #fff;
+	display: flex;
+	box-shadow: 0px -2px 4px rgba(0,0,0,0.4);
+	padding: 15px 10px;
+
+}
+
+.edit__buttons button {
+	width: 200px;
+	height: 44px;
+	font-family: Nunito,Calibre,sans-serif;
+	font-size: 16px;
+	border: none;
+	border-radius: 4px;
+}
+
+.edit__buttons button.delete {
+	background-color: #c9302c;
+	color: #fff;
+	margin-right: auto;
+}
+
+.edit__buttons button.update {
+	background-color: rgb(66, 134, 244);
+	color: #fff;
+}
+
+.edit__buttons button.cancel, .edit__buttons button.update {
+	margin-right: 15px;
+	margin-left: 15px;
 }

@@ -12,18 +12,25 @@
 		</nav>	
 	</section>
 	<div class="js-modal-wrapper">
-		<div class="cancel__modal__overlay"></div>
+		<div class="confirm__dialog__overlay"></div>
 		<div class="modal__wrapper">
-			<div class="modal__dialog js-modal-dialog modal__cancel" role="dialog" aria-labelledby="login__legend" tabindex="-1">
+			<div class="modal__dialog confirm__dialog js-modal-dialog modal__cancel" role="dialog" tabindex="-1">
 				<h4>Discard space?</h4>
 				<button class="cancel__action">Cancel</button>
 				<button class="confirm__action">Discard</button>
 			</div>
+		<div class="modal__wrapper">
+			<div class="modal__dialog confirm__dialog js-modal-dialog modal__create" role="dialog" tabindex="-1">
+				<h4>Create space?</h4>
+				<button class="cancel__action">Cancel</button>
+				<button class="confirm__action update edit space">Create</button>
+			</div>
+		</div>
 		</div>	
 	</div>	
 
 	<section class="static form__wrapper create space">
-		<form action="/api/space_create" method=POST>
+		<form action="/api/spaces" method=POST>
 			<h1>Share a new space</h1>
 			<fieldset name="title">
 				<legend>Give it a title</legend>
@@ -48,7 +55,7 @@
 					<label for="city">City</label>
 				</div>
 				<div class="input__group mdl-selectfield">					
-					<select name="state" id="state" disabled>
+					<select name="state" id="state" required disabled>
 						<option value="" disabled selected>State</option>
 						<option value="AL">Alabama</option>
 						<option value="AK">Alaska</option>

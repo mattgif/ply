@@ -1,0 +1,59 @@
+<!-- views/details_owner.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<%- include('partials/head') %>
+	<title><%= title %></title>
+</head>
+<body>
+	<%- include('partials/modals') %>
+
+	<section class="topmatter">
+		<%- include('partials/nav') %>
+	</section>
+
+	<section class="cover-image" style="background-image: url('<%= image %>')"></section>
+	<div class="details__wrapper">		
+		<div class="details">			
+			<header class="details__topmatter" role="banner">
+				<div id="edit__button">
+					<a href="/spaces/<%= spaceID %>/edit" class="edit__link"><i class="material-icons">mode_edit</i></a>
+				</div>
+				<h1 class="details__title"><%= title %></h1>
+				<ul class="details__type">
+					<li><i class="material-icons">location_city</i> <%= type %> in </li>
+					<li><%= city %></li>
+				</ul>
+				<div class="details__owner">
+					<a href="#">
+						<i class="material-icons owner__image">account_circle</i> 
+						<p class="owner__name"><%= owner %></p>
+					</a>					
+				</div>
+			</header>
+			<section class="description">
+				<%- description %>
+			</section>
+			<section class="amentities">
+				<h3>Amenities</h3>
+			</section>
+		</div>
+		<section class="rent">
+			<% if (rates) { %>
+			<ul class="rates">
+				<% for (var i = 0; i < rates.length; i++) { -%>
+					<li><span class="amt">$<%=rates[i][0]%></span> per <%=rates[i][1]%></li>
+				<% } -%>
+			</ul>
+			<% } else { %>			
+				<p class="rates">Contact owner for rates<p>
+			<% } %>
+			<button class="rent">Rent Space</button>
+		</section>
+	</div>
+
+
+
+	<script type="text/javascript" src="/js/index.js"></script>
+</body>
+</html>

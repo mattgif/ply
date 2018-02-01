@@ -31,6 +31,7 @@ router.post('/find_spaces', jsonParser, (req, res) => {
 	}	
 })
 
+// user
 router.get('/login', (req, res) => {
 	res.json(userStatus);
 })
@@ -47,6 +48,23 @@ router.post('/logout', (req, res) => {
 	userStatus.userName = '';
 	userStatus.loggedIn = false;
 	res.json(userStatus)
+})
+
+router.post('/user', jsonParser, (req, res) => {
+	res.json({'placeholder':'created user with email ' + req.body.email})
+})
+
+// spaces
+router.post('/spaces', (req, res) => {
+	res.json({'placeholder':'create req received'})
+})
+
+router.put('/spaces/:id', jsonParser, (req, res) => {
+	res.json({'placeholder':'update req received for space ID: ' + req.body.spaceID})
+})
+
+router.delete('/spaces/:id', jsonParser, (req, res) => {
+	res.json({'placeholder':'del request received for space ID: ' + req.body.spaceID})
 })
 
 module.exports = router;

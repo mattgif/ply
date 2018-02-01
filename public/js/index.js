@@ -72,7 +72,7 @@ function logoutListener() {
 	})	
 }
 
-// create
+// CRUD
 function disableSubmitOnEnter() {
 	// users may hit 'enter' to confirm address in search box on space creation
 	// this prevents enter from submitting the form, causing unwanted behavior
@@ -84,6 +84,52 @@ function disableSubmitOnEnter() {
 			}
 		})
 	}
+}
+
+function updateSpaceListener() {
+	$('button.confirm__action.update.space.edit').click(() => {
+		const spaceID = $("input[name='spaceID']").val();
+		$.ajax({
+			type: "PUT",
+			url: $('#update__form').attr('action'),
+			data: $('#update__form').serialize(),
+			success: function() {
+				window.location.href = '/spaces/' + spaceID;
+			}
+		})
+		('#update__form').submit()
+	})	
+}
+
+function discardUpdateListener() {
+	$('button.confirm__action.discard.space.edit').click(() => {
+		const spaceID = $("input[name='spaceID']").val();
+		window.location.href = '/spaces/' + spaceID;
+	})	
+}
+
+function deleteSpaceListener() {
+	$('button.confirm__action.delete.space.edit').click(() => {
+		const spaceID = $("input[name='spaceID']").val();
+		const owner = $("input[name='owner']").val();
+		$.ajax({
+			type: 'DELETE',
+			url: '/api/spaces/' + spaceID,
+			data: {
+				spaceID: spaceID,
+				owner: owner
+			},
+			success: () => {
+				window.location.href = '/user/' + owner;
+			},
+		})
+	})		
+}
+
+function spaceUpdateListeners() {
+	updateSpaceListener();
+	discardUpdateListener();
+	deleteSpaceListener()
 }
 
 // nav
@@ -117,10 +163,10 @@ function menuTriggerListener() {
 	})	
 }
 
-function shareListener() {
+function aboutListener() {
 	// behavior for 'share a space' button on navbar
 	$('button.share').click(() => {		
-		window.location.href = '/spaces/share';
+		window.location.href = '/spaces/about';
 	})
 }
 
@@ -134,7 +180,7 @@ function createSpaceListener() {
 function navButtonListeners() {
 	menuTriggerListener();
 	logoClickListener();
-	shareListener();
+	aboutListener();
 	createSpaceListener();
 }
 
@@ -236,6 +282,18 @@ function cancelListener() {
 	})
 }
 
+function updateListener() {
+	$('.js-update').click(() => {		
+		modalOpen('.modal__update','button.cancel__action')
+	})
+}
+
+function deleteListener() {
+	$('.js-delete').click(() => {		
+		modalOpen('.modal__delete','button.cancel__action')
+	})
+}
+
 function modalJoinClick() {
 	// displays join modal on click
 	$('.join').click(e => {
@@ -257,7 +315,7 @@ function modalOpen(modalDialog,focusTarget) {
 		$(modalDialog).show();
 	} else {
 		$('.js-modal-wrapper').css('top', 0);
-		$('.modal__overlay, .cancel__modal__overlay').fadeIn(400);		
+		$('.modal__overlay, .confirm__dialog__overlay').fadeIn(400);		
 		$(modalDialog).slideDown(100);	
 	}
 	$('.bt-menu-trigger').removeClass('bt-menu-open');
@@ -269,7 +327,7 @@ function modalOpen(modalDialog,focusTarget) {
 }
 
 function modalClose() {
-	$('.modal__overlay, .modal__dialog, .cancel__modal__overlay').fadeOut(200);
+	$('.modal__overlay, .modal__dialog, .confirm__dialog__overlay').fadeOut(200);
 	setTimeout(function() {
 		$('.js-modal-wrapper').css('top', '-100%')
 	},200);
@@ -333,8 +391,10 @@ function modalCloseListeners() {
 
 function modalOpenListeners() {
 	modalJoinClick();
-	modalLoginClick();
-	cancelListener()
+	modalLoginClick();	
+	cancelListener();
+	updateListener();
+	deleteListener();
 }
 
 // core
