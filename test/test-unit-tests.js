@@ -35,17 +35,40 @@ describe('front end endpoints tests', () => {
 	})	
 })
 
-describe('api endpoints tests', () => {
+describe('search endpoints tests', () => {
 	// Get request to endpoint
 	// Verify response is JSON
 	// Verify resopnse JSON has the correct structure
-	describe('search results', () => {
+	describe('POST request to search results (location)', () => {
 		it('should return a json object', () => {
+			query = {
+						"location": 
+							{
+								"type": "Point", 
+								"coordinates": [-77.0368707,38.9071923]
+							}
+					}
 			return chai.request(app)
-				.get('/api/find_spaces')
-				.then(res => {
+				.post('/api/find_spaces')
+				.send(query)
+				.then(res => {					
+					expect(res).to.be.json
+				})
+		})
+	})
+
+	describe('POST request to search results (user)', () => {
+		it('should return a json object', () => {
+			query = {
+						"username": "alan20"
+					}
+			return chai.request(app)
+				.post('/api/find_spaces')
+				.send(query)
+				.then(res => {					
 					expect(res).to.be.json
 				})
 		})
 	})
 })
+
