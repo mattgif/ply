@@ -2,10 +2,15 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const ejs = require('ejs');
+const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
 
 const userRouter = require('./userRouter');
 const spacesRouter = require('./spacesRouter');
 const apiRouter = require('./apiRouter');
+
+const {PORT, DATABASE_URL} = require('./config');
 
 // authentication packages
 const session = require('express-session');
@@ -40,6 +45,43 @@ app.use('/spaces', spacesRouter);
 app.use('/user', userRouter);
 app.use('/api', apiRouter);
 
-app.listen(process.env.PORT || 8080)
+let server;
 
-module.exports = {app}
+function runServer(databaseUrl = DATABASE_URL, port = PORT) {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(databaseUrl, err => {
+      if (err) {
+        return reject(err);
+      }
+
+      server = app.listen(port, () => {
+        console.log(`ply server is listening on port ${port}`);
+        resolve();
+      })
+      .on('error', err => {
+        mongoose.disconnect();
+        reject(err);
+      });
+    });
+  });
+}
+
+function closeServer() {
+  return mongoose.disconnect().then(() => {
+    return new Promise((resolve, reject) => {
+      console.log('Closing server');
+      server.close(err => {
+        if (err) {
+          return reject(err);
+        }
+        resolve();
+      });
+    });
+  });
+}
+
+if (require.main === module) {
+  runServer().catch(err => console.error(err));
+}
+
+module.exports = {app, runServer, closeServer}
