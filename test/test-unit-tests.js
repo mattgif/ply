@@ -134,6 +134,8 @@ describe('user API tests', () => {
 		// 4. inspect response for correct keys,
 		// 5. inspect response for ID (to verify it was inserted in db)
 		// 6. make sure # of users in db is previous count + 1
+		// 7. check password hashing
+		// 8. test edge cases for failure
 		it('should add a new user', () => {
 			const newUser = {
 				email: 'testuser@example.com',
