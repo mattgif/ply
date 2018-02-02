@@ -3,6 +3,10 @@ const app = express();
 const morgan = require('morgan');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
+const passport = require('passport');
+require('dotenv').config()
+
+const {localStrategy, jwtStrategy} = require('./auth');
 
 mongoose.Promise = global.Promise;
 
@@ -18,16 +22,21 @@ const session = require('express-session');
 app.use(morgan('common'));
 app.use(express.static('public'));
 
-app.use(session({
-  secret: 'LvtpAbkLobryFMqJWK8l90tLNtqCxV9lm1AELBCzsuswVh6IuYeACSUydL4naPUYyHg0MNUpv5tPMavs',
-  resave: false,
-  saveUninitialized: false,
-  // cookie: { secure: true }
-  // set secure to true once https is enabled
-}))
-
 app.set('view engine', 'ejs');
 
+// CORS
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+    if (req.method === 'OPTIONS') {
+        return res.send(204);
+    }
+    next();
+});
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
 
 app.get('/', (req, res) => {
 	res.render('index');
