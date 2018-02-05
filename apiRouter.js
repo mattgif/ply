@@ -39,7 +39,7 @@ router.post('/find_spaces', (req, res) => {
 
 // user
 router.post('/login', localAuth, (req, res) => {
-	res.json({message:"success!"})
+	res.json({message: "login succeeded"});
 })
 
 router.post('/logout', (req, res) => {

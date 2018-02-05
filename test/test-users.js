@@ -147,11 +147,7 @@ describe('user API tests', () => {
                         .then(res => {
                             expect(res).to.have.status(200);
                             expect(res.body).to.be.an('object');
-                            const token = res.body.authToken;
-                            expect(token).to.be.a('string');
-                            const payload = jwt.verify(token, JWT_SECRET, {
-                            algorithm: ['HS256']
-                            })                
+                            expect(res.body.message).to.equal("login succeeded")
                         })
                 })
         });    
