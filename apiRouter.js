@@ -5,23 +5,14 @@ const bodyParser = require('body-parser');
 const {locations, userStatus, demoUser} = require('./mock');
 const {User} = require('./models')
 const passport = require('passport');
-const jwt = require('jsonwebtoken');
 const config = require('./config');
-const {localStrategy, jwtStrategy} = require('./auth')
+const {localStrategy} = require('./auth')
 
-const localAuth = passport.authenticate('local', {session: false});
+const localAuth = passport.authenticate('local', {session: true});
 
 router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({ extended: true }));
-passport.use(localStrategy);
 
-const createAuthToken = function(user) {
-  return jwt.sign({user}, config.JWT_SECRET, {
-    subject: user.username,
-    expiresIn: config.JWT_EXPIRY,
-    algorithm: 'HS256'
-  });
-};
+passport.use(localStrategy);
 
 router.post('/find_spaces', (req, res) => {
 	// req is JSON with either username or location
@@ -47,23 +38,14 @@ router.post('/find_spaces', (req, res) => {
 })
 
 // user
-
-// router.get('/login', (req, res) => {
-// 	res.json(userStatus);
-// })
-
 router.post('/login', localAuth, (req, res) => {
-	const authToken = createAuthToken(req.user.serialize());
-	res.json({authToken});
+	res.json({message:"success!"})
 })
 
 router.post('/logout', (req, res) => {
-	userStatus.userName = '';
-	userStatus.loggedIn = false;
-	res.json(userStatus)
+	req.logout();
+	res.redirect('/');
 })
-
-
 
 // spaces
 router.post('/spaces', (req, res) => {

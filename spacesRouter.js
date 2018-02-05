@@ -31,15 +31,15 @@ function locDetailsGenerator(loc) {
 }
 
 router.get('/create', (req, res) => {
-	res.render('space_create')
+	res.render('space_create', {isLoggedIn: req.isLoggedIn})
 })
 
 router.get('/about', (req, res) => {
-	res.render('about');
+	res.render('about', {isLoggedIn: req.isLoggedIn});
 })
 
 router.get('/s', (req, res) => {		
-	res.render('search');
+	res.render('search', {isLoggedIn: req.isLoggedIn});
 })
 
 router.get('/:id', (req, res) => {
@@ -48,6 +48,7 @@ router.get('/:id', (req, res) => {
 	})[0]
 
 	let spaceContext = locDetailsGenerator(loc)
+	spaceContext.isLoggedIn = req.isLoggedIn;
 
 	if (userStatus.loggedIn) {
 		res.render('details_owner', spaceContext)
@@ -61,7 +62,8 @@ router.get('/:id/edit', (req, res) => {
 		return space.spaceID === req.params.id
 	})[0]
 
-	let spaceContext = locDetailsGenerator(loc)
+	let spaceContext = locDetailsGenerator(loc);
+	spaceContext.isLoggedIn = req.isLoggedIn;
 
 	if (userStatus.loggedIn) {
 		res.render('space_edit', spaceContext)

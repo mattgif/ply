@@ -2,35 +2,37 @@
 <div class="mobile__menu">				
 	<section>
 		<h2>Account</h2>
+		<% if (isLoggedIn) { %>		
+		<ul class="mobile__nav__list mobile__user__menu js-logged-in hidden">
+			<li class="nav__item"><button class="nav__link manage_account">Manage account</button></li>
+			<li class="nav__item"><button class="nav__link logout">Log Out</button></li>
+		</ul>
+		<% } else { %>
 		<ul class="mobile__nav__list mobile__user__menu js-logged-out">
 			<li class="nav__item"><button class="nav__link join">Join</button></li>						
 			<li class="nav__item"><button class="nav__link login">Log in</button></li>			
 		</ul>
-		<ul class="mobile__nav__list mobile__user__menu js-logged-in hidden">
-			<li class="nav__item"><button class="nav__link manage_account">Manage account</button></li>
-			<li class="nav__item"><button class="nav__link logout">Log Out</button></li>
-		</ul>	
+		<% } %>
 	</section>				
 	<section>
 		<h2>Spaces</h2>
-		<ul class="mobile__nav__list mobile__spaces__menu js-logged-out">
-			<li class="nav__item"><button class="nav__link share">About</button></li>
-		</ul>
 		<ul class="mobile__nav__list mobile__spaces__menu js-logged-in hidden">
 			<li class="nav__item"><button class="nav__link share">About</button></li>
+			<% if (isLoggedIn) { %>
 			<li class="nav__item"><button class="nav__link manage_space" >Manage spaces</button></li>
 			<li class="nav__item"><button class="nav__link create_space">Add a new space</button></li>
+			<% } %>
 		</ul>						
 	</section>				
 </div>			
-<ul class="nav__list full__menu js-logged-out">	
+<ul class="nav__list full__menu">		
 	<li class="nav__item"><button class="nav__link share">About</button></li>
-	<li class="nav__item"><button class="nav__link join" >Join</button></li>
-	<li class="nav__item"><button class="nav__link login">Log in</button></li>	
-</ul>	
-<ul class="nav__list full__menu js-logged-in hidden">
-	<li class="nav__item"><button class="nav__link share">About</button></li>
+	<% if (isLoggedIn) { %>
 	<li class="nav__item"><button class="nav__link manage_space" >Manage spaces</button></li>
 	<li class="nav__item"><button class="nav__link create_space">Create space</button></li>
 	<li class="nav__item"><button class="nav__link logout">Log Out</button></li>
+	<% } else { %>
+	<li class="nav__item"><button class="nav__link join" >Join</button></li>
+	<li class="nav__item"><button class="nav__link login">Log in</button></li>	
+	<% } %>
 </ul>
