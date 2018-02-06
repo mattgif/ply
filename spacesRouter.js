@@ -34,15 +34,13 @@ router.get('/create', (req, res) => {
 	res.render('space_create', {isLoggedIn: req.isLoggedIn})
 })
 
-router.get('/about', (req, res) => {
-	res.render('about', {isLoggedIn: req.isLoggedIn});
-})
-
 router.get('/s', (req, res) => {		
 	res.render('search', {isLoggedIn: req.isLoggedIn});
 })
 
 router.get('/:id', (req, res) => {
+	// inspect cookie for username and compare to space ID owner
+	// if match, serve page w/edit button
 	const loc = locations.filter((space) => {
 		return space.spaceID === req.params.id
 	})[0]
@@ -58,6 +56,8 @@ router.get('/:id', (req, res) => {
 })
 
 router.get('/:id/edit', (req, res) => {
+	// inspect cookie for username and compare to space ID owner
+	// if serve page; else redirect to login
 	const loc = locations.filter((space) => {
 		return space.spaceID === req.params.id
 	})[0]

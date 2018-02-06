@@ -31,7 +31,7 @@ div.subheader *, div.tag *{
 }
 
 header.share {
-	margin-top: 100px;
+	margin-top: 10%;
 }
 
 header.share * {
@@ -115,9 +115,6 @@ section.share.instructions {
 }
 
 @media screen and (min-width: 700px) {	
-	header.share {
-	  margin-top: 200px;
-  }
 	.blurbs {
 		flex-wrap: nowrap;
 	}

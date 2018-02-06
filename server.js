@@ -51,7 +51,7 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(username, done) {
   User.find({username: username}, function(err,user) {
-    done(null, user);  
+    done(null, user); 
   })  
 });
 
@@ -77,7 +77,7 @@ app.use(function(req, res, next) {
   next();
 })
 
-app.get('/', (req, res) => {  
+app.get('/', (req, res) => {   
 	res.render('index',{isLoggedIn: req.isLoggedIn});
 })
 

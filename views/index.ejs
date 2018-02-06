@@ -8,6 +8,7 @@
 <body>
 	<%- include('partials/modals') %>
 
+	<div class="splash__background"></div>
 	<div class="container__splash">
 		<nav role="navigation">
 			<button class="splash logo">ply</button>
@@ -17,7 +18,7 @@
 			<%- include("partials/nav_menus") %>			
 		</nav>	
 	
-		<div class="container">
+		<div class="container container__main">
 			<header role="banner" class="splash">		
 				<h1 class="logo logo__big">ply</h1>
 				<div class="tag__wrapper">
@@ -34,7 +35,71 @@
 				</form>		
 			</section>		
 		</div>
+
+		<div class="container__about">
+			<section class="share top">
+			<header role="banner" class="share">
+				<div class="subheader">
+					<h4>Share space on ply</h4>
+				</div>
+				<div class="tag">
+					<h1>Earn money by renting out your spare space on ply</h1>
+				</div>	
+			</header>
+			<section class="blurbs">
+				<div class="tile">
+					<h3>Why share on ply?</h3>
+					<p>Sharing on ply transforms your extra space into something more than a place to throw empty boxes, or hang rusty tools. Whether it's a garage that's empty while you're at work, or a shed out back that you never use, ply helps you put that space to work.</p>
+				</div>
+				<div class="tile">
+					<h3>Who rents ply spaces?</h3>
+					<p>ply connects you with artists looking for a place to set up an easel, amateur mechanics who need an hour to work on an engine, people looking for a convenient place to park, and anyone else who just needs some temporary project space.</p>
+				</div>
+				<div class="tile">
+					<h3>We make it easy</h3>
+					<p>ply takes the frustration out of posting and maintaining listings, and coordinating payment with potential renters via traditional classified sites.</p>
+				</div>		
+			</section>		
+		</section>
+
+		<section class="share instructions">
+			<h2>How to share your space on ply</h2>
+			<div class="tile">
+				<div class="content">
+					<div class="headnum">1</div>
+					<h3>Create a listing</h3>
+					<p>Listing a space is convenient and free. Simply describe the space and add some pictures, detail what amenities are available (e.g., water, electricity), and set the availability windows and price per hour, day, or month.</p>
+					<p>(You'll need to create a (free!) ply account to set up your profile and create listings!)</p>	
+				</div>
+				<div class="share img">
+					<img src="/img/step-1-min.jpg" alt="woman using laptop"/>	
+				</div>						
+			</div>
+			<div class="tile">
+				<div class="content">
+					<div class="headnum">2</div>
+					<h3>Arrange guest access</h3>
+					<p>Once someone books your space, you can arrange to be there to meet them and let them in, or share access codes for your key or space.</p>	
+				</div>
+				<div class="share img reverse">
+					<img src="/img/step-2-min.jpg" alt="man holding out keys"/>
+				</div>						
+			</div>
+			<div class="tile">
+				<div class="content">
+					<div class="headnum">3</div>
+					<h3>Earn money</h3>
+					<p>ply makes collecting and verifying payment simple.</p>	
+				</div>
+				<div class="share img">
+					<img src="/img/step3-min.jpg" alt="woman holding phone and smiling blankly at the sky"/>	
+				</div>						
+			</div>	
+		</section>
+		</div>
 	</div>
+
+	
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD37bTXyBCJV9iMHnfYZVKZK3-9oKq_vXM&libraries=places&callback=initAutocomplete" async defer></script>	
 	<script type="text/javascript" src="js/index.js"></script>

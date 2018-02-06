@@ -1,10 +1,20 @@
 /*splash*/
-.container__splash {	
+.splash__background {
 	background-image: 
 		linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
 		url("../img/drill_press_splash.jpg");				
 	position: fixed;
 	background-size: cover;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	padding: 0px 15px;
+	z-index: -1;
+}
+
+.container__splash {
+	position: absolute;	
 	width: 100%;
 	height: 100%;
 	top: 0px;
@@ -88,6 +98,10 @@ header.splash {
 	font-size: .8em;
 	padding-left: 25px;
 	font-family: Nunito,Calibre,sans-serif;
+}
+
+.container__about {
+	display: none;
 }
 
 @media screen and (min-width: 375px) {

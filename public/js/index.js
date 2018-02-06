@@ -117,9 +117,16 @@ function spaceUpdateListeners() {
 
 // nav
 function logoClickListener() {
-    // go to home page if navbar logo is clicked
-    $('button.logo').click(() => {      
-        window.location.href = '/';     
+    // go to home page if navbar logo is clicked    
+    $('button.logo').click(() => {
+        if ($('.container__about').length) {
+            $('.container__main').fadeIn(1200);
+            $('button.nav__link.share').fadeIn(1200);
+            $('.container__about').hide();
+            $('button.logo.splash').hide();
+        } else {
+            window.location.href = '/';    
+        }        
     })
 }
 
@@ -148,8 +155,14 @@ function menuTriggerListener() {
 
 function aboutListener() {
     // behavior for 'share a space' button on navbar
-    $('button.share').click(() => {     
-        window.location.href = '/spaces/about';
+    $('button.share').click(() => {
+        if (!($('.splash__background').length)) {
+            window.location.href = '/'
+        }
+        $('.container__main').hide();
+        $('button.nav__link.share').fadeOut(1200);
+        $('.container__about').fadeIn(1200);
+        $('button.logo.splash').fadeIn(1200);
     })
 }
 
