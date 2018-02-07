@@ -55,30 +55,22 @@ passport.deserializeUser(function(username, done) {
   })  
 });
 
-// CORS
-app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
-    if (req.method === 'OPTIONS') {
-        return res.send(204);
-    }
-    next();
-});
-
 passport.use(localStrategy);
 
 app.use(function(req, res, next) {
-  if (req.user) {
-    req.isLoggedIn = true
+  if (req.user) {        
+    req.isLoggedIn = true;
+    req.username = req.user[0].username
   } else {
-    req.isLoggedIn = false
+    req.isLoggedIn = false;
+    req.username = false
   }
   next();
 })
 
-app.get('/', (req, res) => {   
-	res.render('index',{isLoggedIn: req.isLoggedIn});
+app.get('/', (req, res) => {  
+  console.log(req.username) 
+	res.render('index',{isLoggedIn: req.isLoggedIn, username: req.username});
 })
 
 app.get('/login', (req, res) => {

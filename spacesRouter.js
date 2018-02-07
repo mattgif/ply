@@ -4,7 +4,7 @@ const ejs = require('ejs');
 const {locations, userStatus} = require('./mock')
 
 function locDetailsGenerator(loc) {
-	// generator for returning location data
+	// context for space details
 	return {
 		spaceID: loc.spaceID,
 		title: loc.title,
@@ -31,11 +31,11 @@ function locDetailsGenerator(loc) {
 }
 
 router.get('/create', (req, res) => {
-	res.render('space_create', {isLoggedIn: req.isLoggedIn})
+	res.render('space_create', {isLoggedIn: req.isLoggedIn, username: req.username})
 })
 
 router.get('/s', (req, res) => {		
-	res.render('search', {isLoggedIn: req.isLoggedIn});
+	res.render('search', {isLoggedIn: req.isLoggedIn, username: req.username});
 })
 
 router.get('/:id', (req, res) => {
@@ -47,12 +47,9 @@ router.get('/:id', (req, res) => {
 
 	let spaceContext = locDetailsGenerator(loc)
 	spaceContext.isLoggedIn = req.isLoggedIn;
-
-	if (userStatus.loggedIn) {
-		res.render('details_owner', spaceContext)
-	} else {
-		res.render('details', spaceContext);		
-	}
+	spaceContext.username = req.username;	
+	
+	res.render('details', spaceContext);			
 })
 
 router.get('/:id/edit', (req, res) => {

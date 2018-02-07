@@ -131,7 +131,8 @@ router.post('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
 	res.render('user_spaces', {
-		username: req.params.id,
+		isLoggedIn: req.isLoggedIn,
+		username: req.params.id	
 	})
 });
 
