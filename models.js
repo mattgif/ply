@@ -43,11 +43,10 @@ UserSchema.statics.hashPassword = function(password) {
 };
 
 const SpaceSchema = mongoose.Schema({
-	spaceID: {
-		type: String,
-		required: true,
-		unique: true
-	},
+	// spaceID: {
+	// 	type: String,		
+	// 	unique: true
+	// },
 	title: {
 		type: String,
 		required: true
@@ -63,13 +62,13 @@ const SpaceSchema = mongoose.Schema({
 	},
 	coverImage: String,
 	availability: Object,
-	hourlyAvail: Boolean,
-	dailyAvail: Boolean,
-	monthlyAvail: Boolean,
+	hourly: Boolean,
+	daily: Boolean,
+	monthly: Boolean,
 	longTerm: Boolean,
 	location: {
 		type: {type: String, default:'Point'},
-		coordinates: [Number],		
+		coordinates: Array,		
 	},
 	street: String,
 	city: String,

@@ -126,7 +126,7 @@ router.post('/', (req, res) => {
 							console.log('dir created')
 						}
 					})
-					return res.status(201).json(user.serialize());
+					return res.status(201).redirect(301,'/login');
 				})
 		})
 		.catch(err => {

@@ -69,6 +69,22 @@ function disableSubmitOnEnter() {
     }
 }
 
+function createSpaceListener() {
+    $('button.js-create').click(e => {
+        e.preventDefault();
+        const formData = new FormData($('#space-create-form'))
+        $.ajax({
+            type: "POST",
+            url: '/api/spaces',
+            data: FormData,
+            success: (data) => {
+                const spaceID = data._id;
+                window.location.href = '/spaces/' + spaceID;
+            }
+        })
+    })
+}
+
 function updateSpaceListener() {
     $('button.confirm__action.update.space.edit').click(() => {
         const spaceID = $("input[name='spaceID']").val();

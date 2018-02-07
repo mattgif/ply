@@ -30,14 +30,14 @@
 	</div>	
 
 	<section class="static form__wrapper create space">
-		<form action="/api/spaces" method=POST>
+		<form action="/api/spaces" encType="multipart/form-data" id="space-create-form" method=POST>
 			<h1>Share a new space</h1>
 			<fieldset name="title">
 				<legend>Give it a title</legend>
 				<div class="input__group">									
 					<input type="text" name="title" id="title" class="animated__label" required />
 					<label for="title">Title</label>		
-					<p class="hint">e.g. "Heated garage space" or "Sunlit artist studio"</p>					
+					<p class="hint">e.g. "Heated garage space" or "Sunlit artist studio"</p>				
 				</div>
 			</fieldset>
 			<fieldset name="address-info" class="js-create-address">
@@ -158,8 +158,18 @@
 			</fieldset>
 			<fieldset name="description">
 					<legend>Description</legend>
+					<div class="input__group mdl-selectfield">	
+						<select name="spaceType" id="spaceType" required>
+							<option value="" disabled selected>What type of space is it?</option>
+							<option value="grg">Garage</option>							
+							<option value="brn">Barn</option>
+							<option value="shd">Shed</option>
+							<option value="stg">Storage facility</option>
+							<option value="rm">Room</option>
+						</select>
+					</div>
 					<label class="label__regular" for="description">Let people know what makes your space unique!</label>			
-					<textarea id="description" class="space__description" maxlength="275" cols="50" rows="10" placeholder="Here's where you can share information that doesn't fit into the rest of the form. (Limit 255 characters)"></textarea>	
+					<textarea name="description" id="description" class="space__description" maxlength="275" cols="50" rows="10" placeholder="Here's where you can share information that doesn't fit into the rest of the form. (Limit 255 characters)"></textarea>	
 			</fieldset>
 			<fieldset name="photos">
 				<legend>Got a photo?</legend>

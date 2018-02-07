@@ -31,7 +31,13 @@ function locDetailsGenerator(loc) {
 }
 
 router.get('/create', (req, res) => {
-	res.render('space_create', {isLoggedIn: req.isLoggedIn, username: req.username})
+	if (req.user && req.username) {	
+		console.log(req.user)
+		res.render('space_create', {isLoggedIn: req.isLoggedIn, username: req.username})	
+	} else {		
+		res.redirect(301, '/login')
+	}
+	
 })
 
 router.get('/s', (req, res) => {		
