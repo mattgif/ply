@@ -81,14 +81,12 @@ router.post('/spaces', fileUpload(), (req, res) => {
 		lat = parseFloat(lat);
 
 		let coverImage;		
-		if (req.files && req.files.photos) {
-			console.log('req.files found:', req.files)
+		if (req.files && req.files.photos) {			
 			// check if user uploaded photo and, if so, move it to their dir
 			photo = req.files.photos;
 			fileName = shortId.generate() + '.jpg';
 			coverImage = fileName;
-			const filePath = './public/userdata/' + owner + '/' + fileName;
-			console.log('filepath created, moving file to', filePath)
+			const filePath = './public/userdata/' + owner + '/' + fileName;			
 			photo.mv(filePath)
 		}
 

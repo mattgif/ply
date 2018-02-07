@@ -4,6 +4,7 @@ services:
   - mongodb
 env: 
   - JWT_SECRET: travisThrowAwaySecret123
+  - SESSION_SECRET: bippityBoppityB00000
 deploy:
   provider: heroku
   api_key:
