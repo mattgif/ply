@@ -42,6 +42,44 @@ UserSchema.statics.hashPassword = function(password) {
   return bcrypt.hash(password, 10);
 };
 
-const User = mongoose.model('User', UserSchema);
+const SpaceSchema = mongoose.Schema({
+	spaceID: {
+		type: String,
+		required: true,
+		unique: true
+	},
+	title: {
+		type: String,
+		required: true
+	},
+	type: String,
+	owner: String,
+	description: String,
+	amenities: {
+		electricity: Boolean,
+		heat: Boolean,
+		water: Boolean,
+		bathroom: Boolean
+	},
+	coverImage: String,
+	availability: Object,
+	hourlyAvail: Boolean,
+	dailyAvail: Boolean,
+	monthlyAvail: Boolean,
+	longTerm: Boolean,
+	location: {
+		type: {type: String, default:'Point'},
+		coordinates: [Number],		
+	},
+	street: String,
+	city: String,
+	state: String,
+	zip: String,
+})
 
-module.exports = {User};
+SpaceSchema.index({location: '2dsphere'});
+
+const User = mongoose.model('User', UserSchema);
+const Space = mongoose.model('Space', SpaceSchema);
+
+module.exports = {User, Space};
