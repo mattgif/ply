@@ -23,6 +23,12 @@ router.post('/find_spaces', (req, res) => {
 		let locres = [];
 		for (let i=0; i<locations.length; i++) {
 			if (locations[i].owner === req.body.username) {
+				if (locations[i].owner === req.username) {
+					// check to see if the ownername matches the user MAKING the request
+					locations[i].isOwner = true;
+				} else {
+					locations[i].isOwner = false;
+				}
 				locres.push(locations[i])
 			}
 		}

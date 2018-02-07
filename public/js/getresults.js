@@ -43,10 +43,22 @@ function getSpacesFromApi(query, callback) {
 
 function renderResults(loc) {
 	const image = "/userdata/" + loc.owner + "/" + loc.spaceID + "/" + loc.coverImage;
+	let editButton;
+	if (loc.isOwner) {
+		editButton = `
+			<div id="edit__button">
+				<a href="/spaces/${loc.spaceID}/edit" class="edit__link"><i class="material-icons">mode_edit</i></a>
+			</div>
+		`;
+	} else {
+		editButton = '';
+	}
+	
 	return `
 		<div class="result__card" id="${loc.spaceID}">
 			<div class="result__card__top" style="background-image:url('${image}')">				
 			</div>
+			${editButton}
 			<div class="result__card__bot">
 				<h4 class="result__card__type">${loc.type}</h4>
 				<h3 class="result__card__title">${loc.title}</h3>
