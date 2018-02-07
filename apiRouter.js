@@ -3,10 +3,10 @@ const router = express.Router();
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
 const {locations, userStatus, demoUser} = require('./mock');
-const {User} = require('./models')
+const {User} = require('./models');
 const passport = require('passport');
 const config = require('./config');
-const {localStrategy} = require('./auth')
+const {localStrategy} = require('./auth');
 
 const localAuth = passport.authenticate('local', {session: true});
 

@@ -13,6 +13,7 @@
     "express-session": "^1.15.6",
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.1.1",
+    "mkdirp": "^0.5.1",
     "mongoose": "^5.0.3",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",

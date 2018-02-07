@@ -3,7 +3,8 @@ const router = express.Router();
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
 const {locations, userStatus, demoUser} = require('./mock');
-const {User} = require('./models')
+const {User} = require('./models');
+const mkdirp = require('mkdirp');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -118,6 +119,13 @@ router.post('/', (req, res) => {
 					});
 				})
 				.then(user => {
+					mkdirp('./public/userdata/' + user.serialize().username, function (err) {
+						if (err) {
+							console.error(err)
+						} else {
+							console.log('dir created')
+						}
+					})
 					return res.status(201).json(user.serialize());
 				})
 		})
