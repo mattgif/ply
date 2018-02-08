@@ -126,7 +126,8 @@ router.post('/', (req, res) => {
 							console.log('dir created')
 						}
 					})
-					return res.status(201).redirect(301,'/login');
+					// maybe have client handle redirect since it's json?
+					return res.status(201).redirect(301,'/login').end();
 				})
 		})
 		.catch(err => {

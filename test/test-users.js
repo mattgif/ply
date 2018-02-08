@@ -4,7 +4,6 @@ const {app, closeServer, runServer} = require('../server');
 const faker = require('faker');
 const mongoose =require('mongoose');
 const {TEST_DATABASE_URL} = require('../config');
-const jwt = require('jsonwebtoken');
 
 const expect = chai.expect;
 const should = chai.should();
@@ -38,23 +37,6 @@ function seedUserData() {
     }
     return User.insertMany(seedData);
 }
-
-describe('user endpoints', () => {
-
-    describe('POST request to search results (user)', () => {
-        it('should return a json object', () => {
-            query = {
-                        "username": "alan20"
-                    }
-            return chai.request(app)
-                .post('/api/find_spaces')
-                .send(query)
-                .then(res => {                  
-                    expect(res).to.be.json
-                })
-        })
-    })
-})
 
 describe('user API tests', () => {
     before(() => {

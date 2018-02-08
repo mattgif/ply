@@ -132,12 +132,106 @@ router.post('/spaces', fileUpload(), (req, res) => {
 	res.json({'placeholder':'create req received'})
 })
 
-router.put('/spaces/:id', (req, res) => {
-	res.json({'placeholder':'update req received for space ID: ' + req.body.spaceID})
+router.put('/spaces/:id', fileUpload(), (req, res) => {
+	if (!(req.user)) {
+		// make sure user is logged in
+		return res.status(401).json({message: "You must be logged in to make this request"});	
+	}
+	const requester = req.user[0].username;
+
+	const updated = {amenities: {}};
+	const topLevelFields = ['title', 'description', 'type'];
+	topLevelFields.forEach(field => {
+		if (field in req.body) {
+			updated[field] = req.body[field];
+		}	
+	})
+
+	const amenities = ['electricity', 'heat', 'water', 'bathroom'];
+	amenities.forEach(field => {
+		if (field in req.body) {
+			updated.amenities[field] = true;
+		} else {
+			updated.amenities[field] = false;
+		}
+	})
+
+	const availabilityBasics = ['hourly', 'daily', 'monthly', 'longTerm'];
+	availabilityBasics.forEach(field => {
+		if (field in req.body) {
+			updated[field] = true;
+		} else {
+			updated[field] = false;
+		};
+	})	
+
+	let photoFile;	
+	if (req.files && req.files.photos) {			
+		// check if user uploaded photo
+		photoFile = req.files.photos;
+	}
+
+	Space
+		.findById(req.params.id)
+		.then(space => {
+			if (requester !== space.owner) {
+				return Promise.reject({
+					code: 401,
+					reason: 'Unauthorized',
+					message: 'Only the owner of this space can make this request'				
+				});
+			}		
+			
+			if (photoFile) {			
+			// if user uploaded photo and, if so, move it to their dir
+			// TODO: remove or replace old file from server
+				fileName = shortId.generate() + '.jpg';				
+				const filePath = './public/userdata/' + space.owner + '/' + fileName;			
+				photo.mv(filePath)
+				space.coverImage = fileName;
+			}
+
+			for (field in updated) {
+				space[field] = updated[field];
+			}
+
+			console.log('space after update (before save)\n', space)
+
+			return space.save();
+		})
+		.then(updatedSpace => res.status(204).end())
+		.catch(err => {
+      		console.error(err);
+      		res.status(500).json({ error: 'uh oh. something went awry.' });
+    	});
 })
 
 router.delete('/spaces/:id', (req, res) => {
-	res.json({'placeholder':'del request received for space ID: ' + req.body.spaceID})
+	if (!(req.user)) {
+		// make sure user is logged in
+		return res.status(401).json({message: "You must be logged in to make this request"})	
+	}
+	const requester = req.user[0].username
+	Space
+		.findById(req.params.id)
+		.then(space => {
+			if (requester !== space.owner) {
+				return Promise.reject({
+					code: 401,
+					reason: 'Unauthorized',
+					message: 'Only the owner of this space can make this request'					
+				});
+			}
+			space.remove();
+		})
+		.then(() => {
+			console.log(`Deleted space with id ${req.params.id}`);
+			res.status(204).end();
+		})
+		.catch(err => {
+      		console.error(err);
+      		res.status(500).json({ error: 'uh oh. something went awry.' });
+    	});
 })
 
 module.exports = router;
