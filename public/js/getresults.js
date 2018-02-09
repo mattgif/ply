@@ -17,8 +17,7 @@ function requestURLParams() {
 	if (url.searchParams.get("address")) {
 		$('.search__bar').val(url.searchParams.get("address"))
 		query = {
-			"location": { 
-				"type": "Point",
+			"location": { 				
 				"coordinates" : [url.searchParams.get("lng"), url.searchParams.get("lat")]
 			}
 		}

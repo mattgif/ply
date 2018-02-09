@@ -12,14 +12,35 @@ const {localStrategy} = require('./auth');
 
 const localAuth = passport.authenticate('local', {session: true});
 
+const METERS_PER_MILE = 1609.34
+
 router.use(bodyParser.json());
 passport.use(localStrategy);
 
 router.post('/find_spaces', (req, res) => {
-	// req is JSON with either username or location
-	// res is array of locations or error
-	if (req.body.location) {
-		res.json(locations);	
+	// req contains either a location or a username query
+	if (req.body.location) {		
+		// search radius (in miles)
+		const searchRadius = 10;
+
+		Space
+			.find({
+				location: { 
+					$nearSphere: {
+						$geometry: { 
+							type: "Point", 
+							coordinates: req.body.location.coordinates 
+						},
+						$maxDistance: searchRadius * METERS_PER_MILE
+					}					
+				}
+			})
+			.then(spaces => res.json(spaces))
+			.catch(err => {
+				console.error(err);
+				res.status(500).json({ error: 'uh oh. something went awry.' })
+			})
+
 	} else if (req.body.username) {
 		let locres = [];
 		for (let i=0; i<locations.length; i++) {
@@ -193,9 +214,7 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
 
 			for (field in updated) {
 				space[field] = updated[field];
-			}
-
-			console.log('space after update (before save)\n', space)
+			}	
 
 			return space.save();
 		})
