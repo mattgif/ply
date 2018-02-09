@@ -23,29 +23,28 @@ function tearDownDb() {
     });
 }
 
-function seedUserData() {
-    console.info('seeding user data');
-    const seedData = [];
-    for (let i = 1; i <= 10; i++ ) {
-        seedData.push({
-            email: faker.internet.email(),
-            username: faker.internet.userName(),
-            firstName: faker.name.firstName(),
-            lastName: faker.name.lastName(),
-            password: faker.internet.password(),
-        })
-    }
-    return User.insertMany(seedData);
-}
+// function seedUserData() {    
+//     const seedData = [];
+//     for (let i = 1; i <= 10; i++ ) {
+//         seedData.push({
+//             email: faker.internet.email(),
+//             username: faker.internet.userName(),
+//             firstName: faker.name.firstName(),
+//             lastName: faker.name.lastName(),
+//             password: faker.internet.password(),
+//         })
+//     }    
+//     return User.insertMany(seedData);
+// }
 
 describe('user API tests', () => {
     before(() => {
         return runServer(TEST_DATABASE_URL);
     })
 
-    beforeEach(() => {
-        return seedUserData();
-    })
+    // beforeEach(() => {
+    //     return seedUserData();
+    // })
 
     afterEach(() => {
         return tearDownDb();
@@ -71,19 +70,18 @@ describe('user API tests', () => {
                 username: 'MrTestMan',
                 firstName: 'Bot',
                 lastName: 'Userman',
-                password: faker.internet.password(),
+                password: 'testpassword',
             }
 
             let countBeforePost;
-
             return User
                 .count()
                 .then(count => {
-                    countBeforePost = count;
-                    return chai.request(app)
-                    .post('/user')
-                    .send(newUser)
-                })          
+                    countBeforePost = count;                    
+                })
+            return chai.request(app)
+                .post('/user')
+                .send(newUser)
                 .then(res => {                  
                     res.should.have.status(201);
                     res.should.be.json;
@@ -98,7 +96,7 @@ describe('user API tests', () => {
                 })
                 .then(newCount => {
                     newCount.should.equal(countBeforePost+1)
-                });
+                });                
         })
     })
 
@@ -107,7 +105,7 @@ describe('user API tests', () => {
         // create user with known creds
         // send post request to login end point
         // inspect res to make sure it's a json object with authToken as key in body
-        it ('should return a valid auth token', () => {
+        it ('should return a login success message', () => {
             const newUser = {
                 email: 'MsUserLady@example.com',
                 username: 'logintest',

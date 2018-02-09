@@ -9,6 +9,7 @@ const config = require('./config');
 const fileUpload = require('express-fileupload');
 const shortId = require('shortid');
 const {localStrategy} = require('./auth');
+const emailValidator = require("email-validator");
 
 const localAuth = passport.authenticate('local', {session: true});
 
@@ -17,6 +18,81 @@ const METERS_PER_MILE = 1609.34
 router.use(bodyParser.json());
 passport.use(localStrategy);
 
+// user
+router.post('/login', localAuth, (req, res) => {
+	res.json({message: "login succeeded"});
+})
+
+router.post('/logout', (req, res) => {
+	req.logout();
+	res.redirect('/');
+})
+
+router.put('/user/:id', (req, res) => {
+	if (!(req.user) || !(req.user[0].username === req.params.id)) {
+		res.status(401).json({reason: 'Unauthorized'})
+	} 
+	const username = req.user[0].username
+	const updated = {};
+	const updateableFields = ['email', 'firstName', 'lastName', 'password'];
+	updateableFields.forEach(field => {
+		if (field in req.body) {
+			if (typeof req.body[field] !== 'string') {
+				return res.status(422).json({
+					code: 422,
+					reason: 'ValidationError',
+					message: 'Incorrect field type: expected string',
+					location: field
+				})
+			}
+			updated[field] = req.body[field]
+		}
+	})
+
+	if (updated.email && !(emailValidator.validate(updated.email))) {
+		res.status(400).json({reason: 'ValidationError', message: 'Invalid email address'})
+	};
+
+	const sizedFields = {
+		password: {
+			min: 8,
+			max: 72
+		}
+	};
+
+	if (updated.password && (updated.password.length < 8 || updated.password.length > 72)) {
+		res.status(422).json({
+			code: 422,
+			reason: 'ValidationError',
+			message: 'Password must be between 8 and 72 characters long'
+		});
+	}
+
+	User.update( {username: username}, {$set: updated})
+		.then(user => res.status(204).end())
+		.catch(err => res.status(500).json({message:  'Internal server error'}))	
+})
+router.delete('/user/:id', (req, res) => {
+	if (!(req.user) || !(req.user[0].username === req.params.id)) {
+		res.status(401).json({reason: 'Unauthorized'})
+	} 
+
+	const username = req.user[0].username;
+	User
+		.remove({username: username})
+		.then(Space
+			.remove({owner: username}))
+			.then(() => {
+				console.log(`Deleted user with id ${username} and associated spaces`);
+				res.status(204).end();
+			})
+			.catch(err => {
+	      		console.error(err);
+	      		res.status(500).json({ error: 'uh oh. something went awry.' });
+	    	});
+})
+
+// spaces
 router.post('/find_spaces', (req, res) => {
 	// req contains either a location or a username query
 	console.log(req.body)
@@ -41,12 +117,10 @@ router.post('/find_spaces', (req, res) => {
 				console.error(err);
 				res.status(500).json({ error: 'uh oh. something went awry.' })
 			});
-	} else if (req.body.username) {
-		console.log('username search started')
+	} else if (req.body.username) {		
 		Space
 			.find({owner: req.body.username})			
-			.then(spaces => {
-				console.log("spaces found:\n", spaces)
+			.then(spaces => {				
 				if (spaces.length === 0) {									
 					return Promise.reject({
 						code: 404,
@@ -71,17 +145,6 @@ router.post('/find_spaces', (req, res) => {
 	}	
 })
 
-// user
-router.post('/login', localAuth, (req, res) => {
-	res.json({message: "login succeeded"});
-})
-
-router.post('/logout', (req, res) => {
-	req.logout();
-	res.redirect('/');
-})
-
-// spaces
 router.post('/spaces', fileUpload(), (req, res) => {
 	if (!req.user) {
 		res.status(401).redirect('/login');

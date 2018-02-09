@@ -3,7 +3,7 @@ const router = express.Router();
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
 const {locations, userStatus, demoUser} = require('./mock');
-const {User} = require('./models');
+const { User, Space } = require('./models');
 const mkdirp = require('mkdirp');
 
 router.use(bodyParser.json());
@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
 		!(field in req.body));
 
 	if (missingField) {
-		return res.status(422).json({
+		res.status(422).json({
 			code: 422,
 			reason: 'ValidationError',
 			message: missingField + ' is required',
@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
 		(field in req.body) && typeof req.body[field] !== 'string');
 
 	if (nonStringField) {
-		return res.status(422).json({
+		res.status(422).json({
 			code: 422,
 			reason: 'ValidationError',
 			message: 'Incorrect field type: expected string',
@@ -42,13 +42,13 @@ router.post('/', (req, res) => {
 		req.body[field].trim() !== req.body[field]);
 
 	if (nonTrimmedField) {		
-		return res.status(422).json({
-			code: 422,
-			reason: 'ValidationError',
-			message: nonTrimmedField + ' cannot start or end with whitespace',
-			location: nonTrimmedField
-		});
-	}
+		res.status(422).json({
+				code: 422,
+				reason: 'ValidationError',
+				message: nonTrimmedField + ' cannot start or end with whitespace',
+				location: nonTrimmedField
+			}) 			
+	};	
 
 	const sizedFields = {
 		username: {
@@ -67,7 +67,7 @@ router.post('/', (req, res) => {
 		'max' in sizedFields[field] && req.body[field].trim().length > sizedFields[field].max)
 
 	if (tooSmallField || tooLargeField) {
-		return res.status(422).json({
+		res.status(422).json({
 			code: 422,
 			reason: 'ValidationError',
 			message: tooSmallField
@@ -127,12 +127,12 @@ router.post('/', (req, res) => {
 						}
 					})
 					// maybe have client handle redirect since it's json?
-					return res.status(201).redirect(301,'/login').end();
+					res.status(201).redirect(301,'/login').end();
 				})
 		})
 		.catch(err => {
 			if (err.reason === 'ValidationError') {
-				return res.status(err.code).json(err);
+				res.status(err.code).json(err);
 			}
 			res.status(500).json({code: 500, message: 'Internal server error'});
 		})
