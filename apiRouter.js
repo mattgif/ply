@@ -19,6 +19,7 @@ passport.use(localStrategy);
 
 router.post('/find_spaces', (req, res) => {
 	// req contains either a location or a username query
+	console.log(req.body)
 	if (req.body.location) {		
 		// search radius (in miles)
 		const searchRadius = 10;
@@ -39,29 +40,34 @@ router.post('/find_spaces', (req, res) => {
 			.catch(err => {
 				console.error(err);
 				res.status(500).json({ error: 'uh oh. something went awry.' })
-			})
-
+			});
 	} else if (req.body.username) {
-		let locres = [];
-		for (let i=0; i<locations.length; i++) {
-			if (locations[i].owner === req.body.username) {
-				if (locations[i].owner === req.username) {
-					// check to see if the ownername matches the user MAKING the request
-					locations[i].isOwner = true;
-				} else {
-					locations[i].isOwner = false;
+		console.log('username search started')
+		Space
+			.find({owner: req.body.username})			
+			.then(spaces => {
+				console.log("spaces found:\n", spaces)
+				if (spaces.length === 0) {									
+					return Promise.reject({
+						code: 404,
+						reason: 'User not found',						
+					})
 				}
-				locres.push(locations[i])
-			}
-		}
-		if (locres.length) {
-			res.json(locres);	
-		} else {
-			res.status(404).json({error: "user not found"})
-		}
-		
+				res.json(spaces)
+			})
+			.catch(err => {
+				console.error(err);
+				res.status(500).json(err)
+			});
 	} else {
-		res.status(404).json({error: "user or location not found"});
+		return Promise.reject({
+			code: 400,
+			reason: 'Invalid query'
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json(err)
+		});
 	}	
 })
 
