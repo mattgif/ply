@@ -160,7 +160,11 @@ router.post('/spaces', fileUpload(), (req, res) => {
 				zip
 			})
 			.then(space => {
-				// add short ID
+				// add spaceID for urls etc
+				space.spaceID = space.type + shortId.generate() + space.zip
+				space.save()				
+			})
+			.then(space => {
 				return res.status(201).json(space);
 			})
 			.catch(err => {

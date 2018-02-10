@@ -47,7 +47,7 @@ function renderResults(space) {
 	if (space.isOwner) {
 		editButton = `
 			<div class="edit__button">
-				<a href="/spaces/${loc._id}/edit" class="edit__link"><i class="material-icons">mode_edit</i></a>
+				<a href="/spaces/${loc.spaceID}/edit" class="edit__link"><i class="material-icons">mode_edit</i></a>
 			</div>
 		`;
 	} else {
@@ -65,7 +65,7 @@ function renderResults(space) {
 	type = loc.type ? typeDic[loc.type] : '';
 	
 	return `
-		<div class="result__card" id="${loc._id}">
+		<div class="result__card" id="${loc.spaceID}">
 			<div class="result__card__top" style="background-image:url('${image}')">				
 			</div>
 			${editButton}

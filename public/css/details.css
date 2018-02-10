@@ -99,6 +99,10 @@ button.rent {
 	text-align: center;
 }
 
+.edit__button:hover {
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
 .edit__button a {
 	color: tomato;
 }
