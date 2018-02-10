@@ -25,6 +25,13 @@
 	justify-content: space-between;	
 	margin-left: -24px;
 	cursor: pointer;
+	position: relative;
+}
+
+.result__card .edit__button {
+	position: absolute;
+	right: 5px;
+	top: 5px;
 }
 
 @media screen and (min-width: 705px) {
