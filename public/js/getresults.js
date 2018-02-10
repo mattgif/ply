@@ -40,18 +40,29 @@ function getSpacesFromApi(query, callback) {
 	})
 }
 
-function renderResults(loc) {
-	const image = "/userdata/" + loc.owner + "/" + loc.spaceID + "/" + loc.coverImage;
+function renderResults(space) {
+	const loc = space.space;
+	const image = "/userdata/" + loc.owner + "/" + loc.coverImage;
 	let editButton;
-	if (loc.isOwner) {
+	if (space.isOwner) {
 		editButton = `
-			<div id="edit__button">
+			<div class="edit__button">
 				<a href="/spaces/${loc.spaceID}/edit" class="edit__link"><i class="material-icons">mode_edit</i></a>
 			</div>
 		`;
 	} else {
 		editButton = '';
 	}
+
+	const typeDic = {
+		grg: 'Garage',
+		brn: 'Barn',
+		shd: 'Shed',
+		stg: 'Storage facility',
+		rm: 'Room'
+	}
+	console.log(loc.type)
+	type = loc.type ? typeDic[loc.type] : '';
 	
 	return `
 		<div class="result__card" id="${loc.spaceID}">
@@ -59,7 +70,7 @@ function renderResults(loc) {
 			</div>
 			${editButton}
 			<div class="result__card__bot">
-				<h4 class="result__card__type">${loc.type}</h4>
+				<h4 class="result__card__type">${type}</h4>
 				<h3 class="result__card__title">${loc.title}</h3>
 			</div>
 		</div>

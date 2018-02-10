@@ -94,8 +94,9 @@ router.delete('/user/:id', (req, res) => {
 
 // spaces
 router.post('/find_spaces', (req, res) => {
-	// req contains either a location or a username query
-	console.log(req.body)
+	// req contains either a location or a username query	
+	let username = (req.user && req.user[0]) ? req.user[0].username : false;
+	let resArray = [];
 	if (req.body.location) {		
 		// search radius (in miles)
 		const searchRadius = 10;
@@ -112,7 +113,16 @@ router.post('/find_spaces', (req, res) => {
 					}					
 				}
 			})
-			.then(spaces => res.json(spaces))
+			.then(spaces => {
+				spaces.forEach(space => {
+					// check to see if requester is owner
+					resArray.push({
+						isOwner: username === space.owner,
+						space: space
+					})
+				});
+				res.json(resArray)	
+			})
 			.catch(err => {
 				console.error(err);
 				res.status(500).json({ error: 'uh oh. something went awry.' })
@@ -124,10 +134,17 @@ router.post('/find_spaces', (req, res) => {
 				if (spaces.length === 0) {									
 					return Promise.reject({
 						code: 404,
-						reason: 'User not found',						
+						reason: 'No spaces associated with this user found',	
 					})
 				}
-				res.json(spaces)
+				spaces.forEach(space => {
+					// check to see if requester is owner
+					resArray.push({
+						isOwner: username === space.owner,
+						space: space
+					})
+				})
+				res.json(resArray)
 			})
 			.catch(err => {
 				console.error(err);
@@ -183,21 +200,21 @@ router.post('/spaces', fileUpload(), (req, res) => {
 		return Space
 			.create({
 				title,
-				type,
+				type: spaceType,
 				owner,
 				description,
-				coverImage,
+				coverImage,				
 				amenities: {
-					electricity: electricity ? true : false,
-					heat: heat ? true : false,
-					water: water ? true : false,
-					bathroom: bathroom ? true : false
+					electricity: !!electricity,
+					heat: !!heat,
+					water: !!water,
+					bathroom: !!bathroom,
 				},
 				availability: {},
-				hourly: hourly ? true : false,
-				daily: daily ? true : false,
-				monthly: monthly ? true : false,
-				longTerm: longTerm ? true : false,
+				hourly: !!hourly,
+				daily: !!daily,
+				monthly: !!monthly,
+				longTerm: !!longTerm,
 				location: {
 					coordinates: [lng, lat]
 				}, 
@@ -206,7 +223,12 @@ router.post('/spaces', fileUpload(), (req, res) => {
 				state,
 				zip
 			})
-			.then(space => {				
+			.then(space => {
+				// add spaceID for urls etc
+				space.spaceID = shortId.generate() + space.zip
+				space.save()				
+			})
+			.then(space => {
 				return res.status(201).json(space);
 			})
 			.catch(err => {
@@ -262,7 +284,7 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
 	}
 
 	Space
-		.findById(req.params.id)
+		.findOne({spaceID: req.params.id})
 		.then(space => {
 			if (requester !== space.owner) {
 				return Promise.reject({
@@ -301,7 +323,7 @@ router.delete('/spaces/:id', (req, res) => {
 	}
 	const requester = req.user[0].username
 	Space
-		.findById(req.params.id)
+		.findOne({spaceID: req.params.id})
 		.then(space => {
 			if (requester !== space.owner) {
 				return Promise.reject({

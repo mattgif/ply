@@ -43,10 +43,10 @@ UserSchema.statics.hashPassword = function(password) {
 };
 
 const SpaceSchema = mongoose.Schema({
-	// spaceID: {
-	// 	type: String,		
-	// 	unique: true
-	// },
+	spaceID: {
+		type: String,		
+		unique: true
+	},
 	title: {
 		type: String,
 		required: true

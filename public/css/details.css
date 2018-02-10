@@ -86,7 +86,7 @@ button.rent {
 	color: white;		
 }
 
-#edit__button {	
+.edit__button {	
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 15%;
 	width: 44px;
@@ -99,7 +99,11 @@ button.rent {
 	text-align: center;
 }
 
-#edit__button a {
+.edit__button:hover {
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.edit__button a {
 	color: tomato;
 }
 
