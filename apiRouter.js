@@ -161,7 +161,7 @@ router.post('/spaces', fileUpload(), (req, res) => {
 			})
 			.then(space => {
 				// add spaceID for urls etc
-				space.spaceID = space.type + shortId.generate() + space.zip
+				space.spaceID = shortId.generate() + space.zip
 				space.save()				
 			})
 			.then(space => {
@@ -220,7 +220,7 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
 	}
 
 	Space
-		.findById(req.params.id)
+		.findOne({spaceID: req.params.id})
 		.then(space => {
 			if (requester !== space.owner) {
 				return Promise.reject({
@@ -259,7 +259,7 @@ router.delete('/spaces/:id', (req, res) => {
 	}
 	const requester = req.user[0].username
 	Space
-		.findById(req.params.id)
+		.findOne({spaceID: req.params.id})
 		.then(space => {
 			if (requester !== space.owner) {
 				return Promise.reject({

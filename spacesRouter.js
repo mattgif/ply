@@ -61,18 +61,18 @@ router.get('/:id', (req, res) => {
 router.get('/:id/edit', (req, res) => {
 	// inspect cookie for username and compare to space ID owner
 	// if serve page; else redirect to login
-	const loc = locations.filter((space) => {
-		return space.spaceID === req.params.id
-	})[0]
-
-	let spaceContext = locDetailsGenerator(loc);
-	spaceContext.isLoggedIn = req.isLoggedIn;
-
-	if (userStatus.loggedIn) {
-		res.render('space_edit', spaceContext)
-	} else {
-		res.render('details', spaceContext);		
-	}
+	Space
+	.findOne({spaceID: req.params.id})
+	.then(space => {
+		const spaceContext = locDetailsGenerator(space);
+		spaceContext.isLoggedIn = !!req.user[0];
+		spaceContext.username = req.username;
+		if (req.user[0].username = space.owner) {
+			res.render('space_edit', spaceContext);
+		} else {
+			res.render('details', spaceContext)
+		}
+	})
 })
 
 module.exports = router;
