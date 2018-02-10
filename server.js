@@ -57,19 +57,13 @@ passport.deserializeUser(function(username, done) {
 
 passport.use(localStrategy);
 
-app.use(function(req, res, next) {  
-  if (req.user[0]) {        
-    req.isLoggedIn = true;
-    req.username = req.user[0].username
-  } else {
-    req.isLoggedIn = false;
-    req.username = false
-  }
+app.use(function(req, res, next) {
+  req.isLoggedIn = !!(req.user && req.user[0]);
+  req.username = req.isLoggedIn ? req.user[0].username : false;
   next();
 })
 
-app.get('/', (req, res) => {  
-  console.log(req.username) 
+app.get('/', (req, res) => {    
 	res.render('index',{isLoggedIn: req.isLoggedIn, username: req.username});
 })
 

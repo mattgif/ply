@@ -162,7 +162,7 @@ router.post('/find_spaces', (req, res) => {
 	}	
 })
 
-router.post('/spaces', fileUpload(), (req, res) => {
+router.post('/spaces', fileUpload(), (req, res) => {	
 	if (!req.user) {
 		res.status(401).redirect('/login');
 	} else {
@@ -225,15 +225,13 @@ router.post('/spaces', fileUpload(), (req, res) => {
 			})
 			.then(space => {
 				// add spaceID for urls etc
-				space.spaceID = shortId.generate() + space.zip
-				space.save()				
-			})
-			.then(space => {
-				return res.status(201).json(space);
+				space.spaceID = shortId.generate() + space.zip;
+				space.save();
+				res.status(201).redirect('/spaces/' + space.spaceID);
 			})
 			.catch(err => {
 				if (err.reason === 'ValidationError') {
-					return res.status(err.code).json(err);
+					res.status(err.code).json(err);
 				}
 				console.error(err)
 				res.status(500).json({code: 500, message: 'Internal server error'});
@@ -245,6 +243,8 @@ router.post('/spaces', fileUpload(), (req, res) => {
 })
 
 router.put('/spaces/:id', fileUpload(), (req, res) => {
+	console.log(req.body)
+	console.log(req.fiels)
 	if (!(req.user)) {
 		// make sure user is logged in
 		return res.status(401).json({message: "You must be logged in to make this request"});	
@@ -299,7 +299,7 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
 			// TODO: remove or replace old file from server
 				fileName = shortId.generate() + '.jpg';				
 				const filePath = './public/userdata/' + space.owner + '/' + fileName;			
-				photo.mv(filePath)
+				photoFile.mv(filePath)
 				space.coverImage = fileName;
 			}
 
@@ -307,9 +307,9 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
 				space[field] = updated[field];
 			}	
 
-			return space.save();
+			space.save();
+			res.status(204).end()
 		})
-		.then(updatedSpace => res.status(204).end())
 		.catch(err => {
       		console.error(err);
       		res.status(500).json({ error: 'uh oh. something went awry.' });

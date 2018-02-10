@@ -31,7 +31,14 @@ function loginListener() {
             success: function() {
                 $('#login-password').val('');
                 modalClose();
-                location.reload();
+                // redirect to home if user logged in from login page
+                let currentLocation = window.location.href.split('/');                
+                if (currentLocation[currentLocation.length - 1] === 'login') {
+                    window.location.href = '/';
+                } else {
+                    location.reload();    
+                }
+                
             },
             error: function() {
                 $('#login-password').val('');
@@ -69,34 +76,24 @@ function disableSubmitOnEnter() {
     }
 }
 
-function createSpaceListener() {
-    $('button.js-create').click(e => {
-        e.preventDefault();
-        const formData = new FormData($('#space-create-form'))
-        $.ajax({
-            type: "POST",
-            url: '/api/spaces',
-            data: FormData,
-            success: (data) => {
-                const spaceID = data._id;
-                window.location.href = '/spaces/' + spaceID;
-            }
-        })
-    })
-}
-
 function updateSpaceListener() {
-    $('button.confirm__action.update.space.edit').click(() => {
-        const spaceID = $("input[name='spaceID']").val();
+    $('button.confirm__action.update.space.edit').click((e) => {
+        e.preventDefault()
+        const spaceID = $('input[name="spaceID"]').val()
+        const form = $('#update__form')   
+        const formData = new FormData(form[0]);
+
         $.ajax({
-            type: "PUT",
-            url: $('#update__form').attr('action'),
-            data: $('#update__form').serialize(),
-            success: function() {
-                window.location.href = '/spaces/' + spaceID;
-            }
-        })
-        ('#update__form').submit()
+            url: form.attr('action'),
+            type: 'PUT',
+            data: formData,
+            success: () => {
+                window.location.href = "/spaces/" + spaceID;
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
     })  
 }
 
@@ -128,7 +125,7 @@ function deleteSpaceListener() {
 function spaceUpdateListeners() {
     updateSpaceListener();
     discardUpdateListener();
-    deleteSpaceListener()
+    deleteSpaceListener();    
 }
 
 // nav
@@ -182,7 +179,7 @@ function aboutListener() {
     })
 }
 
-function createSpaceListener() {
+function goToCreateSpaceListener() {
     // behavior for 'create space' button on navbar
     $('button.create_space').click(() => {
         window.location.href = '/spaces/create';
@@ -193,7 +190,7 @@ function navButtonListeners() {
     menuTriggerListener();
     logoClickListener();
     aboutListener();
-    createSpaceListener();
+    goToCreateSpaceListener();
 }
 
 // maps autocomplete
@@ -417,7 +414,7 @@ function pageHandler() {
     navButtonListeners();   
     searchListener();   
     disableSubmitOnEnter();
-    imageUploadListener();
+    imageUploadListener();    
 }
 
 $(pageHandler);

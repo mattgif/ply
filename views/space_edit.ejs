@@ -95,9 +95,11 @@
 			<fieldset name="photos">
 				<legend>Photo</legend>
 				<div class="fileupload__wrapper">
+					<% if (image) { %>
 					<div class="img__wrapper">
 						<img id="img-uploaded" src="<%= image %>" alt="your image" />	
-					</div>	
+					</div>
+					<% } %>
 					<input type="file" name="photos" id="photos" class="inputfile" />
 					<label for="photos" class="filelabel"><i class="material-icons" aria-hidden="true">add_a_photo</i> Add a photo</label>	
 				</div>				
@@ -111,10 +113,6 @@
 		<button class="update js-update" type="submit">Update</button>
 	</div>
 
-
-	
-
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD37bTXyBCJV9iMHnfYZVKZK3-9oKq_vXM&libraries=places&callback=initAutocomplete" async defer></script>	
 	<script type="text/javascript" src="/js/index.js"></script>
 	<script type="text/javascript">spaceUpdateListeners()</script>
 </body>
