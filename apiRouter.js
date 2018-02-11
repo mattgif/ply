@@ -72,6 +72,7 @@ router.put('/user/:id', (req, res) => {
 		.then(user => res.status(204).end())
 		.catch(err => res.status(500).json({message:  'Internal server error'}))	
 })
+
 router.delete('/user/:id', (req, res) => {
 	if (!(req.user) || !(req.user[0].username === req.params.id)) {
 		res.status(401).json({reason: 'Unauthorized'})
@@ -182,7 +183,7 @@ router.post('/spaces', fileUpload(), (req, res) => {
 
 		let {title, street, city, state, zip, lat, lng, hourly, 
 			daily, monthly, longTerm, electricity, heat, water, 
-			bathroom, description, spaceType, type} = req.body;
+			bathroom, description, spaceType} = req.body;
 		const owner = req.user[0].username;
 		lng = parseFloat(lng);
 		lat = parseFloat(lat);
@@ -197,10 +198,19 @@ router.post('/spaces', fileUpload(), (req, res) => {
 			photo.mv(filePath)
 		}
 
+		const typeNames = {
+			grg: 'Garage',
+			brn: 'Barn',
+			shd: 'Shed',
+			stg: 'Storage facility',
+			rm: 'Room',
+			std: 'Studio',
+		}
+
 		return Space
 			.create({
 				title,
-				type: spaceType,
+				type: typeNames[spaceType],
 				owner,
 				description,
 				coverImage,				
@@ -225,10 +235,10 @@ router.post('/spaces', fileUpload(), (req, res) => {
 			})
 			.then(space => {
 				// add spaceID for urls etc
-				space.spaceID = shortId.generate() + space.zip;
-				space.save();
-				res.status(201).redirect('/spaces/' + space.spaceID);
-			})
+				space.spaceID = shortId.generate() + space.zip
+				space.save()				
+				res.status(201).json(space);
+			})			
 			.catch(err => {
 				if (err.reason === 'ValidationError') {
 					res.status(err.code).json(err);

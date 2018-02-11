@@ -53,24 +53,14 @@ function renderResults(space) {
 	} else {
 		editButton = '';
 	}
-
-	const typeDic = {
-		grg: 'Garage',
-		brn: 'Barn',
-		shd: 'Shed',
-		stg: 'Storage facility',
-		rm: 'Room'
-	}
-	console.log(loc.type)
-	type = loc.type ? typeDic[loc.type] : '';
-	
+		
 	return `
 		<div class="result__card" id="${loc.spaceID}">
 			<div class="result__card__top" style="background-image:url('${image}')">				
 			</div>
 			${editButton}
 			<div class="result__card__bot">
-				<h4 class="result__card__type">${type}</h4>
+				<h4 class="result__card__type">${loc.type}</h4>
 				<h3 class="result__card__title">${loc.title}</h3>
 			</div>
 		</div>

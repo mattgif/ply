@@ -87,7 +87,7 @@
 					<label for="bathroom" class="checkbox__label"><i class="material-icons" aria-hidden="true">room_service</i> Bathroom</label>
 				</div>
 			</fieldset>
-			<fieldset name="description">
+			<fieldset name="description">				
 					<legend>Description</legend>
 					<label class="label__regular" for="description">Let people know what makes your space unique!</label>			
 					<textarea id="description" name="description" class="space__description" maxlength="275" cols="50" rows="10" placeholder="Here's where you can share information that doesn't fit into the rest of the form. (Limit 255 characters)" value="<%= description %>"></textarea>	
@@ -113,7 +113,7 @@
 		<button class="update js-update" type="submit">Update</button>
 	</div>
 
-	<script type="text/javascript" src="/js/index.js"></script>
-	<script type="text/javascript">spaceUpdateListeners()</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD37bTXyBCJV9iMHnfYZVKZK3-9oKq_vXM&libraries=places&callback=initAutocomplete" async defer></script>	
+	<script type="text/javascript" src="/js/index.js"></script>	
 </body>
 </html>

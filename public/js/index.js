@@ -76,13 +76,31 @@ function disableSubmitOnEnter() {
     }
 }
 
+function createSpaceListener() {    
+    $('button.js-create').click(e => {
+        e.preventDefault();
+        const form = $('#space-create-form')
+        const formData = new FormData(form[0]);
+        $.ajax({
+            type: "POST",
+            url: $('#space-create-form').attr('action'),
+            data: formData,
+            success: (space) => {                
+                window.location.href = '/spaces/' + space.spaceID;
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        })        
+    })  
+}
+
 function updateSpaceListener() {
     $('button.confirm__action.update.space.edit').click((e) => {
         e.preventDefault()
         const spaceID = $('input[name="spaceID"]').val()
         const form = $('#update__form')   
         const formData = new FormData(form[0]);
-
         $.ajax({
             url: form.attr('action'),
             type: 'PUT',
@@ -122,10 +140,11 @@ function deleteSpaceListener() {
     })      
 }
 
-function spaceUpdateListeners() {
+function spaceUpdateListeners() {    
     updateSpaceListener();
     discardUpdateListener();
-    deleteSpaceListener();    
+    deleteSpaceListener();
+    createSpaceListener();
 }
 
 // nav
@@ -179,6 +198,7 @@ function aboutListener() {
     })
 }
 
+
 function goToCreateSpaceListener() {
     // behavior for 'create space' button on navbar
     $('button.create_space').click(() => {
@@ -206,25 +226,6 @@ function initAutocomplete() {
     }
 }
 
-const placesComponents = {
-    // used to autocomplete addresses in form
-    street_number: 'short_name',
-    route: 'long_name',
-    locality: 'long_name',
-    administrative_area_level_1: 'short_name',  
-    postal_code: 'short_name'
-};
-
-const placesValues = {
-}
-
-const formComponents = {
-    street: function(){return placesValues.street_number + ' ' + placesValues.route},
-    city: function(){return placesValues.locality},
-    state: function(){return placesValues.administrative_area_level_1},
-    zip: function(){return placesValues.postal_code},
-}
-
 function searchListener() {
     $('.search__button').click(e => {
         e.preventDefault();
@@ -240,23 +241,60 @@ function searchListener() {
     })
 }
 
+const placesComponents = {
+    // used to autocomplete addresses in form
+    street_number: 'short_name',
+    route: 'long_name',
+    locality: 'long_name',
+    administrative_area_level_1: 'short_name',  
+    postal_code: 'short_name'
+};
+
+const placesValues = {
+}
+
+const formComponents = {
+    street: function(){
+        // combines street # and route - returns '' if both are undefined
+        let num = '';
+        let route = '';
+        if (placesValues.street_number) {
+            placesValues.street_number = places.Values.street_number + ' '
+        }
+        if (placesValues.route) {
+            route = placesValues.route
+        }
+        return num + route
+    },
+    city: function(){return placesValues.locality},
+    state: function(){return placesValues.administrative_area_level_1},
+    zip: function(){return placesValues.postal_code ? placesValues.postal_code : ''},
+}
+
 function fillInAddress() {
-    // get place details from the autocomplete object
+    // get place details from the autocomplete object;
+    // copy street, city, state, and zip details,
+    // and fill fields with those values
     const place = autocomplete.getPlace();
 
     for (let component in formComponents) {
+        // clear whatever's in the address fields and allow users to edit
         document.getElementById(component).value = '';
         document.getElementById(component).disabled = false;
     }
     if (place.address_components.length) {
         for (let i = 0; i < place.address_components.length; i++) {
-        // read values off places object and store in obj       
-        let addressType = place.address_components[i].types[0];
-        if (placesComponents[addressType]) {
-            let val = place.address_components[i][placesComponents[addressType]];
-            placesValues[addressType] = val;
+            // iterate through the address component array 
+            let addressType = place.address_components[i].types[0];
+            // address components like street_number are buried in an array in the places obj
+            if (placesComponents[addressType]) {
+                // if the current component is something we're looking for
+                // then add the right type of descriptor (i.e. long_name or short_name)
+                // to the places Values obj
+                let val = place.address_components[i][placesComponents[addressType]];
+                placesValues[addressType] = val;    
+            }
         }
-    }
         for (let component in formComponents) {
             document.getElementById(component).value = formComponents[component]()
         }
@@ -414,7 +452,8 @@ function pageHandler() {
     navButtonListeners();   
     searchListener();   
     disableSubmitOnEnter();
-    imageUploadListener();    
+    imageUploadListener();
+    spaceUpdateListeners();
 }
 
 $(pageHandler);
