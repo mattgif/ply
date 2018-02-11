@@ -236,7 +236,15 @@ function searchListener() {
             $('#lng-input').val(place.geometry.location.lng());
             $('.search__form').submit();
         } else {
-            // need warning 
+            $('.places__error__message').html(`
+                <p>Sorry, we couldn't recognize that as a valid address. Try:</p> 
+                <ul>
+                    <li>Washington DC</li>
+                    <li>20002</li>
+                    <li>1600 Pennsylvania Ave Washington DC</li>
+                </ul>
+            `);
+            $('.places__error__message').show();
         }
     })
 }
@@ -259,7 +267,7 @@ const formComponents = {
         let num = '';
         let route = '';
         if (placesValues.street_number) {
-            placesValues.street_number = places.Values.street_number + ' '
+            placesValues.street_number = placesValues.street_number + ' '
         }
         if (placesValues.route) {
             route = placesValues.route

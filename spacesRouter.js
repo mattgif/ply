@@ -41,7 +41,7 @@ router.get('/create', (req, res) => {
 })
 
 router.get('/s', (req, res) => {		
-	res.render('search', {isLoggedIn: req.isLoggedIn, username: req.username});
+	res.render('results', {isLoggedIn: req.isLoggedIn, username: req.username});
 })
 
 router.get('/:id', (req, res) => {
