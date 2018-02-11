@@ -68,8 +68,7 @@ app.use(function(req, res, next) {
   next();
 })
 
-app.get('/', (req, res) => {  
-  console.log(req.username) 
+app.get('/', (req, res) => {    
 	res.render('index',{isLoggedIn: req.isLoggedIn, username: req.username});
 })
 

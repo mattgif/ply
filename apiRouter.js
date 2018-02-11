@@ -51,8 +51,7 @@ router.post('/find_spaces', (req, res) => {
 				console.error(err);
 				res.status(500).json({ error: 'uh oh. something went awry.' })
 			});
-	} else if (req.body.username) {
-		console.log('username search started')
+	} else if (req.body.username) {		
 		Space
 			.find({owner: req.body.username})			
 			.then(spaces => {				
@@ -98,7 +97,7 @@ router.post('/logout', (req, res) => {
 })
 
 // spaces
-router.post('/spaces', fileUpload(), (req, res) => {
+router.post('/spaces', fileUpload(), (req, res) => {	
 	if (!req.user) {
 		res.status(401).redirect('/login');
 	} else {
@@ -118,7 +117,7 @@ router.post('/spaces', fileUpload(), (req, res) => {
 
 		let {title, street, city, state, zip, lat, lng, hourly, 
 			daily, monthly, longTerm, electricity, heat, water, 
-			bathroom, description, spaceType, type} = req.body;
+			bathroom, description, spaceType} = req.body;
 		const owner = req.user[0].username;
 		lng = parseFloat(lng);
 		lat = parseFloat(lat);
@@ -133,10 +132,19 @@ router.post('/spaces', fileUpload(), (req, res) => {
 			photo.mv(filePath)
 		}
 
+		const typeNames = {
+			grg: 'Garage',
+			brn: 'Barn',
+			shd: 'Shed',
+			stg: 'Storage facility',
+			rm: 'Room',
+			std: 'Studio',
+		}
+
 		return Space
 			.create({
 				title,
-				type: spaceType,
+				type: typeNames[spaceType],
 				owner,
 				description,
 				coverImage,				
@@ -163,10 +171,8 @@ router.post('/spaces', fileUpload(), (req, res) => {
 				// add spaceID for urls etc
 				space.spaceID = shortId.generate() + space.zip
 				space.save()				
-			})
-			.then(space => {
-				return res.status(201).json(space);
-			})
+				res.status(201).json(space);
+			})			
 			.catch(err => {
 				if (err.reason === 'ValidationError') {
 					return res.status(err.code).json(err);

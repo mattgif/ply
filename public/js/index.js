@@ -69,20 +69,20 @@ function disableSubmitOnEnter() {
     }
 }
 
-function createSpaceListener() {
+function createSpaceListener() {    
     $('button.js-create').click(e => {
         e.preventDefault();
-        const formData = new FormData($('#space-create-form'))
+        console.log('click!')
         $.ajax({
             type: "POST",
-            url: '/api/spaces',
-            data: FormData,
-            success: (data) => {
-                const spaceID = data._id;
-                window.location.href = '/spaces/' + spaceID;
+            url: $('#space-create-form').attr('action'),
+            data: $('#space-create-form').serialize(),
+            success: (space) => {
+                console.log(space)
+                window.location.href = '/spaces/' + space.spaceID;
             }
-        })
-    })
+        })        
+    })  
 }
 
 function updateSpaceListener() {
@@ -95,8 +95,7 @@ function updateSpaceListener() {
             success: function() {
                 window.location.href = '/spaces/' + spaceID;
             }
-        })
-        ('#update__form').submit()
+        })        
     })  
 }
 
@@ -125,10 +124,11 @@ function deleteSpaceListener() {
     })      
 }
 
-function spaceUpdateListeners() {
+function spaceUpdateListeners() {    
     updateSpaceListener();
     discardUpdateListener();
-    deleteSpaceListener()
+    deleteSpaceListener();
+    createSpaceListener();
 }
 
 // nav
@@ -182,7 +182,7 @@ function aboutListener() {
     })
 }
 
-function createSpaceListener() {
+function goTocreateSpaceListener() {
     // behavior for 'create space' button on navbar
     $('button.create_space').click(() => {
         window.location.href = '/spaces/create';
@@ -193,7 +193,7 @@ function navButtonListeners() {
     menuTriggerListener();
     logoClickListener();
     aboutListener();
-    createSpaceListener();
+    goTocreateSpaceListener();
 }
 
 // maps autocomplete
@@ -253,8 +253,6 @@ const formComponents = {
     state: function(){return placesValues.administrative_area_level_1},
     zip: function(){return placesValues.postal_code ? placesValues.postal_code : ''},
 }
-
-
 
 function fillInAddress() {
     // get place details from the autocomplete object;
@@ -438,6 +436,7 @@ function pageHandler() {
     searchListener();   
     disableSubmitOnEnter();
     imageUploadListener();
+    spaceUpdateListeners()
 }
 
 $(pageHandler);
