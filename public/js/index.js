@@ -1,3 +1,35 @@
+// rate checkboxes
+function showRateEntry(field, unit, adverb) {
+    // adds rate entry field in space create/edit forms       
+    $(field).parent().append(`
+        <div class="rate__entry ${adverb}">
+            <p>$</p>
+            <input type="number" name="${adverb}Rate">
+            <p> per ${unit}</p>
+        </div>
+    `)
+}
+
+const availabilityCheckboxListener = function() {
+    // listens for availability toggle, and adds/removes rate entry    
+    $('input.availability').change((e) => {
+        if (e.target.checked) {
+            let unit;
+            if (e.target['value'] === 'daily') {
+                unit = 'day'
+            } else if (e.target['value'] === 'monthly') {
+                unit = 'month'
+            } else {
+                unit = 'hour'
+            }
+
+            showRateEntry(e.target, unit, e.target['value'])            
+        } else {            
+            $(e.target).siblings('.rate__entry').remove()
+        }
+    })
+}
+
 // image upload
 function readURL(input) {
   if (input.files && input.files[0]) {
@@ -564,6 +596,7 @@ function pageHandler() {
     disableSubmitOnEnter();
     imageUploadListener();
     spaceUpdateListeners();
+    availabilityCheckboxListener();
 }
 
 $(pageHandler);

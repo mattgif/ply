@@ -215,7 +215,7 @@
 	text-align: left;
 }
 
-.modal__dialog.confirm__dialog.modal__delete, .modal__dialog.confirm__dialog.modal__update {
+.super__modal__wrapper .modal__dialog.confirm__dialog.modal__delete, .super__modal__wrapper .modal__dialog.confirm__dialog.modal__update {
 	z-index: 4;
 	display: block;
 }

@@ -121,15 +121,20 @@
 			<fieldset name="availability">
 				<legend>When is the space available?</legend>
 				<div>
-					<input type="checkbox" name="hourly" id="hourlyAvail" value="hourly" checked/>
+					<input type="checkbox" class="availability" name="hourly" id="hourlyAvail" value="hourly" checked/>
 					<label for="hourlyAvail" class="checkbox__label"><i class="material-icons" aria-hidden="true">access_time</i> Hourly</label>
-				</div>
+					<div class="rate__entry hourly">
+						<p>Rate: $</p>
+						<input type="number" name="hourlyRate">
+						<p> per hour</p>
+					</div>
+				</div>				
 				<div>
-					<input type="checkbox" name="daily" id="dailyAvail" value="daily" checked/>
+					<input type="checkbox" class="availability" name="daily" id="dailyAvail" value="daily"/>
 					<label for="hourlyAvail"  class="checkbox__label"><i class="material-icons">date_range</i> Daily</label>
 				</div>
 				<div>
-					<input type="checkbox" name="monthly" id="monthlyAvail" value="monthly" checked/>
+					<input type="checkbox" class="availability" name="monthly" id="monthlyAvail" value="monthly"/>
 					<label for="monthlyAvail"  class="checkbox__label"><i class="material-icons">date_range</i> Monthly</label>
 				</div>
 				<div>

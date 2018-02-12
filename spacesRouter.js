@@ -20,14 +20,16 @@ function locDetailsGenerator(space) {
 		owner: space.owner,
 		description: space.description,
 		rates: space.rates ? space.rates : false,
-		hourlyAvail: space.hourlyAvail,
-		monthlyAvail: space.monthlyAvail,
-		dailyAvail: space.dailyAvail,
+		hourlyAvail: space.hourly,
+		monthlyAvail: space.monthly,
+		dailyAvail: space.daily,
 		longTerm: space.longTerm,
-		electricity: space.amenities.electricity,
-		heat: space.amenities.heat,
-		water: space.amenities.water,
-		bathroom: space.amenities.bathroom
+		amenities: {
+			electricity: space.amenities.electricity,
+			heat: space.amenities.heat,
+			water: space.amenities.water,
+			bathroom: space.amenities.bathroom	
+		}		
 	}
 }
 
@@ -50,11 +52,12 @@ router.get('/:id', (req, res) => {
 	Space
 		.findOne({spaceID: req.params.id})
 		.then(space => {
-			const spaceContext = locDetailsGenerator(space);
+			const spaceContext = locDetailsGenerator(space);			
 			spaceContext.isLoggedIn = !!req.user[0];
 			spaceContext.username = req.username;
 			res.render('details', spaceContext)
-		});			
+		})
+		.catch(err => res.status(500).json({message:  'Internal server error'}));		
 })
 
 router.get('/:id/edit', (req, res) => {

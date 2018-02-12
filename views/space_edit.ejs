@@ -38,7 +38,7 @@
 
 	<section class="static form__wrapper create space">
 		<form id="update__form" action="/api/spaces/<%= spaceID %>" method="PUT">
-			<h1>Edit <%= title %></h1>
+			<h1>Editing "<%= title %>"</h1>
 			<input type="hidden" name="spaceID" value="<%= spaceID %>">
 			<input type="hidden" name="owner" value="<%= owner %>">
 			<fieldset name="title">
@@ -52,16 +52,37 @@
 			<fieldset name="availability">
 				<legend>Availability</legend>
 				<div>
-					<input type="checkbox" name="hourly" id="hourlyAvail" value="hourly" <% hourlyAvail ? "checked" : "" %>/>
+					<input type="checkbox" class="availability" name="hourly" id="hourlyAvail" value="hourly" <%= hourlyAvail ? "checked" : "" %>/>
 					<label for="hourlyAvail" class="checkbox__label"><i class="material-icons" aria-hidden="true">access_time</i> Hourly</label>
+					<% if (hourlyAvail) { %>
+					<div class="rate__entry hourly">
+			            <p>$</p>
+			            <input type="number" name="hourlyRate" value="<%= rates.hourly %>">
+			            <p> per hour</p>
+			        </div>
+			        <% } %>
 				</div>
 				<div>
-					<input type="checkbox" name="daily" id="dailyAvail" value="daily" <% dailyAvail ? "checked" : "" %>/>
+					<input type="checkbox" class="availability" name="daily" id="dailyAvail" value="daily" <%= dailyAvail ? "checked" : "" %>/>
 					<label for="hourlyAvail"  class="checkbox__label"><i class="material-icons">date_range</i> Daily</label>
+					<% if (dailyAvail) { %>
+					<div class="rate__entry daily">
+			            <p>$</p>
+			            <input type="number" name="dailyRate" value="<%= rates.daily %>">
+			            <p> per hour</p>
+			        </div>
+			        <% } %>
 				</div>
 				<div>
-					<input type="checkbox" name="monthly" id="monthlyAvail" value="monthly" <% monthlyAvail ? "checked" : "" %>/>
+					<input type="checkbox" class="availability" name="monthly" id="monthlyAvail" value="monthly" <%= monthlyAvail ? "checked" : "" %>/>
 					<label for="monthlyAvail"  class="checkbox__label"><i class="material-icons">date_range</i> Monthly</label>
+					<% if (monthlyAvail) { %>
+					<div class="rate__entry monthly">
+			            <p>$</p>
+			            <input type="number" name="monthlyRate" value="<%= rates.monthly %>">
+			            <p> per month</p>
+			        </div>
+			        <% } %>					
 				</div>
 				<div>
 					<input type="checkbox" name="longTerm" id="longTerm" value="longTerm" <% longTerm ? "checked" : "" %>/>
@@ -71,19 +92,19 @@
 			<fieldset name="amenities">
 				<legend>Any amenities?</legend>
 				<div>
-					<input type="checkbox" name="electricity" id="electricity" value="electricity" <% electricity ? "checked" : "" %>/>
+					<input type="checkbox" name="electricity" id="electricity" value="electricity" <% amenities.electricity ? "checked" : "" %>/>
 					<label for="electricity" class="checkbox__label"><i class="material-icons" aria-hidden="true">power</i> Electricity</label>
 				</div>
 				<div>
-					<input type="checkbox" name="heat" id="heat" value="heat" <% heat ? "checked" : "" %>/>
+					<input type="checkbox" name="heat" id="heat" value="heat" <% amenities.heat ? "checked" : "" %>/>
 					<label for="heat" class="checkbox__label"><i class="material-icons" aria-hidden="true">whatshot</i> Heat</label>
 				</div>
 				<div>
-					<input type="checkbox" name="water" id="water" value="water" <% water ? "checked" : "" %>/>
+					<input type="checkbox" name="water" id="water" value="water" <% amenities.water ? "checked" : "" %>/>
 					<label for="water" class="checkbox__label"><i class="material-icons" aria-hidden="true">format_color_fill</i> Water</label>
 				</div>
 				<div>
-					<input type="checkbox" name="bathroom" id="bathroom" value="bathroom" <% bathroom ? "checked" : "" %>/>
+					<input type="checkbox" name="bathroom" id="bathroom" value="bathroom" <% amenities.bathroom ? "checked" : "" %>/>
 					<label for="bathroom" class="checkbox__label"><i class="material-icons" aria-hidden="true">room_service</i> Bathroom</label>
 				</div>
 			</fieldset>
@@ -112,8 +133,7 @@
 		<button class="cancel js-cancel">Cancel</button>
 		<button class="update js-update" type="submit">Update</button>
 	</div>
-
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD37bTXyBCJV9iMHnfYZVKZK3-9oKq_vXM&libraries=places&callback=initAutocomplete" async defer></script>	
+	
 	<script type="text/javascript" src="/js/index.js"></script>	
 </body>
 </html>

@@ -70,6 +70,7 @@ const SpaceSchema = mongoose.Schema({
 		type: {type: String, default:'Point'},
 		coordinates: Array,		
 	},
+	rates: Object,
 	street: String,
 	city: String,
 	state: String,

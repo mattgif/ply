@@ -12,7 +12,9 @@
 		<%- include('partials/nav') %>
 	</section>
 
+	<% if (image) { %>
 	<section class="cover-image" style="background-image: url('<%= image %>')"></section>
+	<% } %>
 	<div class="details__wrapper">		
 		<div class="details">			
 			<header class="details__topmatter" role="banner">
@@ -24,7 +26,7 @@
 				<h1 class="details__title"><%= title %></h1>
 				<ul class="details__type">
 					<li><i class="material-icons">location_city</i> <%= type %> in </li>
-					<li><%= city %></li>
+					<li><%= city %> <%= state %></li>
 				</ul>
 				<div class="details__owner">
 					<a href="/user/<%= owner %>">
@@ -34,10 +36,17 @@
 				</div>
 			</header>
 			<section class="description">
-				<%- description %>
+				<%= description %>
 			</section>
 			<section class="amentities">
-				<h3>Amenities</h3>
+				<h3>Amenities</h3>				
+				<ul>
+					<% for (let item in amenities) {%>
+						<% if (amenities[item]) { %>
+							<li><%-item%></li>
+						<% } %>
+					<% } %>
+				</ul>
 			</section>
 		</div>
 		<section class="rent">

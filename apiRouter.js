@@ -101,7 +101,7 @@ router.delete('/user/:id', (req, res) => {
 
 // spaces
 router.post('/find_spaces', (req, res) => {
-	// req contains either a location or a username query	
+	// space search req contains either a location or a username query	
 	let username = (req.user && req.user[0]) ? req.user[0].username : false;
 	let resArray = [];
 	if (req.body.location) {		
@@ -169,7 +169,8 @@ router.post('/find_spaces', (req, res) => {
 	}	
 })
 
-router.post('/spaces', fileUpload(), (req, res) => {	
+router.post('/spaces', fileUpload(), (req, res) => {
+	// create a new space
 	if (!req.user) {
 		res.status(401).redirect('/login');
 	} else {
@@ -189,10 +190,21 @@ router.post('/spaces', fileUpload(), (req, res) => {
 
 		let {title, street, city, state, zip, lat, lng, hourly, 
 			daily, monthly, longTerm, electricity, heat, water, 
-			bathroom, description, spaceType} = req.body;
+			bathroom, description, spaceType, dailyRate, hourlyRate, monthlyRate} = req.body;
 		const owner = req.user[0].username;
 		lng = parseFloat(lng);
 		lat = parseFloat(lat);
+
+		let rates = {};
+		if (req.body.dailyRate) {
+			rates.daily = req.body.dailyRate;
+		}	
+		if (req.body.hourlyRate) {
+			rates.hourly = req.body.hourlyRate;
+		}
+		if (req.body.monthlyRate) {
+			rates.monthly = req.body.monthlyRate;
+		}
 
 		let coverImage;		
 		if (req.files && req.files.photos) {			
@@ -233,7 +245,8 @@ router.post('/spaces', fileUpload(), (req, res) => {
 				longTerm: !!longTerm,
 				location: {
 					coordinates: [lng, lat]
-				}, 
+				},
+				rates,
 				street,
 				city,
 				state,
@@ -258,9 +271,7 @@ router.post('/spaces', fileUpload(), (req, res) => {
 	res.json({'placeholder':'create req received'})
 })
 
-router.put('/spaces/:id', fileUpload(), (req, res) => {
-	console.log(req.body)
-	console.log(req.fiels)
+router.put('/spaces/:id', fileUpload(), (req, res) => {	
 	if (!(req.user)) {
 		// make sure user is logged in
 		return res.status(401).json({message: "You must be logged in to make this request"});	
@@ -293,6 +304,18 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
 		};
 	})	
 
+	let rates = {};
+	if (req.body.dailyRate) {
+		rates.daily = req.body.dailyRate;
+	}	
+	if (req.body.hourlyRate) {
+		rates.hourly = req.body.hourlyRate;
+	}
+	if (req.body.monthlyRate) {
+		rates.monthly = req.body.monthlyRate;
+	}
+	updated.rates = rates;
+
 	let photoFile;	
 	if (req.files && req.files.photos) {			
 		// check if user uploaded photo
@@ -323,7 +346,7 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
 				space[field] = updated[field];
 			}	
 
-			space.save();
+			space.save();			
 			res.status(204).end()
 		})
 		.catch(err => {

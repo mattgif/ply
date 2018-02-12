@@ -12,6 +12,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
+	flex-wrap: wrap;
 }
 
 .form__wrapper.space.create input[type="checkbox"] {
@@ -97,6 +98,25 @@ form fieldset .fileupload__wrapper {
 .label__regular {
 	margin-left: 30px;
 	margin-bottom: 15px;
+}
+
+.form__wrapper.space .rate__entry {
+	margin-left: 80px;
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	padding-left: 25px;
+	color: rgb(66, 134, 244);
+}
+
+.form__wrapper.space .rate__entry * {
+	font-weight: bold;
+	text-align: right;
+	margin: 0;
+}
+
+.form__wrapper.space .rate__entry  input {
+	width: 45px;
 }
 
 .form__wrapper.space.create button.create {
