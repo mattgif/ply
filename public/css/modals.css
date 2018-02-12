@@ -169,6 +169,22 @@
 	margin-bottom: 10px;
 }
 
+#account__buttons {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.modal__account button.account_delete, .modal__account button.account_update {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	width: 200px;
+	display: inline-block;
+}
+
+.modal__account button.account_delete {
+	background-color: #c9302c;	
+}
+
 /*confirm dialogs*/
 .confirm__dialog__overlay {
 	display: none;
@@ -197,6 +213,11 @@
 	font-size: 1.2em;
 	margin-top: 0;
 	text-align: left;
+}
+
+.modal__dialog.confirm__dialog.modal__delete, .modal__dialog.confirm__dialog.modal__update {
+	z-index: 4;
+	display: block;
 }
 
 .super__modal__wrapper {
@@ -301,6 +322,11 @@ select:disabled {
 
 	.modal__login {
 		height: 400px;
+		padding-bottom: 30px;
+	}
+
+	.modal__account {
+		height: 420px;
 		padding-bottom: 30px;
 	}
 

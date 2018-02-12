@@ -65,21 +65,22 @@
 			<form id="updateAccountForm" action="/api/user/<%= username %>">
 			</form>
 			
-			<div class="super__modal__wrapper">
+			<div class="super__modal__wrapper delete">
 				<div class="confirm__dialog__overlay"></div>
 				<div class="modal__dialog confirm__dialog js-modal-dialog modal__delete" role="dialog" tabindex="-1">
-					<h4>Delete your ply account?</h4>					
-					<input type="text" name="deleteConfirm" placeholder="Type DELETE here to confirm.">
+					<h4>Delete your ply account?</h4>
+					<div class="modal__error"></div>
 					<button class="cancel__action">Cancel</button>
-					<button class="confirm__action delete edit space">Delete</button>
+					<button class="confirm__action delete account">Delete</button>
 				</div>
 			</div>
-			<div class="super__modal__wrapper">
+			<div class="super__modal__wrapper update">
 				<div class="confirm__dialog__overlay"></div>
 				<div class="modal__dialog confirm__dialog js-modal-dialog modal__update" role="dialog" tabindex="-1">
 					<h4>Update space?</h4>
+					<div class="modal__error"></div>
 					<button class="cancel__action">Cancel</button>
-					<button class="confirm__action update edit space">Update</button>
+					<button class="confirm__action update account">Update</button>
 				</div>
 			</div>
 			

@@ -115,6 +115,26 @@ function updateSpaceListener() {
     })  
 }
 
+function updateAccountListener() {
+    $('button.confirm__action.update.account').click((e) => {
+        const form = $('#updateAccountForm')        
+        $.ajax({
+            url: form.attr('action'),
+            type: 'PUT',
+            data: form.serialize(),
+            success: () => {
+                modalClose()
+                getAccountInfoFromAPI()
+            },
+            error: () => {
+                $('.modal__error').html(
+                    `<p>Unable to process request</p>`
+                )
+            }
+        })
+    })
+}
+
 function discardUpdateListener() {
     $('button.confirm__action.discard.space.edit').click(() => {
         const spaceID = $("input[name='spaceID']").val();
@@ -140,11 +160,29 @@ function deleteSpaceListener() {
     })      
 }
 
+function deleteAccountListener() {
+    $('button.confirm__action.delete.account').click(() => {
+        const action = $('#updateAccountForm').attr('action');
+        $.ajax({
+            type: 'DELETE',
+            url: action,
+            success: () => {
+                window.location.href = '/'
+            },
+            error: () => {
+                $('.modal__error').html(
+                    `<p>Unable to process request</p>`
+                )
+            }
+        })
+    })
+}
+
 function spaceUpdateListeners() {    
     updateSpaceListener();
     discardUpdateListener();
     deleteSpaceListener();
-    createSpaceListener();
+    createSpaceListener();    
 }
 
 // nav
@@ -211,6 +249,7 @@ function navButtonListeners() {
     logoClickListener();
     aboutListener();
     goToCreateSpaceListener();
+    deleteAccountListener();
 }
 
 // maps autocomplete
@@ -367,19 +406,37 @@ function modalLoginClick() {
 
 function editAccountListener() {
     $('.manage_account').click(() => {
-        const form = $('#updateAccountForm')
-        // ajax request to get user info, then modalOpen
-        $.ajax({
-            url: $(form).attr('action'),
-            method: 'GET',
-            success: (user) => {
-                console.log($(form).attr('action'))
-                const html = renderAccountDetails(user)
-                form.html(html);
-                modalOpen('.modal__account', '#edit-email');
-            }
-        })
-        
+        getAccountInfoFromAPI();        
+    })
+}
+
+function getAccountInfoFromAPI() {
+    const form = $('#updateAccountForm')
+    // ajax request to get user info, then modalOpen
+    $.ajax({
+        url: $(form).attr('action'),
+        method: 'GET',
+        success: (user) => {            
+            const html = renderAccountDetails(user)
+            form.html(html);
+            modalOpen('.modal__account', '#edit-email');
+        }
+    })
+}
+
+function openAccountDeleteConfirm() {    
+    $('#updateAccountForm').on('click', '.account_delete', e => {        
+        e.preventDefault();                
+        $('.super__modal__wrapper.delete').show();
+        $('.modal__delete').show();
+    })
+}
+
+function openAccountUpdateConfirm() {
+    $('#updateAccountForm').on('click', '.account_update', e => {        
+        e.preventDefault();        
+        $('.super__modal__wrapper.update').show();
+        $('.modal__update').show();
     })
 }
 
@@ -398,8 +455,10 @@ function renderAccountDetails(user) {
             <input type="text" id="edit-lastName" name="lastName" value="${user.lastName}" class="animated__label">
             <label for="signup-lastName">Last name</label>
         </div>
-        <button class="account_delete">Delete account?</button>
-        <button class="account_update">Submit changes</button>
+        <div id="account__buttons">
+            <button class="account_delete">Delete account?</button>
+            <button class="account_update">Submit changes</button>
+        </div>
     `
 }
 
@@ -421,7 +480,7 @@ function modalOpen(modalDialog,focusTarget) {
 }
 
 function modalClose() {
-    $('.modal__overlay, .modal__dialog, .confirm__dialog__overlay').fadeOut(200);
+    $('.modal__overlay, .modal__dialog, .confirm__dialog__overlay, .super__modal__wrapper').fadeOut(200);
     setTimeout(function() {
         $('.js-modal-wrapper').css('top', '-100%')
     },200);
@@ -484,12 +543,15 @@ function modalCloseListeners() {
 }
 
 function modalOpenListeners() {
+    openAccountDeleteConfirm();
     modalJoinClick();
     modalLoginClick();  
     cancelListener();
     updateListener();
     deleteListener();
     editAccountListener();
+    openAccountUpdateConfirm();
+    updateAccountListener();
 }
 
 // core

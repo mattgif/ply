@@ -37,7 +37,7 @@ router.get('/user/:id', (req, res) => {
 router.put('/user/:id', (req, res) => {
 	if (!(req.user) || !(req.user[0].username === req.params.id)) {
 		res.status(401).json({reason: 'Unauthorized'})
-	} 
+	} 	
 	const username = req.user[0].username
 	const updated = {};
 	const updateableFields = ['email', 'firstName', 'lastName', 'password'];
