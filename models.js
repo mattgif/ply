@@ -1,6 +1,6 @@
 'use strict';
 
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
@@ -22,7 +22,7 @@ const UserSchema = mongoose.Schema({
 	firstName: String,
 	lastName: String,	
 	spaces: Array
-})
+});
 
 UserSchema.methods.serialize = function() {
 	return {
@@ -30,9 +30,9 @@ UserSchema.methods.serialize = function() {
 		username: this.username || '',
 		firstName: this.firstName || '',
 		lastName: this.lastName || '',
-		spaces: this.spaces || [],
+		spaces: this.spaces || []
 	}
-}
+};
 
 UserSchema.methods.validatePassword = function(password) {
   return bcrypt.compare(password, this.password);
@@ -68,14 +68,14 @@ const SpaceSchema = mongoose.Schema({
 	longTerm: Boolean,
 	location: {
 		type: {type: String, default:'Point'},
-		coordinates: Array,		
+		coordinates: Array
 	},
 	rates: Object,
 	street: String,
 	city: String,
 	state: String,
-	zip: String,
-})
+	zip: String
+});
 
 SpaceSchema.index({location: '2dsphere'});
 

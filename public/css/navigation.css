@@ -185,7 +185,6 @@ button.logo.splash {
 	left: 0;
 	width: 100%;
 	display: flex;
-	align-content: top;
 	height: 60px;
 }
 

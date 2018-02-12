@@ -5,12 +5,12 @@ const ejs = require('ejs');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
-require('dotenv').config()
+require('dotenv').config();
 const session = require('express-session');
-var MongoDBStore = require('connect-mongodb-session')(session);
+const MongoDBStore = require('connect-mongodb-session')(session);
 
 const {localStrategy} = require('./auth');
-const {User} = require('./models')
+const {User} = require('./models');
 
 mongoose.Promise = global.Promise;
 
@@ -30,7 +30,7 @@ app.set('view engine', 'ejs');
 const store = new MongoDBStore({
   url: SESSION_DATABASE_URL,
   collection: 'sessions'
-})
+});
 app.use(session({
   secret: SESSION_SECRET,
   cookie: {
@@ -61,11 +61,11 @@ app.use(function(req, res, next) {
   req.isLoggedIn = !!(req.user && req.user[0]);
   req.username = req.isLoggedIn ? req.user[0].username : false;
   next();
-})
+});
 
 app.get('/', (req, res) => {    
 	res.render('index',{isLoggedIn: req.isLoggedIn, username: req.username});
-})
+});
 
 app.get('/login', (req, res) => {
 	res.render('login')
@@ -118,4 +118,4 @@ if (require.main === module) {
   runServer().catch(err => console.error(err));
 }
 
-module.exports = {app, runServer, closeServer}
+module.exports = {app, runServer, closeServer};

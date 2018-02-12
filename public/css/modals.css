@@ -247,7 +247,7 @@ button.cancel__action:hover, button.confirm__action:hover, button.cancel__action
 select {	
   font-family: inherit;
   background-color: transparent;  
-  padding: $select-padding 0;
+  padding: 0;
   font-size: 1em;
   color: #333;
   border: none;
@@ -266,23 +266,8 @@ select:disabled {
 /* Hide label */
 .mdl-selectfield label {display: none;}
 /* Use custom arrow */
-.mdl-selectfield select {appearance: none}
 .mdl-selectfield {  
   position: relative;
-    &:after {
-        position: absolute;
-        top: 0.75em;
-        right: 0.5em;
-        /* Styling the down arrow */
-        width: 0;
-        height: 0;
-        padding: 0;
-        content: '';
-        border-left: .25em solid transparent;
-        border-right: .25em solid transparent;
-        border-top: .375em solid $select-border-color;
-        pointer-events: none;
-    }
 }
 
 @media screen and (min-width: 744px) {

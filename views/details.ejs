@@ -54,9 +54,9 @@
 		<section class="rent">
 			<% if (rates) { %>
 			<ul class="rates">
-				<% for (rate in rates) { -%>
+				<% for (rate in rates) { %>
 					<li><span class="amt">$<%=rates[rate]%></span> <%=rate%></li>
-				<% } -%>
+				<% } %>
 			</ul>
 			<% } else { %>			
 				<p class="rates">Contact owner for rates<p>

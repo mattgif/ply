@@ -1,11 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const ejs = require('ejs');
 const bodyParser = require('body-parser');
-const {locations, userStatus, demoUser} = require('./mock');
 const {Space, User} = require('./models');
 const passport = require('passport');
-const config = require('./config');
 const fileUpload = require('express-fileupload');
 const shortId = require('shortid');
 const {localStrategy} = require('./auth');
@@ -13,7 +10,7 @@ const emailValidator = require("email-validator");
 
 const localAuth = passport.authenticate('local', {session: true});
 
-const METERS_PER_MILE = 1609.34
+const METERS_PER_MILE = 1609.34;
 
 router.use(bodyParser.json());
 passport.use(localStrategy);
@@ -21,24 +18,24 @@ passport.use(localStrategy);
 // user
 router.post('/login', localAuth, (req, res) => {
 	res.json({message: "login succeeded"});
-})
+});
 
 router.post('/logout', (req, res) => {
 	req.logout();
 	res.redirect('/');
-})
+});
 
 router.get('/user/:id', (req, res) => {
 	User
 		.findOne({username: req.user[0].username})
 		.then(user => {res.json(user.serialize())})
-})
+});
 
 router.put('/user/:id', (req, res) => {
 	if (!(req.user) || !(req.user[0].username === req.params.id)) {
 		res.status(401).json({reason: 'Unauthorized'})
 	} 	
-	const username = req.user[0].username
+	const username = req.user[0].username;
 	const updated = {};
 	const updateableFields = ['email', 'firstName', 'lastName', 'password'];
 	updateableFields.forEach(field => {
@@ -53,18 +50,11 @@ router.put('/user/:id', (req, res) => {
 			}
 			updated[field] = req.body[field]
 		}
-	})
+	});
 
 	if (updated.email && !(emailValidator.validate(updated.email))) {
 		res.status(400).json({reason: 'ValidationError', message: 'Invalid email address'})
-	};
-
-	const sizedFields = {
-		password: {
-			min: 8,
-			max: 72
-		}
-	};
+    }
 
 	if (updated.password && (updated.password.length < 8 || updated.password.length > 72)) {
 		res.status(422).json({
@@ -77,7 +67,7 @@ router.put('/user/:id', (req, res) => {
 	User.update( {username: username}, {$set: updated})
 		.then(user => res.status(204).end())
 		.catch(err => res.status(500).json({message:  'Internal server error'}))	
-})
+});
 
 router.delete('/user/:id', (req, res) => {
 	if (!(req.user) || !(req.user[0].username === req.params.id)) {
@@ -97,7 +87,7 @@ router.delete('/user/:id', (req, res) => {
 	      		console.error(err);
 	      		res.status(500).json({ error: 'uh oh. something went awry.' });
 	    	});
-})
+});
 
 // spaces
 router.post('/find_spaces', (req, res) => {
@@ -150,7 +140,7 @@ router.post('/find_spaces', (req, res) => {
 						isOwner: username === space.owner,
 						space: space
 					})
-				})
+				});
 				res.json(resArray)
 			})
 			.catch(err => {
@@ -167,14 +157,14 @@ router.post('/find_spaces', (req, res) => {
 			res.status(500).json(err)
 		});
 	}	
-})
+});
 
 router.post('/spaces', fileUpload(), (req, res) => {
 	// create a new space
 	if (!req.user) {
 		res.status(401).redirect('/login');
 	} else {
-		const requiredFields = ['title', 'street', 'city', 'state', 'zip', 'lat', 'lng']
+		const requiredFields = ['title', 'street', 'city', 'state', 'zip', 'lat', 'lng'];
 
 		const missingField = requiredFields.find(field => 
 			!(field in req.body));
@@ -196,14 +186,14 @@ router.post('/spaces', fileUpload(), (req, res) => {
 		lat = parseFloat(lat);
 
 		let rates = {};
-		if (req.body.dailyRate) {
-			rates.daily = req.body.dailyRate;
+		if (dailyRate) {
+			rates.daily = dailyRate;
 		}	
-		if (req.body.hourlyRate) {
-			rates.hourly = req.body.hourlyRate;
+		if (hourlyRate) {
+			rates.hourly = hourlyRate;
 		}
-		if (req.body.monthlyRate) {
-			rates.monthly = req.body.monthlyRate;
+		if (monthlyRate) {
+			rates.monthly = monthlyRate;
 		}
 
 		let coverImage;		
@@ -223,7 +213,7 @@ router.post('/spaces', fileUpload(), (req, res) => {
 			stg: 'Storage facility',
 			rm: 'Room',
 			std: 'Studio',
-		}
+		};
 
 		return Space
 			.create({
@@ -254,22 +244,22 @@ router.post('/spaces', fileUpload(), (req, res) => {
 			})
 			.then(space => {
 				// add spaceID for urls etc
-				space.spaceID = shortId.generate() + space.zip
-				space.save()				
+				space.spaceID = shortId.generate() + space.zip;
+				space.save();
 				res.status(201).json(space);
 			})			
 			.catch(err => {
 				if (err.reason === 'ValidationError') {
 					res.status(err.code).json(err);
 				}
-				console.error(err)
+				console.error(err);
 				res.status(500).json({code: 500, message: 'Internal server error'});
 			})
 	}
 	
 
 	res.json({'placeholder':'create req received'})
-})
+});
 
 router.put('/spaces/:id', fileUpload(), (req, res) => {	
 	if (!(req.user)) {
@@ -284,25 +274,17 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
 		if (field in req.body) {
 			updated[field] = req.body[field];
 		}	
-	})
+	});
 
 	const amenities = ['electricity', 'heat', 'water', 'bathroom'];
 	amenities.forEach(field => {
-		if (field in req.body) {
-			updated.amenities[field] = true;
-		} else {
-			updated.amenities[field] = false;
-		}
-	})
+		updated.amenities[field] = field in req.body;
+	});
 
 	const availabilityBasics = ['hourly', 'daily', 'monthly', 'longTerm'];
 	availabilityBasics.forEach(field => {
-		if (field in req.body) {
-			updated[field] = true;
-		} else {
-			updated[field] = false;
-		};
-	})	
+        updated[field] = (field in req.body)
+    });
 
 	let rates = {};
 	if (req.body.dailyRate) {
@@ -338,7 +320,7 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
 			// TODO: remove or replace old file from server
 				fileName = shortId.generate() + '.jpg';				
 				const filePath = './public/userdata/' + space.owner + '/' + fileName;			
-				photoFile.mv(filePath)
+				photoFile.mv(filePath);
 				space.coverImage = fileName;
 			}
 
@@ -353,14 +335,14 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
       		console.error(err);
       		res.status(500).json({ error: 'uh oh. something went awry.' });
     	});
-})
+});
 
 router.delete('/spaces/:id', (req, res) => {
 	if (!(req.user)) {
 		// make sure user is logged in
 		return res.status(401).json({message: "You must be logged in to make this request"})	
 	}
-	const requester = req.user[0].username
+	const requester = req.user[0].username;
 	Space
 		.findOne({spaceID: req.params.id})
 		.then(space => {
@@ -381,6 +363,6 @@ router.delete('/spaces/:id', (req, res) => {
       		console.error(err);
       		res.status(500).json({ error: 'uh oh. something went awry.' });
     	});
-})
+});
 
 module.exports = router;

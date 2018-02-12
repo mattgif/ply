@@ -110,7 +110,7 @@ section.share.instructions {
 	.share.img.reverse {
 		order: -1;
 		margin-right: 25px;
-		margin-left: 0px;
+		margin-left: 0;
 	}
 }
 

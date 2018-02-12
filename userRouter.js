@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const ejs = require('ejs');
 const bodyParser = require('body-parser');
-const {locations, userStatus, demoUser} = require('./mock');
-const { User, Space } = require('./models');
+const { User } = require('./models');
 const mkdirp = require('mkdirp');
 
 router.use(bodyParser.json());
@@ -47,10 +45,10 @@ router.post('/', (req, res) => {
 				reason: 'ValidationError',
 				message: nonTrimmedField + ' cannot start or end with whitespace',
 				location: nonTrimmedField
-			}) 			
-	};	
+			})
 
-	const sizedFields = {
+}
+    const sizedFields = {
 		username: {
 			min: 3,
 			max: 24,
@@ -62,9 +60,9 @@ router.post('/', (req, res) => {
 	};
 
 	const tooSmallField = Object.keys(sizedFields).find(field => 
-		'min' in sizedFields[field] && req.body[field].trim().length < sizedFields[field].min)
+		'min' in sizedFields[field] && req.body[field].trim().length < sizedFields[field].min);
 	const tooLargeField = Object.keys(sizedFields).find(field => 
-		'max' in sizedFields[field] && req.body[field].trim().length > sizedFields[field].max)
+		'max' in sizedFields[field] && req.body[field].trim().length > sizedFields[field].max);
 
 	if (tooSmallField || tooLargeField) {
 		res.status(422).json({
@@ -125,7 +123,7 @@ router.post('/', (req, res) => {
 						} else {
 							console.log('dir created')
 						}
-					})
+					});
 					// maybe have client handle redirect since it's json?
 					res.status(201).redirect(301,'/login').end();
 				})

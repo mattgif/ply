@@ -27,8 +27,8 @@
 .form__wrapper.space.create input[type="checkbox"]:focus {
 	outline:none; 
     border:1px solid #4D90FE;
-    -webkit-box-shadow: 0px 0px 7px  #4D90FE;
-    box-shadow: 0px 0px 7px  #4D90FE;
+    -webkit-box-shadow: 0 0 7px  #4D90FE;
+    box-shadow: 0 0 7px  #4D90FE;
 }
 
 .form__wrapper form label.checkbox__label {
@@ -153,7 +153,7 @@ form fieldset .fileupload__wrapper {
 	width: 100%;
 	background: #fff;
 	display: flex;
-	box-shadow: 0px -2px 4px rgba(0,0,0,0.4);
+	box-shadow: 0 -2px 4px rgba(0,0,0,0.4);
 	padding: 15px 10px;
 
 }

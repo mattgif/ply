@@ -28,14 +28,14 @@ const availabilityCheckboxListener = function() {
             $(e.target).siblings('.rate__entry').remove()
         }
     })
-}
+};
 
 // rent space
 function rentButtonListener() {
-    $('button.rent').click(e => {
-        const title = $('.details__title').text()
-        const owner = $('.owner__name').text()
-        const apiURL = '/api/user/' + owner
+    $('button.rent').click(() => {
+        const title = $('.details__title').text();
+        const owner = $('.owner__name').text();
+        const apiURL = '/api/user/' + owner;
         $.ajax({
             method: "GET",
             url: apiURL,
@@ -54,12 +54,11 @@ function sendEmail(toAddress,subject) {
 function readURL(input) {
   if (input.files && input.files[0]) {
     let reader = new FileReader();
-    let tmppath = URL.createObjectURL(event.target.files[0]);
 
     reader.onload = function (e) {
       $('#img-uploaded').attr('src', e.target.result);      
       $('.img__wrapper').show();
-    }
+    };
     reader.readAsDataURL(input.files[0]);
   }
 }
@@ -68,20 +67,21 @@ const imageUploadListener = function() {
     $("#photos").change(function(){     
         readURL(this);
     }); 
-}
+};
 
 // login/out
 function loginListener() {
-    $('.login__form').submit(e => {
+    const loginForm = $('.login__form');
+    const errorField = $('.login__error');
+    $(loginForm).submit(e => {
         e.preventDefault();
-        const form = $('.login__form')
-        const formData = $(form).serialize();       
+        const formData = $(loginForm).serialize();
         $.ajax({
             type: 'POST',
-            url: $(form).attr('action'),
+            url: $(loginForm).attr('action'),
             data: formData,
             success: function() {
-                $('#login-password').val('');
+                $(loginForm).val('');
                 modalClose();
                 // redirect to home if user logged in from login page
                 let currentLocation = window.location.href.split('/');                
@@ -94,9 +94,9 @@ function loginListener() {
             },
             error: function() {
                 $('#login-password').val('');
-                $('.login__error').html('Incorrect username or password');
-                $('.login__error').show();
-                $('.modal__login').effect("shake");     
+                $(errorField).html('Incorrect username or password');
+                $(errorField).show();
+                $('.modal__login').effect("shake");
             }
         })
     })
@@ -118,7 +118,7 @@ function logoutListener() {
 function disableSubmitOnEnter() {
     // users may hit 'enter' to confirm address in search box on space creation
     // this prevents enter from submitting the form, causing unwanted behavior
-    if ($('section.create.space').length) {     
+    if ($('section.create.space').length) {
         // only listens created if space creation active
         $('.js-create-address').keypress(e => {
             if (e.which === 13) {
@@ -131,7 +131,7 @@ function disableSubmitOnEnter() {
 function createSpaceListener() {    
     $('button.js-create').click(e => {
         e.preventDefault();
-        const form = $('#space-create-form')
+        const form = $('#space-create-form');
         const formData = new FormData(form[0]);
         $.ajax({
             type: "POST",
@@ -149,9 +149,9 @@ function createSpaceListener() {
 
 function updateSpaceListener() {
     $('button.confirm__action.update.space.edit').click((e) => {
-        e.preventDefault()
-        const spaceID = $('input[name="spaceID"]').val()
-        const form = $('#update__form')   
+        e.preventDefault();
+        const spaceID = $('input[name="spaceID"]').val();
+        const form = $('#update__form');
         const formData = new FormData(form[0]);
         $.ajax({
             url: form.attr('action'),
@@ -169,13 +169,13 @@ function updateSpaceListener() {
 
 function updateAccountListener() {
     $('button.confirm__action.update.account').click((e) => {
-        const form = $('#updateAccountForm')        
+        const form = $('#updateAccountForm');
         $.ajax({
             url: form.attr('action'),
             type: 'PUT',
             data: form.serialize(),
             success: () => {
-                modalClose()
+                modalClose();
                 getAccountInfoFromAPI()
             },
             error: () => {
@@ -318,6 +318,7 @@ function initAutocomplete() {
 }
 
 function searchListener() {
+    const placesSearchError = $('.places__error__message');
     $('.search__button').click(e => {
         e.preventDefault();
         let place = autocomplete.getPlace();        
@@ -328,7 +329,7 @@ function searchListener() {
             $('.search__form').submit();
         } else {
             $('.overview.splash').hide();
-            $('.places__error__message').html(`
+            $(placesSearchError).html(`
                 <p>Sorry, we didn't recognize that as a valid address. Make sure to select an address from the menu after typing. Try:</p> 
                 <ul>
                     <li>Washington DC</li>
@@ -336,7 +337,7 @@ function searchListener() {
                     <li>1600 Pennsylvania Ave Washington DC</li>
                 </ul>
             `);
-            $('.places__error__message').fadeIn(600);
+            $(placesSearchError).fadeIn(600);
         }
     })
 }
@@ -351,7 +352,7 @@ const placesComponents = {
 };
 
 const placesValues = {
-}
+};
 
 const formComponents = {
     street: function(){
@@ -369,7 +370,7 @@ const formComponents = {
     city: function(){return placesValues.locality},
     state: function(){return placesValues.administrative_area_level_1},
     zip: function(){return placesValues.postal_code ? placesValues.postal_code : ''},
-}
+};
 
 function fillInAddress() {
     // get place details from the autocomplete object;
@@ -463,13 +464,13 @@ function editAccountListener() {
 }
 
 function getAccountInfoFromAPI() {
-    const form = $('#updateAccountForm')
+    const form = $('#updateAccountForm');
     // ajax request to get user info, then modalOpen
     $.ajax({
         url: $(form).attr('action'),
         method: 'GET',
         success: (user) => {            
-            const html = renderAccountDetails(user)
+            const html = renderAccountDetails(user);
             form.html(html);
             modalOpen('.modal__account', '#edit-email');
         }
@@ -515,8 +516,9 @@ function renderAccountDetails(user) {
 }
 
 function modalOpen(modalDialog,focusTarget) {
-    if ($('.modal__dialog').is(":visible")) {
-        $('.modal__dialog').hide();
+    const dialogWindow = $('.modal__dialog');
+    if ($(dialogWindow).is(":visible")) {
+        $(dialogWindow).hide();
         $(modalDialog).show();
     } else {
         $('.js-modal-wrapper').css('top', 0);
@@ -555,7 +557,7 @@ function modalCloseClick() {
 function modalEscapePress() {
     $('body').keydown(e => {
         // hide modal on escape press
-        if (e.keyCode==27){
+        if (e.keyCode===27){
             modalClose();
         }           
     })
@@ -564,7 +566,7 @@ function modalEscapePress() {
 function modalOutsideClick() {
     $('.js-modal-dialog').click(e => {
         e.stopPropagation();        
-    })
+    });
     $('.js-modal-wrapper').click(() => {
         modalClose();
     })
@@ -578,7 +580,7 @@ function modalKeepTabFocus() {
             e.preventDefault();             
             $('.js-modal-close').focus();
         }
-    })
+    });
 
     $('.confirm__action').keydown(e => {
         if (e.keyCode === 9) {

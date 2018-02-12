@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ejs = require('ejs');
-const {locations, userStatus} = require('./mock');
-const { Space, User } = require('./models');
+const { Space } = require('./models');
 
 function locDetailsGenerator(space) {
 	// context for space details
@@ -40,11 +38,11 @@ router.get('/create', (req, res) => {
 		res.redirect(301, '/login')
 	}
 	
-})
+});
 
 router.get('/s', (req, res) => {		
 	res.render('results', {isLoggedIn: req.isLoggedIn, username: req.username});
-})
+});
 
 router.get('/:id', (req, res) => {
 	// inspect cookie for username and compare to space ID owner
@@ -58,7 +56,7 @@ router.get('/:id', (req, res) => {
 			res.render('details', spaceContext)
 		})
 		.catch(err => res.status(500).json({message:  'Internal server error'}));		
-})
+});
 
 router.get('/:id/edit', (req, res) => {
 	// inspect cookie for username and compare to space ID owner
@@ -75,6 +73,6 @@ router.get('/:id/edit', (req, res) => {
 			res.render('details', spaceContext)
 		}
 	})
-})
+});
 
 module.exports = router;

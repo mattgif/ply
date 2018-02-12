@@ -15,14 +15,14 @@ function requestURLParams() {
 	const url = new URL(window.location.href);
 	let query;
 	if (url.searchParams.get("address")) {
-		$('.search__bar').val(url.searchParams.get("address"))
+		$('.search__bar').val(url.searchParams.get("address"));
 		query = {
 			"location": { 				
 				"coordinates" : [url.searchParams.get("lng"), url.searchParams.get("lat")]
 			}
 		}
 	} else {
-		const path = url.pathname.split('/')
+		const path = url.pathname.split('/');
 		query = {
 			"username": path[path.length -1]
 		}
@@ -76,4 +76,4 @@ function pageHandler() {
 	eventListeners();
 }
 
-$(pageHandler)
+$(pageHandler);
