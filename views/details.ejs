@@ -38,6 +38,7 @@
 			<section class="description">
 				<%= description %>
 			</section>
+			<% if (amenities.electricity || amenities.water || amenities.heat || amenities.bathroom) { %>
 			<section class="amentities">
 				<h3>Amenities</h3>				
 				<ul>
@@ -48,12 +49,13 @@
 					<% } %>
 				</ul>
 			</section>
+			<% } %>
 		</div>
 		<section class="rent">
 			<% if (rates) { %>
 			<ul class="rates">
-				<% for (var i = 0; i < rates.length; i++) { -%>
-					<li><span class="amt">$<%=rates[i][0]%></span> per <%=rates[i][1]%></li>
+				<% for (rate in rates) { -%>
+					<li><span class="amt">$<%=rates[rate]%></span> <%=rate%></li>
 				<% } -%>
 			</ul>
 			<% } else { %>			

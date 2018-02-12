@@ -30,6 +30,26 @@ const availabilityCheckboxListener = function() {
     })
 }
 
+// rent space
+function rentButtonListener() {
+    $('button.rent').click(e => {
+        const title = $('.details__title').text()
+        const owner = $('.owner__name').text()
+        const apiURL = '/api/user/' + owner
+        $.ajax({
+            method: "GET",
+            url: apiURL,
+            success: (user) => {
+                sendEmail(user.email,title)
+            }
+        })
+    })
+}
+
+function sendEmail(toAddress,subject) {    
+    window.location.href = `mailto:${toAddress}?subject=${subject}`
+}
+
 // image upload
 function readURL(input) {
   if (input.files && input.files[0]) {
@@ -597,6 +617,7 @@ function pageHandler() {
     imageUploadListener();
     spaceUpdateListeners();
     availabilityCheckboxListener();
+    rentButtonListener();
 }
 
 $(pageHandler);

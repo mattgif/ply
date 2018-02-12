@@ -85,26 +85,26 @@
 			        <% } %>					
 				</div>
 				<div>
-					<input type="checkbox" name="longTerm" id="longTerm" value="longTerm" <% longTerm ? "checked" : "" %>/>
+					<input type="checkbox" name="longTerm" id="longTerm" value="longTerm" <%= longTerm ? "checked" : "" %>/>
 					<label for="longTerm" class="checkbox__label"><i class="material-icons" aria-hidden="true">update</i> Available for long-term storage?</label>
 				</div>
 			</fieldset>
 			<fieldset name="amenities">
 				<legend>Any amenities?</legend>
 				<div>
-					<input type="checkbox" name="electricity" id="electricity" value="electricity" <% amenities.electricity ? "checked" : "" %>/>
+					<input type="checkbox" name="electricity" id="electricity" value="electricity" <%= amenities.electricity ? "checked" : "" %>/>
 					<label for="electricity" class="checkbox__label"><i class="material-icons" aria-hidden="true">power</i> Electricity</label>
 				</div>
 				<div>
-					<input type="checkbox" name="heat" id="heat" value="heat" <% amenities.heat ? "checked" : "" %>/>
+					<input type="checkbox" name="heat" id="heat" value="heat" <%= amenities.heat ? "checked" : "" %>/>
 					<label for="heat" class="checkbox__label"><i class="material-icons" aria-hidden="true">whatshot</i> Heat</label>
 				</div>
 				<div>
-					<input type="checkbox" name="water" id="water" value="water" <% amenities.water ? "checked" : "" %>/>
+					<input type="checkbox" name="water" id="water" value="water" <%= amenities.water ? "checked" : "" %>/>
 					<label for="water" class="checkbox__label"><i class="material-icons" aria-hidden="true">format_color_fill</i> Water</label>
 				</div>
 				<div>
-					<input type="checkbox" name="bathroom" id="bathroom" value="bathroom" <% amenities.bathroom ? "checked" : "" %>/>
+					<input type="checkbox" name="bathroom" id="bathroom" value="bathroom" <%= amenities.bathroom ? "checked" : "" %>/>
 					<label for="bathroom" class="checkbox__label"><i class="material-icons" aria-hidden="true">room_service</i> Bathroom</label>
 				</div>
 			</fieldset>

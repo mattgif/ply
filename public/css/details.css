@@ -76,6 +76,11 @@ section.rent {
 	font-size: .8em;
 }
 
+.rates li {
+	display: inline-block;
+	margin-right: 15px;
+}
+
 button.rent {
 	height: 44px;	
 	font-family: Nunito,Calibre,sans-serif;
@@ -107,11 +112,17 @@ button.rent {
 	color: tomato;
 }
 
+@media screen and (max-width: 415px) {
+	.rates li {
+		display: block;
+	}
+}
+
 @media screen and (max-width: 999px) {
 	button.rent {
 		position: absolute;
 		right: 15px;
-		bottom: 12px;
+		bottom: 5px;
 		width: 140px;		
 	}
 	
@@ -131,8 +142,11 @@ button.rent {
 	}
 	
 	.rates {
-		width: 175px;
-		height: 50px;		
+		width: 175px;		
+	}
+
+	.rates li {
+		display: block;
 	}
 	
 	section.rent {		
