@@ -162,11 +162,11 @@
 	z-index: -1;
 }
 
-.login__error {
+.login__error, .registration__error {
 	display: none;
 	text-align: center;
 	color: red;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 #account__buttons {

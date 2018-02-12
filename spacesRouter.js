@@ -37,7 +37,6 @@ router.get('/create', (req, res) => {
 	} else {		
 		res.redirect(301, '/login')
 	}
-	
 });
 
 router.get('/s', (req, res) => {		
@@ -50,12 +49,13 @@ router.get('/:id', (req, res) => {
 	Space
 		.findOne({spaceID: req.params.id})
 		.then(space => {
-			const spaceContext = locDetailsGenerator(space);			
-			spaceContext.isLoggedIn = !!req.user[0];
+			const spaceContext = locDetailsGenerator(space);
+			console.log(req.user);
+			spaceContext.isLoggedIn = req.user ? !!req.user[0] : false;
 			spaceContext.username = req.username;
 			res.render('details', spaceContext)
 		})
-		.catch(err => res.status(500).json({message:  'Internal server error'}));		
+		.catch(err => res.status(500).json({message:  'Internal server error'}));
 });
 
 router.get('/:id/edit', (req, res) => {

@@ -102,6 +102,29 @@ function loginListener() {
     })
 }
 
+function joinListener() {
+    const joinForm = $('.signup__form');
+    const errorField = $('.registration__error');
+    $(joinForm).submit(e => {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: $(joinForm).attr('action'),
+            data: $(joinForm).serialize(),
+            success: () => {
+                window.location.href = "/login";
+            },
+            error: (err) => {
+                console.log(err);
+                $(errorField).html(err.responseJSON.message);
+                $(errorField).show();
+            }
+        })
+
+
+    })
+}
+
 function logoutListener() {
     $('.logout').click(() => {
         $.ajax({
@@ -540,7 +563,7 @@ function modalClose() {
     },200);
     // clear modal fields
     $('.modal__dialog input').val('');
-    $('.login__error').hide();
+    $('.login__error', '.registration__error').hide();
     // turn off listeners used to keep focus in modal
     $('.join, .login').off("keydown");
     $('.js-modal-wrapper, .js-modal-dialog').off("click");
@@ -606,6 +629,7 @@ function modalOpenListeners() {
     editAccountListener();
     openAccountUpdateConfirm();
     updateAccountListener();
+    joinListener();
 }
 
 // core
