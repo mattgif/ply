@@ -92,11 +92,11 @@ form fieldset .fileupload__wrapper {
 .hint {
 	font-size: .8em;
 	color: #555;
-	padding-left: 30px;
+	padding-left: 45px;
 }
 
-.label__regular {
-	margin-left: 30px;
+fieldset .label__regular {
+	margin-left: 36px;
 	margin-bottom: 15px;
 }
 
@@ -143,7 +143,7 @@ form fieldset .fileupload__wrapper {
 }
 
 .form__wrapper.space.create select {
-	margin-left: 32px;
+	margin-left: 36px;
 }
 
 .edit__buttons {

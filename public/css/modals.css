@@ -124,6 +124,10 @@
 	  -webkit-transition:0.2s ease all;
 }
 
+#space-create-form .animated__label + label {
+    left: 40px;
+}
+
 .animated__label:focus ~ label, .animated__label:valid ~ label {
 	top: -20px;
 	font-size: .8em;
