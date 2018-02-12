@@ -2,59 +2,88 @@
 <div class="js-modal-wrapper">
 	<div class="modal__overlay"></div>
 	<div class="modal__wrapper">
-		<div class="modal__dialog js-modal-dialog modal__login" role="dialog" aria-labelledby="login__legend" tabindex="-1">				
+	<% if (!(isLoggedIn)) { %>{
+			<div class="modal__dialog js-modal-dialog modal__login" role="dialog" aria-labelledby="login__legend" tabindex="-1">				
+				<div class="modal__close">
+					<button class="js-modal-close" aria-label="close dialog">X</button>
+				</div>			
+				<form action="/api/login" class="login__form" method="POST">					
+					<legend id="login__legend">Log in to your ply account</legend>
+					<div class="login__error"></div>
+					<div class="input__group">	
+						<input type="text" name="username" id="login-username" class="animated__label" required>
+						<label for="username">Username</label>									
+					</div>
+					<div class="input__group">	
+						<input type="password" id="login-password" name="password" class="animated__label" required>
+						<label for="signup-password">Password</label>						
+					</div>
+					<button type="submit">Log In</button>
+				</form>
+				<div class="modal__change">
+					<h4>Not a ply member? <a href="/register" class="join">Join ply</a></h4>					
+				</div>
+			</div>
+	
+			<div class="modal__dialog js-modal-dialog modal__join" role="dialog" aria-labelledby="signup__legend" tabindex="-1">
+				<div class="modal__close">
+					<button class="js-modal-close" aria-label="close dialog">X</button>
+				</div>
+				<form action="/user" class="signup__form" method="POST">
+					<legend id="signup__legend">Join ply to share or book a space</legend>
+					<div class="input__group">
+						<input type="email" name="email" id="signup-email" class="animated__label" required>	
+						<label for="email">Email address</label>										
+					</div>
+					<div class="input__group">
+						<input type="text" name="username" id="signup-username" class="animated__label" required>	
+						<label for="email">Username</label>
+					</div>
+					<div class="input__group">
+						<input type="text" id="signup-firstName" name="firstName" class="animated__label" required>
+						<label for="signup-firstName">First name</label>											
+					</div>
+					<div class="input__group">
+						<input type="text" id="signup-lastName" name="lastName" class="animated__label" required>
+						<label for="signup-lastName">Last name</label>											
+					</div>
+					<div class="input__group">
+						<input type="password" id="signup-password" name="password" class="animated__label" required>
+						<label for="signup-password">Create a password</label>						
+					</div>
+					<button type="submit">Join ply</button>
+				</form>
+				<div class="modal__change">
+					<h4>Already a ply member? <a href="/login" class="login">Log in</a></h4>
+				</div>
+			</div>
+	<% } else { %>
+		<div class="modal__dialog js-modal-dialog modal__account" role="dialog" aria-labelledby="account__legend" tabindex="-1">
 			<div class="modal__close">
 				<button class="js-modal-close" aria-label="close dialog">X</button>
-			</div>			
-			<form action="/api/login" class="login__form" method="POST">					
-				<legend id="login__legend">Log in to your ply account</legend>
-				<div class="login__error"></div>
-				<div class="input__group">	
-					<input type="text" name="username" id="login-username" class="animated__label" required>
-					<label for="username">Username</label>									
-				</div>
-				<div class="input__group">	
-					<input type="password" id="login-password" name="password" class="animated__label" required>
-					<label for="signup-password">Password</label>						
-				</div>
-				<button type="submit">Log In</button>
+			</div>
+			<form id="updateAccountForm" action="/api/user/<%= username %>">
 			</form>
-			<div class="modal__change">
-				<h4>Not a ply member? <a href="/register" class="join">Join ply</a></h4>					
+			
+			<div class="super__modal__wrapper">
+				<div class="confirm__dialog__overlay"></div>
+				<div class="modal__dialog confirm__dialog js-modal-dialog modal__delete" role="dialog" tabindex="-1">
+					<h4>Delete your ply account?</h4>					
+					<input type="text" name="deleteConfirm" placeholder="Type DELETE here to confirm.">
+					<button class="cancel__action">Cancel</button>
+					<button class="confirm__action delete edit space">Delete</button>
+				</div>
 			</div>
-		</div>
-
-		<div class="modal__dialog js-modal-dialog modal__join" role="dialog" aria-labelledby="signup__legend" tabindex="-1">
-			<div class="modal__close">
-				<button class="js-modal-close" aria-label="close dialog">X</button>
+			<div class="super__modal__wrapper">
+				<div class="confirm__dialog__overlay"></div>
+				<div class="modal__dialog confirm__dialog js-modal-dialog modal__update" role="dialog" tabindex="-1">
+					<h4>Update space?</h4>
+					<button class="cancel__action">Cancel</button>
+					<button class="confirm__action update edit space">Update</button>
+				</div>
 			</div>
-			<form action="/user" class="signup__form" method="POST">
-				<legend id="signup__legend">Join ply to share or book a space</legend>
-				<div class="input__group">
-					<input type="email" name="email" id="signup-email" class="animated__label" required>	
-					<label for="email">Email address</label>										
-				</div>
-				<div class="input__group">
-					<input type="text" name="username" id="signup-username" class="animated__label" required>	
-					<label for="email">Username</label>
-				</div>
-				<div class="input__group">
-					<input type="text" id="signup-firstName" name="firstName" class="animated__label" required>
-					<label for="signup-firstName">First name</label>											
-				</div>
-				<div class="input__group">
-					<input type="text" id="signup-lastName" name="lastName" class="animated__label" required>
-					<label for="signup-lastName">Last name</label>											
-				</div>
-				<div class="input__group">
-					<input type="password" id="signup-password" name="password" class="animated__label" required>
-					<label for="signup-password">Create a password</label>						
-				</div>
-				<button type="submit">Join ply</button>
-			</form>
-			<div class="modal__change">
-				<h4>Already a ply member? <a href="/login" class="login">Log in</a></h4>
-			</div>
-		</div>		
+			
+		</div>	
+	<% } %>
 	</div>	
 </div>

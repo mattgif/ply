@@ -28,6 +28,12 @@ router.post('/logout', (req, res) => {
 	res.redirect('/');
 })
 
+router.get('/user/:id', (req, res) => {
+	User
+		.findOne({username: req.user[0].username})
+		.then(user => {res.json(user.serialize())})
+})
+
 router.put('/user/:id', (req, res) => {
 	if (!(req.user) || !(req.user[0].username === req.params.id)) {
 		res.status(401).json({reason: 'Unauthorized'})

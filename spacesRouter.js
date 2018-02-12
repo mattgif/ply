@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const ejs = require('ejs');
-const {locations, userStatus} = require('./mock')
-const { Space, User } = require('./models')
+const {locations, userStatus} = require('./mock');
+const { Space, User } = require('./models');
 
 function locDetailsGenerator(space) {
 	// context for space details

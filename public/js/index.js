@@ -236,15 +236,16 @@ function searchListener() {
             $('#lng-input').val(place.geometry.location.lng());
             $('.search__form').submit();
         } else {
+            $('.overview.splash').hide();
             $('.places__error__message').html(`
-                <p>Sorry, we couldn't recognize that as a valid address. Try:</p> 
+                <p>Sorry, we didn't recognize that as a valid address. Make sure to select an address from the menu after typing. Try:</p> 
                 <ul>
                     <li>Washington DC</li>
                     <li>20002</li>
                     <li>1600 Pennsylvania Ave Washington DC</li>
                 </ul>
             `);
-            $('.places__error__message').show();
+            $('.places__error__message').fadeIn(600);
         }
     })
 }
@@ -364,6 +365,44 @@ function modalLoginClick() {
     })
 }
 
+function editAccountListener() {
+    $('.manage_account').click(() => {
+        const form = $('#updateAccountForm')
+        // ajax request to get user info, then modalOpen
+        $.ajax({
+            url: $(form).attr('action'),
+            method: 'GET',
+            success: (user) => {
+                console.log($(form).attr('action'))
+                const html = renderAccountDetails(user)
+                form.html(html);
+                modalOpen('.modal__account', '#edit-email');
+            }
+        })
+        
+    })
+}
+
+function renderAccountDetails(user) {
+    return `
+        <legend id="account__legend">Edit my account</legend>
+        <div class="input__group">
+            <input type="email" name="email" id="edit-email" value="${user.email}" class="animated__label"> 
+            <label for="email">Email address</label>
+        </div>
+        <div class="input__group">
+            <input type="text" id="edit-firstName" name="firstName" value="${user.firstName}" class="animated__label">
+            <label for="signup-firstName">First name</label>                                            
+        </div>
+        <div class="input__group">
+            <input type="text" id="edit-lastName" name="lastName" value="${user.lastName}" class="animated__label">
+            <label for="signup-lastName">Last name</label>
+        </div>
+        <button class="account_delete">Delete account?</button>
+        <button class="account_update">Submit changes</button>
+    `
+}
+
 function modalOpen(modalDialog,focusTarget) {
     if ($('.modal__dialog').is(":visible")) {
         $('.modal__dialog').hide();
@@ -450,6 +489,7 @@ function modalOpenListeners() {
     cancelListener();
     updateListener();
     deleteListener();
+    editAccountListener();
 }
 
 // core

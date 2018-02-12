@@ -22,7 +22,7 @@
 	padding: 0px 15px;
 }
 
-.places__error__message {
+.places__error__message, .overview.splash {
 	max-width: 500px;
 	background-color: rgba(255, 255, 255, 0.8);
 	border-radius: 4px;
@@ -30,8 +30,12 @@
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 30px;
+	margin-bottom: 30px;
 	text-align: left;
-	padding: 10px 20px;
+	padding: 10px 20px;	
+}
+
+.places__error__message {
 	display: none;
 }
 
