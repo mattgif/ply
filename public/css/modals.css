@@ -30,6 +30,10 @@
 	padding: 30px 15px;
 }
 
+.static.form__wrapper h1 {
+	margin-bottom: 35px;
+}
+
 @media screen and (max-width: 300px) {
 	.static.form__wrapper {
 		margin-top: 60px;
@@ -122,6 +126,10 @@
 	transition:0.2s ease all; 
 	  -moz-transition:0.2s ease all; 
 	  -webkit-transition:0.2s ease all;
+}
+
+.static.form__wrapper .animated__label + label {
+	left: 20px;
 }
 
 #space-create-form .animated__label + label {
