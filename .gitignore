@@ -1,4 +1,4 @@
-node_modules/
-.env
 public/userdata/
-.idea
+.env
+.idea/
+node_modules/

@@ -75,17 +75,21 @@ router.delete('/user/:id', (req, res) => {
 	} 
 
 	const username = req.user[0].username;
-	User
-		.remove({username: username})
-		.then(() => {Space.remove({owner: username})})
+
+	Space
+		.remove({owner: username})
 		.then(() => {
-			console.log(`Deleted user with id ${username} and associated spaces`);
-			res.status(204).end();
-		})
-		.catch(err => {
-	    	console.error(err);
-	    	res.status(500).json({ error: 'uh oh. something went awry.' });
-	    });
+			User
+				.remove({username: username})
+                .then(() => {
+                    console.log(`Deleted user with id ${username} and associated spaces`);
+                    res.status(204).end();
+                })
+                .catch(err => {
+                    console.error(err);
+                    res.status(500).json({ error: 'uh oh. something went awry.' });
+                });
+		});
 });
 
 // spaces
