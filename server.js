@@ -19,6 +19,7 @@ const spacesRouter = require('./spacesRouter');
 const apiRouter = require('./apiRouter');
 
 const { PORT, DATABASE_URL, SESSION_DATABASE_URL, SESSION_SECRET } = require('./config');
+console.log('1. imports from config complete')
 
 app.use(morgan('common'));
 app.use(express.static('public'));
@@ -31,6 +32,7 @@ const store = new MongoDBStore({
   url: SESSION_DATABASE_URL,
   collection: 'sessions'
 });
+console.log('2. session store configured')
 app.use(session({
   secret: SESSION_SECRET,
   cookie: {
@@ -40,6 +42,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+console.log('3. sessions created')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
