@@ -69,6 +69,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
+    if (req.user) {
+        res.redirect('/')
+    }
 	res.render('login')
 });
 
