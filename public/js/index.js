@@ -41,6 +41,9 @@ function rentButtonListener() {
             url: apiURL,
             success: (user) => {
                 sendEmail(user.email,title)
+            },
+            error: () => {
+                modalOpen('.modal__login', '#login-email');
             }
         })
     })
@@ -120,8 +123,6 @@ function joinListener() {
                 $(errorField).show();
             }
         })
-
-
     })
 }
 
