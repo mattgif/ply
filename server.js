@@ -19,7 +19,6 @@ const spacesRouter = require('./spacesRouter');
 const apiRouter = require('./apiRouter');
 
 const { PORT, DATABASE_URL, SESSION_DATABASE_URL, SESSION_SECRET } = require('./config');
-console.log('1. imports from config complete')
 
 app.use(morgan('common'));
 app.use(express.static('public'));
@@ -32,7 +31,7 @@ const store = new MongoDBStore({
   url: SESSION_DATABASE_URL,
   collection: 'sessions'
 });
-console.log('2. session store configured')
+
 app.use(session({
   secret: SESSION_SECRET,
   cookie: {
@@ -42,7 +41,6 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-console.log('3. sessions created')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
@@ -59,10 +57,8 @@ passport.deserializeUser(function(username, done) {
 });
 
 passport.use(localStrategy);
-console.log('4. ready to start routing')
 
 app.use(function(req, res, next) {
-  console.log('req received')
   req.isLoggedIn = !!(req.user && req.user[0]);
   req.username = req.isLoggedIn ? req.user[0].username : false;
   next();
@@ -87,12 +83,16 @@ app.use('/api', apiRouter);
 let server;
 
 function runServer(databaseUrl = DATABASE_URL, port = PORT) {
+  console.log('1. runserver called; databaseurl =\n', databaseUrl);
   return new Promise((resolve, reject) => {
+    console.log('2. connecting to mongoose')
     mongoose.connect(databaseUrl, err => {
+      console.log('3. connection sent')
       if (err) {
+        console.log('4. err condition triggered')
         return reject(err);
       }
-
+      
       server = app.listen(port, () => {
         console.log(`ply server is listening on port ${port}`);
         resolve();
