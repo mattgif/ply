@@ -32,6 +32,7 @@
     "node": "8.9.3"
   },
   "scripts": {
+    "start": "node server.js",
     "test": "mocha --exit"
   },
   "repository": {
