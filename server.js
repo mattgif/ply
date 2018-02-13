@@ -18,7 +18,7 @@ const userRouter = require('./userRouter');
 const spacesRouter = require('./spacesRouter');
 const apiRouter = require('./apiRouter');
 
-const { PORT, DATABASE_URL, SESSION_DATABASE_URL, SESSION_SECRET } = require('./config');
+const { PORT, DATABASE_URL, SESSION_SECRET } = require('./config');
 
 app.use(morgan('common'));
 app.use(express.static('public'));
@@ -28,14 +28,14 @@ app.set('view engine', 'ejs');
 
 // session store
 const store = new MongoDBStore({
-  url: SESSION_DATABASE_URL,
-  collection: 'sessions'
+  uri: DATABASE_URL,
+  collection: 'sessions',
 });
 
 app.use(session({
   secret: SESSION_SECRET,
   cookie: {
-    maxAge: 1000 * 60 * 60 *24 * 7 // 1 week    
+    maxAge: 1000 * 60 * 60 *24 * 7 // 1 week
   },
   store: store,
   resave: false,
@@ -84,9 +84,7 @@ let server;
 
 function runServer(databaseUrl = DATABASE_URL, port = PORT) {
   return new Promise((resolve, reject) => {
-      console.log("sessionDB url:," SESSION_DATABASE_URL);
-      console.log("store", store.url);
-    mongoose.connect(databaseUrl, {useMongoClient: true}, err => {
+    mongoose.connect(databaseUrl, err => {
       if (err) {
         return reject(err);
       }
