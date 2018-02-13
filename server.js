@@ -59,8 +59,10 @@ passport.deserializeUser(function(username, done) {
 });
 
 passport.use(localStrategy);
+console.log('4. ready to start routing')
 
 app.use(function(req, res, next) {
+  console.log('req received')
   req.isLoggedIn = !!(req.user && req.user[0]);
   req.username = req.isLoggedIn ? req.user[0].username : false;
   next();
