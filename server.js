@@ -83,16 +83,12 @@ app.use('/api', apiRouter);
 let server;
 
 function runServer(databaseUrl = DATABASE_URL, port = PORT) {
-  console.log('1. runserver called; databaseurl =\n', databaseUrl);
   return new Promise((resolve, reject) => {
-    console.log('2. connecting to mongoose')
+      console.log(databaseUrl);
     mongoose.connect(databaseUrl, err => {
-      console.log('3. connection sent')
       if (err) {
-        console.log('4. err condition triggered')
         return reject(err);
       }
-      
       server = app.listen(port, () => {
         console.log(`ply server is listening on port ${port}`);
         resolve();
