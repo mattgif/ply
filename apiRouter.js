@@ -9,6 +9,7 @@ const {localStrategy} = require('./auth');
 const emailValidator = require("email-validator");
 const aws = require('aws-sdk');
 const fs = require('fs');
+// fs is used implicitly by S3 sdk
 
 const { S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('./config');
 
@@ -20,6 +21,8 @@ aws.config.update({
     region: AWS_REGION
 });
 
+const s3 = new aws.S3();
+
 const localAuth = passport.authenticate('local', {session: true});
 
 const METERS_PER_MILE = 1609.34;
@@ -27,6 +30,27 @@ const METERS_PER_MILE = 1609.34;
 router.use(bodyParser.json());
 passport.use(localStrategy);
 
+function deleteOldPhoto(photoURL) {
+    // delete old coverImage from S3 when new one added
+    const split = photoURL.split('/');
+    const key = split[split.length-1];
+    const params = {
+        Bucket: S3_BUCKET,
+        Delete: {
+            Objects: [{
+                Key: key,
+            }]
+        }
+    };
+
+    s3.deleteObjects(params, function(err, data) {
+        if (err) {
+            console.error(err, err.stack)
+        } else {
+            console.log('s3 item deleted', data);
+        }
+    })
+}
 function getPhotoURL(photo, owner) {
     // uploads image to s3 and returns url
     const fileType = photo.mimetype;
@@ -39,7 +63,7 @@ function getPhotoURL(photo, owner) {
         }
     }
     const fileExtension = (fileType === "image/jpeg") ? '.jpg' : '.png';
-    fileName = owner + shortId.generate() + fileExtension;
+    const fileName = owner + shortId.generate() + fileExtension;
 
     const params = {
         "Bucket": S3_BUCKET,
@@ -49,12 +73,9 @@ function getPhotoURL(photo, owner) {
         ACL: 'public-read'
     };
 
-    const s3 = new aws.S3();
     s3.putObject(params, function(err, data) {
         if (err) {
             console.error(err, err.stack);
-        } else {
-            console.log('upload success!')
         }
     });
     return `http://${S3_BUCKET}.s3-${AWS_REGION}.amazonaws.com/${fileName}`
@@ -72,7 +93,7 @@ router.post('/logout', (req, res) => {
 
 router.get('/user/:id', (req, res) => {
     if (!(req.user)) {
-        res.status(401).json({message: unauthorized})
+        res.status(401).json({message: "Unauthorized"})
     }
 	User
 		.findOne({username: req.params.id})
@@ -338,9 +359,7 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
     };
 
     if (updated.spaceType) {
-        console.log(updated.spaceType);
-        updated.type = typeNames[updated.spaceType]
-        console.log(updated.type)
+        updated.type = typeNames[updated.spaceType];
     };
 
 	const amenities = ['electricity', 'heat', 'water', 'bathroom'];
@@ -383,14 +402,14 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
 			}		
 			
 			if (photoFile) {
-			// TODO: remove or replace old file from server
+			    deleteOldPhoto(space.coverImage);
                 const photoURL = getPhotoURL(photoFile, space.owner);
                 if (photoURL.code) {
                     res.status(500).json(photoURL);
                 } else {
                     space.coverImage = photoURL;
-                };
-			}
+                }
+            }
 
 			for (field in updated) {
 				space[field] = updated[field];
