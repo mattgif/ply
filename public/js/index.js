@@ -276,6 +276,22 @@ function logoClickListener() {
     })
 }
 
+const menuObserver = new MutationObserver(function(mutations) {
+   mutations.forEach(function(mutation) {
+       console.log(mutation)
+       const target = mutation.target;
+       if (mutation.attributeName === "class") {
+           if ($(target).hasClass('open')) {
+               $('.cover-image, .details__wrapper, .results__wrapper, .search__wrapper, .container__main').fadeOut();
+           } else {
+               $('.cover-image, .details__wrapper, .results__wrapper, .search__wrapper, .container__main').show();
+           }
+       }
+   })
+});
+
+menuObserver.observe($('.mobile__menu')[0], {attributes: true});
+
 function menuTriggerListener() {
     // listens for burger menu click and changes button styling,
     // show menu
