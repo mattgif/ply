@@ -69,10 +69,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    if (req.user) {
-        res.redirect('/')
+    if (req.user && req.user[0]) {
+        res.redirect(301, '/')
+    } else {
+        res.render('login')
     }
-	res.render('login')
 });
 
 app.get('/register', (req, res) => {

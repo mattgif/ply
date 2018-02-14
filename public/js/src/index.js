@@ -116,10 +116,12 @@ function joinListener() {
             url: $(joinForm).attr('action'),
             data: $(joinForm).serialize(),
             success: () => {
+                console.log("success!");
                 window.location.href = "/login";
             },
             error: (err) => {
                 console.log(err);
+                $('#signup-password').val('');
                 $(errorField).html(err.responseJSON.message);
                 $(errorField).show();
             }

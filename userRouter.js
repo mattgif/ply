@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
 		!(field in req.body));
 
 	if (missingField) {
-		res.status(422).json({
+		return res.status(422).json({
 			code: 422,
 			reason: 'ValidationError',
 			message: missingField + ' is required',
@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
 		(field in req.body) && typeof req.body[field] !== 'string');
 
 	if (nonStringField) {
-		res.status(422).json({
+		return res.status(422).json({
 			code: 422,
 			reason: 'ValidationError',
 			message: 'Incorrect field type: expected string',
@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
 		req.body[field].trim() !== req.body[field]);
 
 	if (nonTrimmedField) {		
-		res.status(422).json({
+		return res.status(422).json({
 				code: 422,
 				reason: 'ValidationError',
 				message: nonTrimmedField + ' cannot start or end with whitespace',
@@ -65,7 +65,7 @@ router.post('/', (req, res) => {
 		'max' in sizedFields[field] && req.body[field].trim().length > sizedFields[field].max);
 
 	if (tooSmallField || tooLargeField) {
-		res.status(422).json({
+		return res.status(422).json({
 			code: 422,
 			reason: 'ValidationError',
 			message: tooSmallField
@@ -78,7 +78,7 @@ router.post('/', (req, res) => {
 	let {email, username, firstName, lastName, password} = req.body;
 	firstName = firstName.trim();
 	lastName = lastName.trim();
-	
+
 	return User
 		.find({username})
 		.count()
@@ -107,32 +107,26 @@ router.post('/', (req, res) => {
 					return User.hashPassword(password)
 				})
 				.then(hash => {
-					return User.create({
-						email,
-						username,
-						password: hash,
-						firstName,
-						lastName,
-						spaces: []
-					});
-				})
-				.then(user => {
-					mkdirp('./public/userdata/' + user.serialize().username, function (err) {
-						if (err) {
-							console.error(err)
-						} else {
-							console.log('dir created')
-						}
-					});
-					// maybe have client handle redirect since it's json?
-					res.status(201).redirect(301,'/login').end();
+					User
+                        .create({
+                            email,
+                            username,
+                            password: hash,
+                            firstName,
+                            lastName,
+                            spaces: []
+					    })
+                        .then(user => {
+                            res.status(201).json({message: `successfully created account ${user.username}`});
+                        })
 				})
 		})
 		.catch(err => {
 			if (err.reason === 'ValidationError') {
-				res.status(err.code).json(err);
+				return res.status(err.code).json(err);
 			}
-			res.status(500).json({code: 500, message: 'Internal server error'});
+			console.log(err);
+			return res.status(500).json({code: 500, message: 'Internal server error'});
 		})
 });
 
