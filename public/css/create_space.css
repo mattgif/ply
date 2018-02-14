@@ -45,6 +45,11 @@
 	display: inline-block;
 }
 
+textarea {
+	box-sizing: border-box;
+	width: 85%;
+}
+
 section.space.create h1 {
 	text-align: center;
 	margin-bottom: 25px;
