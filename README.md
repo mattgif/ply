@@ -7,10 +7,20 @@ ply connects people who have spare space with people who need space for a projec
 1. [Screenshots](#screenshots)
 2. [Use cases](#use-cases)
 3. [API documentation](#api-documentation)
-4. [User endpoints](#user-endpoints)
-  * [Create a user](#post-user)
-  * [Retrieve a user](#get-apiuserusername)
-  * [Update a user]
+
+  1. [User endpoints](#user-endpoints)
+   
+    * [Create user](#post-user)
+    * [Retrieve user](#get-apiuserusername)
+    * [Update user](#put-apiuserusername)
+    * [Delete user](#delete-apiuserusername
+    
+  2. [Space endpoints](#space-endpoints)
+  
+    * [Search for spaces](#post-apifindspaces)
+    * [Create space](#post-apispaces)    
+    * [Update space](#put-apispaces)
+    * [Delete space](#delete-apispaces)
 
 
 ## Screenshots
@@ -84,7 +94,7 @@ Put your basement, attic, shed, or garage to work when you're not using them. Pl
 #### DELETE /api/user/_username_
   Deletes user and spaces they own (requires auth as that user)
     
-### Spaces endpoints
+### Space endpoints
 
 #### POST /api/find_spaces
   Returns spaces filtered by location, or by owner. To search by owner, request body:
