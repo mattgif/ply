@@ -71,8 +71,11 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/user/:id', (req, res) => {
+    if (!(req.user)) {
+        res.status(401).json({message: unauthorized})
+    }
 	User
-		.findOne({username: req.user[0].username})
+		.findOne({username: req.params.id})
 		.then(user => {res.json(user.serialize())})
 });
 

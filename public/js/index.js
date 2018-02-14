@@ -35,6 +35,7 @@ function rentButtonListener() {
     $('button.rent').click(() => {
         const title = $('.details__title').text();
         const owner = $('.owner__name').text();
+        console.log('owner name:\n', owner)
         const apiURL = '/api/user/' + owner;
         $.ajax({
             method: "GET",
