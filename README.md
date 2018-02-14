@@ -3,6 +3,15 @@ http://plyspace.herokuapp.com
 
 ply connects people who have spare space with people who need space for a project or storage.
 
+#### Table of Contents
+1. [Screenshots](#screenshots)
+2. [Use cases](#use-cases)
+3. [API documentation](#api-documentation)
+  1. [User endpoints](#user-endpoints)
+    * [Create a user](#post-/user)
+    * [Retrieve a user](#get-/api/user/_username_)
+
+
 ## Screenshots
 #### Splash
 <kbd><img src="https://raw.githubusercontent.com/mattgif/ply/master/public/img/ply_splash.png" alt="ply splash page" width="300"></kbd> 
