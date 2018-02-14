@@ -5,23 +5,18 @@ ply connects people who have spare space with people who need space for a projec
 
 #### Table of Contents
 1. [Screenshots](#screenshots)
-
 2. [Use cases](#use-cases)
-
 3. [API documentation](#api-documentation)
-
   1. [User endpoints](#user-endpoints)   
     * [Create user](#post-user)
     * [Retrieve user](#get-apiuserusername)
     * [Update user](#put-apiuserusername)
-    * [Delete user](#delete-apiuserusername)
-       
+    * [Delete user](#delete-apiuserusername)       
   2. [Space endpoints](#space-endpoints)  
     * [Search for spaces](#post-apifind_spaces)
     * [Create space](#post-apispaces)    
     * [Update space](#put-apispaces)
     * [Delete space](#delete-apispaces)
-
 
 ## Screenshots
 #### Splash
