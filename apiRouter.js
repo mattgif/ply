@@ -7,6 +7,18 @@ const fileUpload = require('express-fileupload');
 const shortId = require('shortid');
 const {localStrategy} = require('./auth');
 const emailValidator = require("email-validator");
+const aws = require('aws-sdk');
+const fs = require('fs');
+
+const { S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('./config');
+
+const AWS_REGION = 'us-east-2';
+
+aws.config.update({
+    accessKeyId: AWS_ACCESS_KEY_ID,
+    secretAccessKey: AWS_SECRET_ACCESS_KEY,
+    region: AWS_REGION
+});
 
 const localAuth = passport.authenticate('local', {session: true});
 
@@ -14,6 +26,45 @@ const METERS_PER_MILE = 1609.34;
 
 router.use(bodyParser.json());
 passport.use(localStrategy);
+
+function getPhotoURL(photo, owner) {
+    // uploads image to s3 and returns url
+    const fileType = photo.mimetype;
+
+    if (fileType !== "image/jpeg" && fileType !== "image/png") {
+        return {
+            code: 500,
+            message: "Invalid image file type",
+            reason: 'ValidationError',
+        }
+    };
+
+    const fileExtension = (fileType === "image/jpeg") ? '.jpg' : '.png'
+    fileName = owner + shortId.generate() + fileExtension;
+
+    // console.log(photo)
+    // photo = fs.createReadStream(photo.data);
+    // console.log('3. readstream created');
+
+    const params = {
+        "Bucket": S3_BUCKET,
+        Key: fileName,
+        Body: photo.data,
+        ContentType: fileType,
+        ACL: 'public-read'
+    };
+
+    const s3 = new aws.S3();
+    s3.putObject(params, function(err, data) {
+        if (err) {
+            console.error(err, err.stack);
+        } else {
+            console.log('upload success!')
+        }
+    });
+    console.log(`http://${S3_BUCKET}.s3-${AWS_REGION}.amazonaws.com/${fileName}`)
+    return `http://${S3_BUCKET}.s3-${AWS_REGION}.amazonaws.com/${fileName}`
+}
 
 // user
 router.post('/login', localAuth, (req, res) => {
@@ -82,7 +133,6 @@ router.delete('/user/:id', (req, res) => {
 			User
 				.remove({username: username})
                 .then(() => {
-                    console.log(`Deleted user with id ${username} and associated spaces`);
                     res.status(204).end();
                 })
                 .catch(err => {
@@ -169,7 +219,7 @@ router.post('/spaces', fileUpload(), (req, res) => {
 	} else {
 		const requiredFields = ['title', 'street', 'city', 'state', 'zip', 'lat', 'lng'];
 
-		const missingField = requiredFields.find(field => 
+		const missingField = requiredFields.find(field =>
 			!(field in req.body));
 
 		if (missingField) {
@@ -181,8 +231,8 @@ router.post('/spaces', fileUpload(), (req, res) => {
 			});
 		}
 
-		let {title, street, city, state, zip, lat, lng, hourly, 
-			daily, monthly, longTerm, electricity, heat, water, 
+		let {title, street, city, state, zip, lat, lng, hourly,
+			daily, monthly, longTerm, electricity, heat, water,
 			bathroom, description, spaceType, dailyRate, hourlyRate, monthlyRate} = req.body;
 		const owner = req.user[0].username;
 		lng = parseFloat(lng);
@@ -191,7 +241,7 @@ router.post('/spaces', fileUpload(), (req, res) => {
 		let rates = {};
 		if (dailyRate) {
 			rates.daily = dailyRate;
-		}	
+		}
 		if (hourlyRate) {
 			rates.hourly = hourlyRate;
 		}
@@ -199,14 +249,14 @@ router.post('/spaces', fileUpload(), (req, res) => {
 			rates.monthly = monthlyRate;
 		}
 
-		let coverImage;		
-		if (req.files && req.files.photos) {			
-			// check if user uploaded photo and, if so, move it to their dir
-			photo = req.files.photos;
-			fileName = shortId.generate() + '.jpg';
-			coverImage = fileName;
-			const filePath = './public/userdata/' + owner + '/' + fileName;			
-			photo.mv(filePath)
+		let coverImage;
+		if (req.files && req.files.photos) {
+		    const photoURL = getPhotoURL(req.files.photos, owner);
+			if (photoURL.code) {
+		        res.status(500).json(photoURL);
+            } else {
+                coverImage = photoURL;
+            }
 		}
 
 		const typeNames = {
@@ -224,7 +274,7 @@ router.post('/spaces', fileUpload(), (req, res) => {
 				type: typeNames[spaceType],
 				owner,
 				description,
-				coverImage,				
+				coverImage,
 				amenities: {
 					electricity: !!electricity,
 					heat: !!heat,
@@ -250,7 +300,7 @@ router.post('/spaces', fileUpload(), (req, res) => {
 				space.spaceID = shortId.generate() + space.zip;
 				space.save();
 				res.status(201).json(space);
-			})			
+			})
 			.catch(err => {
 				if (err.reason === 'ValidationError') {
 					res.status(err.code).json(err);
@@ -318,13 +368,14 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
 				});
 			}		
 			
-			if (photoFile) {			
-			// if user uploaded photo and, if so, move it to their dir
+			if (photoFile) {
 			// TODO: remove or replace old file from server
-				fileName = shortId.generate() + '.jpg';				
-				const filePath = './public/userdata/' + space.owner + '/' + fileName;			
-				photoFile.mv(filePath);
-				space.coverImage = fileName;
+                const photoURL = getPhotoURL(photoFile, space.owner);
+                if (photoURL.code) {
+                    res.status(500).json(photoURL);
+                } else {
+                    space.coverImage = photoURL;
+                };
 			}
 
 			for (field in updated) {

@@ -10,3 +10,6 @@ exports.SESSION_DATABASE_URL = process.env.SESSION_DATABASE_URL ||
 exports.PORT = process.env.PORT || 8080;
 exports.JWT_SECRET = process.env.JWT_SECRET;
 exports.SESSION_SECRET = process.env.SESSION_SECRET;
+exports.S3_BUCKET = process.env.S3_BUCKET;
+exports.AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
+exports.AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
