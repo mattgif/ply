@@ -3,11 +3,11 @@ http://plyspace.herokuapp.com
 
 ply connects people who have spare space with people who need space for a project or storage.
 
-![ply_splash](public/img/ply_splash.png "ply splash screen")
+<img src="https://raw.githubusercontent.com/mattgif/ply/master/public/img/ply_splash.png" alt="ply splash page" width="300"> 
 
-![ply_search](public/img/ply_search.png "ply search results screen" =300x)
+<img src="https://raw.githubusercontent.com/mattgif/ply/master/public/img/ply_search.png" alt="ply search results page" width="300"> 
 
-![ply_details](public/img/ply_details.png "ply space details screen" =300x)
+<img src="https://raw.githubusercontent.com/mattgif/ply/master/public/img/ply_details.png" alt="ply space details page" width="300"> 
 
 ## Use cases
 
