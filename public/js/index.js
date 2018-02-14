@@ -265,20 +265,23 @@ function spaceUpdateListeners() {
 function logoClickListener() {
     // go to home page if navbar logo is clicked    
     $('button.logo').click(() => {
-        if ($('.container__about').length) {
-            $('.container__main').fadeIn(1200);
-            $('button.nav__link.share').fadeIn(1200);
-            $('.container__about').hide();
-            $('button.logo.splash').hide();
-        } else {
-            window.location.href = '/';    
-        }        
+        // // deprecated until payment implemented
+        // if ($('.container__about').length) {
+        //     $('.container__main').fadeIn(1200);
+        //     // $('button.nav__link.share').fadeIn(1200);
+        //     $('.container__about').hide();
+        //     $('button.logo.splash').hide();
+        // } else {
+        //     window.location.href = '/';
+        // }
+        window.location.href = '/';
     })
 }
 
 const menuObserver = new MutationObserver(function(mutations) {
+   // listens for the mobile menu opening/closing and hides content
+   // needed b.c. menu doesn't stay on top, regardless of z-index
    mutations.forEach(function(mutation) {
-       console.log(mutation)
        const target = mutation.target;
        if (mutation.attributeName === "class") {
            if ($(target).hasClass('open')) {
@@ -315,19 +318,21 @@ function menuTriggerListener() {
     })  
 }
 
-function aboutListener() {
-    // behavior for 'share a space' button on navbar
-    $('button.share').click(() => {
-        if (!($('.splash__background').length)) {
-            window.location.href = '/'
-        }
-        $('.mobile__menu').removeClass('open');
-        $('.container__main').hide();
-        $('button.nav__link.share').fadeOut(1200);
-        $('.container__about').fadeIn(1200);
-        $('button.logo.splash').fadeIn(1200);
-    })
-}
+// function aboutListener() {
+//     // behavior for 'about' button on nav
+//     // deprecated until payment implemented
+//     $('button.share').click(() => {
+//         if (!($('.splash__background').length)) {
+//             window.location.href = '/'
+//         }
+//         $('.mobile__menu').removeClass('open');
+//         $('.bt-menu-trigger').removeClass('bt-menu-open');
+//         // $('button.nav__link.share').fadeOut(1200);
+//         $('.container__about').fadeIn(1200);
+//         $('.container__main').hide();
+//         $('button.logo.splash').fadeIn(1200);
+//     })
+// }
 
 
 function goToCreateSpaceListener() {
@@ -340,7 +345,7 @@ function goToCreateSpaceListener() {
 function navButtonListeners() {
     menuTriggerListener();
     logoClickListener();
-    aboutListener();
+    // aboutListener();
     goToCreateSpaceListener();
     deleteAccountListener();
 }

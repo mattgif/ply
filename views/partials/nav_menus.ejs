@@ -15,18 +15,19 @@
 		<% } %>
 	</section>				
 	<section>
+        <% if (isLoggedIn) { %>
 		<h2>Spaces</h2>
 		<ul class="mobile__nav__list mobile__spaces__menu js-logged-in">
-			<li class="nav__item"><button class="nav__link share">About</button></li>
-			<% if (isLoggedIn) { %>
+			<!--<li class="nav__item"><button class="nav__link share">About</button></li>-->
+
 			<a href="/user/<%= username %>"><li class="nav__item"><button class="nav__link manage_space" >Manage spaces</button></li></a>
 			<li class="nav__item"><button class="nav__link create_space">Add a new space</button></li>
-			<% } %>
-		</ul>						
+		</ul>
+        <% } %>
 	</section>				
 </div>			
 <ul class="nav__list full__menu">		
-	<li class="nav__item"><button class="nav__link share">About</button></li>
+	<!--<li class="nav__item"><button class="nav__link share">About</button></li>-->
 	<% if (isLoggedIn) { %>
 	<a href="/user/<%= username %>"><li class="nav__item"><button class="nav__link manage_space" >Spaces</button></li></a>
 	<li class="nav__item"><button class="nav__link manage_account">Account</button></li>

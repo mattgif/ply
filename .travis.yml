@@ -2,8 +2,7 @@ language: node_js
 node_js: node
 services:
   - mongodb
-env: 
-  - JWT_SECRET: travisThrowAwaySecret123
+env:
   - SESSION_SECRET: bippityBoppityB00000
 deploy:
   provider: heroku

@@ -39,7 +39,8 @@ button.logo.splash {
 	width: 44px;
 	height: 2em;
 	cursor: pointer;
-	right: 40px;	
+	right: 15px;
+	top: -3px;
 }
 
 .bt-menu-trigger span {
