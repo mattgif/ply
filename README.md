@@ -17,6 +17,7 @@ ply connects people who have spare space with people who need space for a projec
     * [Create space](#post-apispaces)    
     * [Update space](#put-apispaces)
     * [Delete space](#delete-apispaces)
+* [Technology used](#technology)
 
 ## Screenshots
 #### Splash
@@ -152,8 +153,21 @@ Put your basement, attic, shed, or garage to work when you're not using them. Pl
 #### DELETE /api/spaces/_spaceID_
   Deletes space object with id _spaceID_ (requires auth as owner).
 
+## Technology
 
- 
+### Back-end:
+* [Node.js](https://nodejs.org/en/)
+* [express](https://expressjs.com/)
+* [AWS S3 sdk](https://aws.amazon.com/sdk-for-node-js/) (user image storage)
+* MongoDB / mongoose (spaces are 2dsphere indexed)
+* [Passport](http://www.passportjs.org/)
+* [express-fileupload](https://www.npmjs.com/package/express-fileupload)
+* [email-validator](https://www.npmjs.com/package/email-validator)
+
+### Front-end:
+* Javascript/html/css
+* [Google places API](https://developers.google.com/maps/documentation/javascript/places) (autocomplete & retrieving lng & lat from adress)
+
   
 
 
