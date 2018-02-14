@@ -339,32 +339,48 @@ function initAutocomplete() {
     if ($('section.create.space').length) {
         // listener for filling in address form
         autocomplete.addListener('place_changed', fillInAddress);   
+    } else {
+        autocomplete.addListener('place_changed', () => {
+            let place = autocomplete.getPlace();
+            if (!(place.geometry)) {
+                displaySearchError()
+            } else {
+                fillSearchFormAndSubmit(place)
+            }
+        })
     }
 }
 
-function searchListener() {
+function displaySearchError() {
     const placesSearchError = $('.places__error__message');
-    $('.search__button').click(e => {
+    $('.overview.splash').hide();
+    $(placesSearchError).html(`
+            <p>Sorry, we didn't recognize that as a valid address. Make sure to select an address from the menu after typing. Try:</p>
+            <ul>
+                <li>Washington DC</li>
+                <li>20002</li>
+                <li>1600 Pennsylvania Ave Washington DC</li>
+            </ul>
+     `);
+    $(placesSearchError).fadeIn(600);
+}
+
+function searchListener() {
+    $('.search__form').submit(e => {
         e.preventDefault();
-        let place = autocomplete.getPlace();        
-        if (place && place.geometry) {
-            // check for valid location, then populate and submit
-            $('#lat-input').val(place.geometry.location.lat());
-            $('#lng-input').val(place.geometry.location.lng());
-            $('.search__form').submit();
-        } else {
-            $('.overview.splash').hide();
-            $(placesSearchError).html(`
-                <p>Sorry, we didn't recognize that as a valid address. Make sure to select an address from the menu after typing. Try:</p> 
-                <ul>
-                    <li>Washington DC</li>
-                    <li>20002</li>
-                    <li>1600 Pennsylvania Ave Washington DC</li>
-                </ul>
-            `);
-            $(placesSearchError).fadeIn(600);
-        }
     })
+}
+
+function fillSearchFormAndSubmit(place) {
+    if (place.geometry) {
+        // $('#lat-input').val(place.geometry.location.lat());
+        // $('#lng-input').val(place.geometry.location.lng());
+        //
+        let address = $('.search__bar').val();
+        let lat = place.geometry.location.lat();
+        let lng = place.geometry.location.lng();
+        window.location.href = `/spaces/s?address=${address}&lng=${lng}&lat=${lat}`
+    }
 }
 
 const placesComponents = {
