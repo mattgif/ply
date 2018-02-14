@@ -3,11 +3,13 @@ http://plyspace.herokuapp.com
 
 ply connects people who have spare space with people who need space for a project or storage.
 
-<img src="https://raw.githubusercontent.com/mattgif/ply/master/public/img/ply_splash.png" alt="ply splash page" width="300"> 
-
-<img src="https://raw.githubusercontent.com/mattgif/ply/master/public/img/ply_search.png" alt="ply search results page" width="300"> 
-
-<img src="https://raw.githubusercontent.com/mattgif/ply/master/public/img/ply_details.png" alt="ply space details page" width="300"> 
+## Screenshots
+#### Splash
+<kbd><img src="https://raw.githubusercontent.com/mattgif/ply/master/public/img/ply_splash.png" alt="ply splash page" width="300"></kbd> 
+#### Search results
+<kbd><img src="https://raw.githubusercontent.com/mattgif/ply/master/public/img/ply_search.png" alt="ply search results page" width="300"></kbd> 
+#### Space details
+<kbd><img src="https://raw.githubusercontent.com/mattgif/ply/master/public/img/ply_details.png" alt="ply space details page" width="300"></kbd>
 
 ## Use cases
 
@@ -25,6 +27,7 @@ Put your basement, attic, shed, or garage to work when you're not using them. Pl
 
 #### POST /user
   Creates a new user object. Req body (all fields required):
+  ```
   {
     username: ,
     firstName: ,
@@ -32,34 +35,41 @@ Put your basement, attic, shed, or garage to work when you're not using them. Pl
     email: ,
     password
    }
+   ```
 
 #### POST api/login
   Creates user session for <username>. Req body(all fields required):
+  ```
   {
     username: ,
     password: ,
   }
+  ```
  
 #### POST api/logout
   Logs out requesting user & redirects to '/'  
   
 #### GET /api/user/_username_
   Returns user info for requested user (requires auth). Request body:
+  ```
   {
     username: ,
     email: ,
     firstName: ,
     lastName
   }
+  ```
   
 #### PUT /api/user/_username_
   Updates user object (requires auth as that user, all fields optional). Request body:
+  ```
   {
     email: ,
     firstName: ,
     lastName: ,
     password: ,
    }
+   ```
 
 #### DELETE /api/user/_username_
   Deletes user and spaces they own (requires auth as that user)
@@ -68,18 +78,23 @@ Put your basement, attic, shed, or garage to work when you're not using them. Pl
 
 #### POST /api/find_spaces
   Returns spaces filtered by location, or by owner. To search by owner, request body:
+  ```
   {
     username: ,
   }
+  ```
   
   To search by location, request body (long and lat must be numbers (ints or floats): 
+  ```
   {
     location: {
       coordinates: [ _longitude_, _latitude_]
     }
   }
+  ```
   
   Returns array of space objects. Location search returns all spaces within ~10 miles of specified coordinates. Res body: 
+  ```
   [
     {
       	spaceID: _used for url and for api requests re: space_,
@@ -111,6 +126,7 @@ Put your basement, attic, shed, or garage to work when you're not using them. Pl
 	      zip: 
     }
   ]
+  ```
   
 #### POST /api/spaces
   Creates a new space object (requires auth). Request body includes all fields listed above, except spaceID and owner.
