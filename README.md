@@ -7,9 +7,10 @@ ply connects people who have spare space with people who need space for a projec
 1. [Screenshots](#screenshots)
 2. [Use cases](#use-cases)
 3. [API documentation](#api-documentation)
-  1. [User endpoints](#user-endpoints)
-    * [Create a user](#post-/user)
-    * [Retrieve a user](#get-/api/user/_username_)
+4. [User endpoints](#user-endpoints)
+  * [Create a user](#post-user)
+  * [Retrieve a user](#get-apiuserusername)
+  * [Update a user]
 
 
 ## Screenshots
