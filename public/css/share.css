@@ -78,6 +78,11 @@ section.share.instructions {
 	flex-wrap: wrap;
 }
 
+.share.img img {
+	width: 100%;
+	object-fit: contain;
+}
+
 @media screen and (min-width: 640px) {
 	.share.instructions h2 {
 		text-align: center;
@@ -100,11 +105,6 @@ section.share.instructions {
 		height: 200px;
 		width: 300px;
 		margin-left: 25px;
-	}
-
-	.share.img img {
-		width: 100%;
-		object-fit: contain;
 	}
 
 	.share.img.reverse {

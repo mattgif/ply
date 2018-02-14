@@ -305,6 +305,7 @@ function aboutListener() {
         if (!($('.splash__background').length)) {
             window.location.href = '/'
         }
+        $('.mobile__menu').removeClass('open');
         $('.container__main').hide();
         $('button.nav__link.share').fadeOut(1200);
         $('.container__about').fadeIn(1200);

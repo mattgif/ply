@@ -7,6 +7,8 @@ body {
 	box-sizing: border-box;
 	line-height: 1.7em;
 	color: white;
+	top: 0;
+	left: 0;
 }
 
 button:hover {
