@@ -7,7 +7,7 @@ function locDetailsGenerator(space) {
 	return {
 		spaceID: space.spaceID,
 		title: space.title,
-		image: space.coverImage ? "/userdata/" + space.owner + "/" + space.coverImage : false,
+		image: space.coverImage ? space.coverImage : false,
 		type: space.type,
 		street: space.street,
 		city: space.city,		
@@ -50,7 +50,6 @@ router.get('/:id', (req, res) => {
 		.findOne({spaceID: req.params.id})
 		.then(space => {
 			const spaceContext = locDetailsGenerator(space);
-			console.log(req.user);
 			spaceContext.isLoggedIn = req.user ? !!req.user[0] : false;
 			spaceContext.username = req.username;
 			res.render('details', spaceContext)

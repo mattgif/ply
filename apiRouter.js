@@ -37,14 +37,9 @@ function getPhotoURL(photo, owner) {
             message: "Invalid image file type",
             reason: 'ValidationError',
         }
-    };
-
-    const fileExtension = (fileType === "image/jpeg") ? '.jpg' : '.png'
+    }
+    const fileExtension = (fileType === "image/jpeg") ? '.jpg' : '.png';
     fileName = owner + shortId.generate() + fileExtension;
-
-    // console.log(photo)
-    // photo = fs.createReadStream(photo.data);
-    // console.log('3. readstream created');
 
     const params = {
         "Bucket": S3_BUCKET,
@@ -62,7 +57,6 @@ function getPhotoURL(photo, owner) {
             console.log('upload success!')
         }
     });
-    console.log(`http://${S3_BUCKET}.s3-${AWS_REGION}.amazonaws.com/${fileName}`)
     return `http://${S3_BUCKET}.s3-${AWS_REGION}.amazonaws.com/${fileName}`
 }
 

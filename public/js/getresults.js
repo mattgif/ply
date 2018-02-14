@@ -42,7 +42,7 @@ function getSpacesFromApi(query, callback) {
 
 function renderResults(space) {
 	const loc = space.space;
-	const image = "/userdata/" + loc.owner + "/" + loc.coverImage;
+	const image = loc.coverImage;
 	let editButton;
 	if (space.isOwner) {
 		editButton = `
