@@ -4,15 +4,15 @@ http://plyspace.herokuapp.com
 ply connects people who have spare space with people who need space for a project or storage.
 
 #### Table of Contents
-1. [Screenshots](#screenshots)
-2. [Use cases](#use-cases)
-3. [API documentation](#api-documentation)
-  1. [User endpoints](#user-endpoints)   
+* [Screenshots](#screenshots)
+* [Use cases](#use-cases)
+* [API documentation](#api-documentation)
+  * [User endpoints](#user-endpoints)   
     * [Create user](#post-user)
     * [Retrieve user](#get-apiuserusername)
     * [Update user](#put-apiuserusername)
     * [Delete user](#delete-apiuserusername)       
-  2. [Space endpoints](#space-endpoints)  
+  * [Space endpoints](#space-endpoints)  
     * [Search for spaces](#post-apifind_spaces)
     * [Create space](#post-apispaces)    
     * [Update space](#put-apispaces)
