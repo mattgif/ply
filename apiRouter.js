@@ -263,6 +263,7 @@ router.post('/spaces', fileUpload(), (req, res) => {
 			stg: 'Storage facility',
 			rm: 'Room',
 			std: 'Studio',
+            oth: 'Other'
 		};
 
 		return Space
@@ -319,12 +320,28 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
 	const requester = req.user[0].username;
 
 	const updated = {amenities: {}};
-	const topLevelFields = ['title', 'description', 'type'];
+	const topLevelFields = ['title', 'description', 'spaceType'];
 	topLevelFields.forEach(field => {
 		if (field in req.body) {
 			updated[field] = req.body[field];
 		}	
 	});
+
+    const typeNames = {
+        grg: 'Garage',
+        brn: 'Barn',
+        shd: 'Shed',
+        stg: 'Storage facility',
+        rm: 'Room',
+        std: 'Studio',
+        oth: 'Other'
+    };
+
+    if (updated.spaceType) {
+        console.log(updated.spaceType);
+        updated.type = typeNames[updated.spaceType]
+        console.log(updated.type)
+    };
 
 	const amenities = ['electricity', 'heat', 'water', 'bathroom'];
 	amenities.forEach(field => {

@@ -294,7 +294,12 @@ const menuObserver = new MutationObserver(function(mutations) {
    })
 });
 
-menuObserver.observe($('.mobile__menu')[0], {attributes: true});
+try {
+    //fails on pages where mobile__menu doesn't exist (e.g. space edit)
+    menuObserver.observe($('.mobile__menu')[0], {attributes: true});
+}
+catch(error) {}
+
 
 function menuTriggerListener() {
     // listens for burger menu click and changes button styling,

@@ -3,8 +3,8 @@ const router = express.Router();
 const { Space } = require('./models');
 
 function locDetailsGenerator(space) {
-	// context for space details
-	return {
+	// context for space details/edit pages
+    return {
 		spaceID: space.spaceID,
 		title: space.title,
 		image: space.coverImage ? space.coverImage : false,
