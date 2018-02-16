@@ -344,27 +344,11 @@ function initAutocomplete() {
     } else {
         autocomplete.addListener('place_changed', () => {
             let place = autocomplete.getPlace();
-            if (!(place.geometry)) {
-                displaySearchError()
-            } else {
+            if (place.geometry) {
                 fillSearchFormAndSubmit(place)
             }
         })
     }
-}
-
-function displaySearchError() {
-    const placesSearchError = $('.places__error__message');
-    $('.overview.splash').hide();
-    $(placesSearchError).html(`
-            <p>Sorry, we didn't recognize that as a valid address. Make sure to select an address from the menu after typing. Try:</p>
-            <ul>
-                <li>Washington DC</li>
-                <li>20002</li>
-                <li>1600 Pennsylvania Ave Washington DC</li>
-            </ul>
-     `);
-    $(placesSearchError).fadeIn(600);
 }
 
 function searchListener() {
