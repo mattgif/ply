@@ -370,6 +370,15 @@ function displaySearchError() {
 function searchListener() {
     $('.search__form').submit(e => {
         e.preventDefault();
+        const geocoder = new google.maps.Geocoder();
+        const searchField = $('#pac-input');
+        const address = $(searchField).val()
+        console.log('address:', address);
+        geocoder.geocode({ "address": address }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                fillSearchFormAndSubmit(results[0]);
+            }
+        });
     })
 }
 
