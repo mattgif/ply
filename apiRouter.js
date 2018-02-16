@@ -269,13 +269,17 @@ router.post('/spaces', fileUpload(), (req, res) => {
 
 		let coverImage;
 		if (req.files && req.files.photos) {
+            // if user uploaded photo, upload to AWS and return url
 		    const photoURL = getPhotoURL(req.files.photos, owner);
 			if (photoURL.code) {
 		        res.status(500).json(photoURL);
             } else {
                 coverImage = photoURL;
             }
-		}
+		} else {
+            // if not image uploaded, use placeholder
+            coverImage = `http://${S3_BUCKET}.s3-${AWS_REGION}.amazonaws.com/placeholder-min.jpg`;
+		};
 
 		const typeNames = {
 			grg: 'Garage',
@@ -385,7 +389,7 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
 	updated.rates = rates;
 
 	let photoFile;	
-	if (req.files && req.files.photos) {			
+	if (req.files && req.files.photos) {
 		// check if user uploaded photo
 		photoFile = req.files.photos;
 	}
@@ -409,7 +413,7 @@ router.put('/spaces/:id', fileUpload(), (req, res) => {
                 } else {
                     space.coverImage = photoURL;
                 }
-            }
+            };
 
 			for (field in updated) {
 				space[field] = updated[field];
