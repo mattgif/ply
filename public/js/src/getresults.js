@@ -6,9 +6,17 @@ function cardClickListener() {
 	});
 }
 
-function displayResults(JSONdata) {	
-	const results = JSONdata.map(loc => renderResults(loc));
-	$('.results').html(results);
+function displayResults(JSONdata) {
+    if (JSONdata.length < 1) {
+        const searchTerm = $('#pac-input').val();
+        $('.results').html(`
+            <h2 style="color: #333;">Sorry, no results found for ${searchTerm}</h2>
+        `)
+    } else {
+        const results = JSONdata.map(loc => renderResults(loc));
+        $('.results').html(results);
+    }
+
 }
 
 function requestURLParams() {
