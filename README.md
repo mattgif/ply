@@ -54,7 +54,7 @@ Put your basement, attic, shed, or garage to work when you're not using them. Pl
    ```
 
 #### POST api/login
-  Creates user session for <username>. Req body(all fields required):
+  Creates user session for *username*. Req body (all fields required):
   ```
   {
     username: ,
@@ -66,7 +66,7 @@ Put your basement, attic, shed, or garage to work when you're not using them. Pl
   Logs out requesting user & redirects to '/'  
   
 #### GET /api/user/_username_
-  Returns user info for requested user (requires auth). Request body:
+  Returns user info for requested user (requires auth). Res body:
   ```
   {
     username: ,
