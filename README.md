@@ -100,7 +100,7 @@ Put your basement, attic, shed, or garage to work when you're not using them. Pl
   }
   ```
   
-  To search by location, request body (long and lat must be numbers (ints or floats): 
+  To search by location, request body (lng and lat must be numbers (ints or floats)): 
   ```
   {
     location: {
