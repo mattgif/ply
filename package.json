@@ -34,7 +34,9 @@
     "node": "8.9.3"
   },
   "scripts": {
-    "test": "mocha --exit"
+    "test": "mocha --exit",
+    "deploy": "now -e NODE_ENV=production --token $NOW_TOKEN --npm",
+    "alias": "now alias --token=$NOW_TOKEN"
   },
   "repository": {
     "type": "git",
@@ -52,5 +54,11 @@
   "bugs": {
     "url": "https://github.com/mattgif/ply/issues"
   },
-  "homepage": "https://github.com/mattgif/ply#readme"
+  "homepage": "https://github.com/mattgif/ply#readme",
+  "now": {
+    "now": {
+      "name": "ply",
+      "alias": "plyspace.com"
+    }
+  }
 }
